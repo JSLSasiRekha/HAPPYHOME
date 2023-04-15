@@ -39,6 +39,35 @@ run().catch(console.error);
 const db =  client.db("HappyHome");
 
 const collection = db.collection("Users");
+
+  // Get a reference to the workers collection
+  const workersCollection =db.collection('workers');
+  
+  // Define the new worker object
+  const newWorker = {
+    name: 'John Doe',
+    email: 'johndoe@example.com',
+    phone: '555-555-5555',
+    location: 'New York, NY',
+    category: 'Electrician',
+    description: 'Experienced electrician for residential and commercial projects.',
+    password: 'mysecurepassword'
+  };
+  
+  // Insert the new worker into the workers collection
+  workersCollection.insertOne(newWorker, (err, result) => {
+    if (err) {
+      console.log(err);
+      process.exit(1);
+    }
+    
+    console.log('Worker registered successfully...');
+    
+    // Close the MongoDB connection
+  
+  });
+
+
 //const result = await collection.insertOne({ name: "Sami"},{$set:{name:"Sasi Rekha",rollno: "99"}});
 
 
@@ -200,8 +229,14 @@ app.get('/service5', (req, res) => {
 app.get('/service6', (req, res) => {
   res.render('service6.ejs');
 });
+// app.get('/Worker_Registration', (req, res) => {
+//   res.render('Worker_Registration.ejs', { errors: [] });
+// });
 
-
+app.get('/worker_Registration', (req, res) => {
+  const category = 'plumber'; // define the category variable
+  res.render('worker_Registration.ejs', { category:category,errors:[] }); // pass the category variable to the EJS template
+});
 
 
 

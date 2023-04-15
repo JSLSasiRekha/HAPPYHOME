@@ -1,0 +1,86 @@
+/* Style for form labels */
+label {
+    font-weight: bold;
+  }
+  
+  /* Style for form input fields */
+  input[type="text"], input[type="email"], input[type="tel"], input[type="password"], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+  }
+  
+  /* Style for small form text */
+  small.form-text {
+    display: block;
+    margin-top: -16px;
+    margin-bottom: 16px;
+    font-size: 12px;
+    color: #666;
+  }
+  
+  /* Style for form submit button */
+  button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  
+  /* Style for form error messages */
+  .alert-danger {
+    color: #e8283b;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: 12px;
+    margin-bottom: 16px;
+    border-radius: 4px;
+  }
+  
+  .alert-danger p {
+    margin-bottom: 0;
+  }
+  
+  .alert-danger ul {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  
+  .alert-danger li {
+    list-style: none;
+    margin-bottom: 4px;
+  }
+  
+  /* Style for form success messages */
+  .alert-success {
+    color: #2ee659;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    padding: 12px;
+    margin-bottom: 16px;
+    border-radius: 4px;
+  }
+  
+  .alert-success p {
+    margin-bottom: 0;
+  }
+  
+  .alert-success ul {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  
+  .alert-success li {
+    list-style: none;
+    margin-bottom: 4px;
+  }
+  

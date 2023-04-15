@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://kit.fontawesome.com/db1599c4e2.css" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/db1599c4e2.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/projcss.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    <title>HAPPY_HOME</title>
+</head>
+<body>
+    <div id="signup_form" class="w3-modal">
+        <div class="w3-modal-content w3-animate-zoom" id="signup_box" style="padding:32px">
+          <div class="w3-container w3-white w3-center">
+            <i onclick="document.getElementById('signup_form').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i> 
+             <div id="signup_cont">
+    
+              <h1 class="text-centre">Sign-Up</h3>
+                <form name="form"  class="form" type="/submit_register" action="/submit_register" method="POST">
+                    
+                    <!-- Progress bar -->
+                    <div class="progressbar">
+                      <div class="progress" id="progress"></div>
+                      
+                      <div
+                        class="progress-step  progress-step-active"
+                        data-title="Name"
+                      ></div>
+                      <div class="progress-step" data-title="contact"></div>
+                      <div class="progress-step" data-title="password"></div>
+                      
+                    </div>
+                   
+                
+                    <!-- Steps -->
+                    <div class="form-step form-step-active">
+                      <div class="input-group">
+                        <label for="firstname">First Name</label>
+                        <input type="text" name="firstname" id="firstname" placeholder="Pleas enter your name " value=""/>
+                      </div>
+                      <div class="input-group">
+                        <label for="lastname">Last Name</label>
+                        <input type="text" name="lastname" id="lastname" placeholder=" please enter your last name" value=""/>
+                      </div>
+                     
+                      <div class="">
+                        <a href="#" class="btn btn-next width-50 ml-auto" onclick="validatename()" >Next</a>
+                      </div>
+                    </div>
+                    <div class="form-step">
+                      <div class="input-group">
+                        <label for="phone">Phone</label>
+                        <input type="text" name="phone" id="phone" placeholder="Enter your Mobile Number" value="" />
+                      </div>
+                      <div class="input-group">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" id="email" placeholder="Enter Your E-Mail" value="" />
+                      </div>
+                     
+                      
+                      <div class="btns-group">
+                        <a href="#" class="btn btn-prev">Previous</a>
+                        <a href="#" class="btn btn-next" onclick="Validate_phone_email()">Next</a>
+                        
+                      </div>
+                    </div>
+                    <div class="form-step">
+                      <h2>Set Password</h2>
+                      <div class="input-group">
+                        <label for="cr_password"> Create Password</label>
+                        <input type="password" name="cr_password" id="cr_password" value="" />
+                      </div>
+                      <div class="input-group">
+                        <label for="vr_password"> Confirm Password</label>
+                        <input type="password" name="vr_password" id="vr_password" value=""/>
+                      </div>
+            
+                      <div class="btns-group">
+                        <a  class="btn btn-prev">Previous</a>
+                       
+                        <a href="#" class="btn btn-next" onclick="matchpass()">sign up</a>
+                      </div>
+                    </div>
+                      <div class="form-step">
+                      <h3>Successfully registered!!</h3>
+                      <button class="btn btn-next" id="submit" name="submit" type="submit"  onclick="document.getElementById('newsletter').style.display='block';document.getElementById('signup_form').style.display='none'">Login now</button>
+                      </div>
+                    
+            
+                    
+                  </form>
+            
+            </div>
+            
+          </div>
+        </div>
+      </div>
+</body>
+</html>
+
+
