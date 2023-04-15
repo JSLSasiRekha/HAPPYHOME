@@ -1,0 +1,154 @@
+.w3-sidebar a {font-family: "Roboto", sans-serif}
+    body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;
+}
+.w3-content{
+    max-width: 1700px !important;
+}
+.service_container{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: 10px;
+ background-image: url("./PROJECT/back2.jpeg") ;
+ background-repeat: no-repeat;
+
+ background-size: cover;
+ backface-visibility: 40%;
+
+}
+.service{
+  height: 290px;
+  width: 290px;
+   padding:10px;
+  border: 2px solid rgb(183, 137, 30);
+  border-radius: 10px;
+  margin: 8px;
+  background-color: #F0EBE3;
+
+}
+.service_container .s_1 img{
+  height: 194px;
+  width: 266px;
+ border-top-left-radius: 10px;
+ border-top-right-radius: 10px;
+} 
+.service_container button{
+  width: 100px;
+  height: 30px;
+  
+  font-size: smaller;
+  background-color: rgb(44, 43, 42);
+  color:aliceblue;
+  border-radius: 8px;
+  z-index: 1;
+  position: relative !important;
+  top: -103px;
+  cursor: pointer;
+ 
+    
+
+}
+.service_container button:hover{
+  background-color: black;
+  color: aliceblue;
+  visibility: visible;
+
+}
+
+
+.service_container .s_2{
+  background-color: black;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: -20px;
+}
+.service_container .s_2 .price{
+  font-size: larger;
+  font-family: cursive;
+  text-shadow: 1px 1px;
+  color: rgb(223, 221, 219);
+
+}
+.service_container .s_2 .discount{
+  font-size: small;
+  font-family: cursive;
+  color: red;
+  margin-top: 50px;
+  
+  
+}
+
+#sevice_cart{
+  left: 250px;
+  width: 1443px;
+
+
+}
+.service_container .big_box{
+  display: flex;
+  height: 370px;
+  background-color: white;
+  justify-content: center;
+  text-align: center;
+  font-size: larger;
+
+
+}
+.service_container .big_box .box{
+  width: 200px;
+  height: 210px;
+  
+  border-radius: 8px;
+  margin: 25px;
+
+}
+.service_container .big_box .in_box{
+  margin: 5px;
+ 
+  height: 186px;
+}
+.service_container .big_box .in_box #top{
+
+ height: 140px;
+ background-image: url("./PROJECT/waxing2.jpg ");
+ background-repeat: no-repeat;
+ background-size: cover;
+
+
+}
+.service_container .big_box .in_box #bottom{
+  
+  
+ height: 45px;
+ text-align: left;
+ font-size: smaller;
+ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+ display: flex;
+
+
+}
+.service_container .big_box .in_box #bottom #bottom_right{
+ 
+    align-items: end;
+    color: white;
+    background-color: blueviolet;
+    margin-top: 106px;
+    margin-left: 42px;
+    
+    
+   
+    width: 55px;
+}
+#cart_show{
+  position: fixed;
+  display:none;
+  bottom: 10px;
+  right: 120px;
+  height: 90px;
+  width: 500px;
+  background-color: hsla(0, 20%, 97%, 0.971);
+  z-index: 8;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+

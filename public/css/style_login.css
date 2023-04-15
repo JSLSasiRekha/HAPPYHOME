@@ -1,0 +1,62 @@
+
+
+#login{
+   margin-top:107px;
+   margin-bottom: 76px;
+}
+#signup{
+    margin-top: -150px;
+    margin:30px;
+}
+
+.fimag{
+    margin-top: 120px;
+}
+
+.animate-charcter
+{
+   text-transform: uppercase;
+  background-image: linear-gradient(
+    -225deg,
+    #347044 0%,
+    #125a25 29%,
+    #678983 67%,
+    #181D31 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 2s linear infinite;
+  display: inline-block;
+      font-size: 120px;
+      margin-left: 350px;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.cascading-right {
+    margin-right: 100px;
+    margin-left: 100px;
+  }
+
+  @media (max-width: 791.98px) {
+    .cascading-right {
+      margin-right: 0;
+
+    }
+  }
+  .card cascading-right{
+    height:100px;
+    width:50px;
+  }
+.pm{
+    display: flex;
+}

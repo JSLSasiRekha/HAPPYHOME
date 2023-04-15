@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<!-- THIS IS SIGNUP-FORM with validation and dataentry -- to run it please start main_server.js and run that file-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/about.css">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    
+    <title>signup</title>
+  </head>
+  <body>
+    <div class="card">
+      <img class="homeimg" src="../images/PROJECT/back2.jpeg" width="600px">
+  
+<!-- <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_odcijnjo.json"  background="transparent"  speed="1"  style="width: 500px; height: 700px;" autoplay></lottie-player> -->
+      <h1 class="text-centre">Sign-Up</h1>
+      <div class="formdiv">
+
+      <form name="form"  class="form" type="/submit" action="/submit" method="POST" onsubmit="return matchpass()">
+          
+        <%- include('progressbar.ejs') %>
+        <%- include('step1.ejs') %>
+          <!-- Steps -->
+         
+          <div class="form-step">
+            <div class="input-group">
+              <label for="phone">Phone</label>
+              <input type="text" name="phone" id="phone" placeholder="Enter your Mobile Number" value="" />
+            </div>
+            <div class="input-group">
+              <label for="email">Email</label>
+              <input type="text" name="email" id="email" placeholder="Enter Your E-Mail" value="" />
+            </div>
+           
+            
+            <div class="btns-group">
+              <a href="#" class="btn btn-prev">Previous</a>
+              <a href="#" class="btn btn-next" onclick="validatephone_email()">Next</a>
+            </div>
+          </div>
+          <div class="form-step">
+            <h2>Set Password</h2>
+            <div class="input-group">
+              <label for="cr_password"> Create Password</label>
+              <input type="password" name="cr_password" id="cr_password" value="" />
+            </div>
+            <div class="input-group">
+              <label for="vr_password"> Confirm Password</label>
+              <input type="password" name="vr_password" id="vr_password" value=""/>
+            </div>
+  
+            <div class="btns-group">
+              <a  class="btn btn-prev">Previous</a>
+              <!-- <a href="" class="btn btn-next" >Submit</a> -->
+               <button  class="btn btn-next" id="submit" name="submit" type="submit" onclick="matchpass()">click</button> 
+             
+            </div>
+          </div>
+  
+          <div class="form-step">
+            <h2>data entered successfully</h2>
+           
+  
+            <div class="btns-group">
+              <a  class="btn btn-prev">previous</a>
+              <a  class="btn" href="project">next</a>
+            </div>
+          </div>
+          
+        </form>
+      </div>
+    </div>
+    
+    <script>
+      
+      const prevBtns = document.querySelectorAll(".btn-prev");
+const nextBtns = document.querySelectorAll(".btn-next");
+const progress = document.getElementById("progress");
+const formSteps = document.querySelectorAll(".form-step");
+const progressSteps = document.querySelectorAll(".progress-step");
+
+let formStepsNum = 0;
+
+nextBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    formStepsNum++;
+    updateFormSteps();
+    updateProgressbar();
+  });
+});
+
+prevBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    formStepsNum--;
+    updateFormSteps();
+    updateProgressbar();
+  });
+});
+
+function updateFormSteps() {
+  formSteps.forEach((formStep) => {
+    formStep.classList.contains("form-step-active") &&
+      formStep.classList.remove("form-step-active");
+  });
+
+  formSteps[formStepsNum].classList.add("form-step-active");
+}
+
+function updateProgressbar() {
+  progressSteps.forEach((progressStep, idx) => {
+    if (idx < formStepsNum + 1) {
+      progressStep.classList.add("progress-step-active");
+    } else {
+      progressStep.classList.remove("progress-step-active");
+    }
+  });
+
+  const progressActive = document.querySelectorAll(".progress-step-active");
+
+  progress.style.width =
+    ((progressActive.length - 1) / (progressSteps.length - 1)) * 100 + "%";
+}
+function name(){
+  // insert data into a table
+  const firstname=document.getElementById('username').value;
+  const lastname=document.getElementById('position').value;}
+
+  // validation part
+  function validatename(){
+    var f_name=document.form.firstname.value; 
+    var l_name=document.form.lastname.value; 
+       
+  
+  
+    if (f_name==null || f_name==""){  
+  alert(" first Name can't be blank");  
+  return 0;
+    
+} 
+  
+if (l_name==null || l_name==""){  
+  alert(" last Name can't be blank");  
+  return 0;
+    
+} 
+
+  }
+
+  function validatephone_email(){
+    var num=document.form.phone.value; 
+    var x=document.form.email.value;  
+var atposition=x.indexOf("@");  
+var dotposition=x.lastIndexOf("."); 
+if (isNaN(num)){  
+  alert("please enter your correct mobile number");  
+}
+  
+    
+if (atposition<1 || dotposition<atposition+2 || dotposition+2>=x.length){  
+  alert("Please enter a valid e-mail address ");  
+    
+  }  
+  }
+
+  function matchpass(){  
+    var firstpassword=document.form.cr_password.value;  
+    var secondpassword=document.form.vr_password.value;  
+      
+    if(firstpassword==secondpassword){  
+    return true;  
+    }  
+    else{  
+    alert("password must be same!");  
+    return false;  
+    }  
+    }  
+
+
+    </script>
+   
+  </body>
+</html>

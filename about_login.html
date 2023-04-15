@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<!-- THIS IS SIGNUP-FORM with validation and dataentry -- to run it please start main_server.js and run that file-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./app2.js"></script>
+    <style>
+      
+      :root {
+        --primary-color: #242222;
+      }
+      
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      h1{
+        color: #0c0c0c;
+        font-weight: bolder;
+      }
+      
+      body {
+        font-family: cursive;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+        background-image: url('../PROJECT/login_bg.jpeg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        
+      }
+      /* Global Stylings */
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #101010;
+        font-weight: 900;
+        
+      }
+      
+      input {
+        display: block;
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 0.25rem;
+      }
+      
+      .width-50 {
+        width: 50%;
+      }
+      
+      .ml-auto {
+        margin-left: auto;
+      }
+      
+      .text-center {
+        text-align: center;
+      }
+      
+      /* Progressbar */
+      .progressbar {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        counter-reset: step;
+        margin: 2rem 0 4rem;
+      }
+      
+      .progressbar::before,
+      .progress {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 4px;
+        width: 100%;
+        background-color: #dcdcdc;
+        z-index: -1;
+      }
+      
+      .progress {
+        background-color: greenyellow;
+        width: 0%;
+        transition: 0.3s;
+      }
+      
+      .progress-step {
+        width: 2.1875rem;
+        height: 2.1875rem;
+        background-color: #dcdcdc;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .progress-step::before {
+        counter-increment: step;
+        content: counter(step);
+      }
+      
+      .progress-step::after {
+        content: attr(data-title);
+        position: absolute;
+        top: calc(100% + 0.5rem);
+        font-size: 0.85rem;
+        color: #615e5e;
+        font-weight: bolder;
+        font-size: large;
+      }
+      
+      .progress-step-active {
+        
+        background-color: greenyellow;
+        color: #131313;
+      }
+      
+      /* Form <!-- width: clamp(320px, 30%, 430px); -->*/
+       
+      .form {
+       
+        width: clamp(697px, 50%, 800px) !important;
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        border-radius: 0.35rem;
+        padding: 2.5rem;
+       
+      }
+      
+      .form-step {
+        display: none;
+        transform-origin: top;
+        animation: animate 0.5s;
+      }
+      
+      .form-step-active {
+        display: block;
+      }
+      
+      .input-group {
+        margin: 2rem 0;
+      }
+      
+      @keyframes animate {
+        from {
+          transform: scale(1, 0);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1, 1);
+          opacity: 1;
+        }
+      }
+      
+      /* Button */
+      .btns-group {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+      
+      .btn {
+        padding: 0.75rem;
+        display: block;
+        text-decoration: none;
+        background-color: gray;
+        color:white;
+        text-align: center;
+        border-radius: 0.25rem;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .btn:hover {
+        box-shadow: 0 0 0 2px #fff, 0 0 0 3px gray;
+      }
+      #submit{
+        margin-left: 250px;
+      
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+    </style>
+    
+    <title>login</title>
+  </head>
+  <body>
+    <h1 class="text-centre">LOGIN</h1>
+    <form name="form"  class="form" type="/submit_login" action="/submit_login" method="POST" >
+        
+        <!-- Progress bar -->
+        
+    
+        <!-- Steps -->
+        <div class="form-step form-step-active">
+            <h2 style="font-family: cursive; text-align:center">Please Login</h2>
+          
+            
+              <div class="input-group">
+                <label for="email_l">Email</label>
+                <input type="text" name="email_l" id="email_l" placeholder="Enter Your E-Mail" value="" />
+              </div>
+              <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" value=""/>
+              </div>
+              
+              <div class="btns-group">
+                <!-- <a href="#" class="btn btn-prev">Previous</a> -->
+                <!-- <a href="#" class="btn btn-next" onclick="validatephone_email()">Next</a> -->
+                <button class="btn btn-next" id="submit" name="submit" type="submit">Login </button>
+              </div>
+              
+         
+         
+        </div>
+       <p id="message"></p>
+        
+
+
+        
+        
+        
+      </form>
+    <script>
+      
+      const prevBtns = document.querySelectorAll(".btn-prev");
+const nextBtns = document.querySelectorAll(".btn-next");
+const progress = document.getElementById("progress");
+const formSteps = document.querySelectorAll(".form-step");
+const progressSteps = document.querySelectorAll(".progress-step");
+
+let formStepsNum = 0;
+
+nextBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    formStepsNum++;
+    updateFormSteps();
+    updateProgressbar();
+  });
+});
+
+prevBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    formStepsNum--;
+    updateFormSteps();
+    updateProgressbar();
+  });
+});
+
+function updateFormSteps() {
+  formSteps.forEach((formStep) => {
+    formStep.classList.contains("form-step-active") &&
+      formStep.classList.remove("form-step-active");
+  });
+
+  formSteps[formStepsNum].classList.add("form-step-active");
+}
+
+function updateProgressbar() {
+  progressSteps.forEach((progressStep, idx) => {
+    if (idx < formStepsNum + 1) {
+      progressStep.classList.add("progress-step-active");
+    } else {
+      progressStep.classList.remove("progress-step-active");
+    }
+  });
+
+  const progressActive = document.querySelectorAll(".progress-step-active");
+
+  progress.style.width =
+    ((progressActive.length - 1) / (progressSteps.length - 1)) * 100 + "%";
+}
+function name(){
+  // insert data into a table
+  const firstname=document.getElementById('username').value;
+  const lastname=document.getElementById('position').value;}
+
+  // validation part
+  function validatename(){
+    var f_name=document.form.firstname.value; 
+    var l_name=document.form.lastname.value; 
+       
+  
+  
+if (f_name==null || f_name==""){  
+  alert(" first Name can't be blank"); 
+  return false; 
+    
+} 
+  
+if (l_name==null || l_name==""){  
+  alert(" last Name can't be blank");
+  return false;  
+    
+} 
+return true;
+
+  }
+
+  function validatephone_email(){
+    var num=document.form.phone.value; 
+    var x=document.form.email.value;  
+var atposition=x.indexOf("@");  
+var dotposition=x.lastIndexOf("."); 
+if (isNaN(num)){  
+  alert("please enter your correct mobile number");
+  return false;  
+}
+  
+    
+if (atposition<1 || dotposition<atposition+2 || dotposition+2>=x.length){  
+  alert("Please enter a valid e-mail address \n atpostion:"+atposition+"\n dotposition:"+dotposition); 
+  return false; 
+    
+  } 
+  return true; 
+  }
+
+  function matchpass(){  
+    var firstpassword=document.form.cr_password.value;  
+    var secondpassword=document.form.vr_password.value;  
+      
+    if(firstpassword==secondpassword){  
+    return true;  
+    }  
+    else{  
+    alert("password must be same!");  
+    return false;  
+    }  
+    }  
+
+    function CheckPassword(inputtxt) 
+{ 
+var passw=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+
+if(inputtxt.value.match(passw)) 
+{ 
+
+return true;
+}
+else
+{ 
+alert('please make a strong password !');
+return false;
+}
+}
+function validateall(){
+  if(matchpass()==true && CheckPassword(document.form.vr_password)==true && validatename()==true &&validatephone_email()==true ){
+    return true;
+  }
+  else{
+    alert('check once something is not usual');
+    return false;
+  }
+}
+
+    </script>
+   
+  </body>
+</html>

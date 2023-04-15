@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HAPPY_HOME</title>
+  <link rel="stylesheet" href="https://kit.fontawesome.com/db1599c4e2.css" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/db1599c4e2.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/projcss.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+
+</head>
+
+<body onload="checkcookies()">
+  
+
+
+  <%- include('navbar.ejs') %>
+  
+  <div id="newsletter" class="w3-modal">
+    <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+      <div class="w3-container w3-white w3-center">
+        <i onclick="document.getElementById('newsletter').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i> 
+        <div id="login_cont">
+         
+           <h1 class="text-centre">LOGIN</h1>
+    <form name="form"  class="form" type="/submit_login" action="/submit_login" method="POST" >
+        
+      <!-- Progress bar -->
+      
+  
+      <!-- Steps -->
+      <div class="form-step form-step-active">
+          <h2 style="font-family: cursive; text-align:center">Please Login</h2>
+        
+          
+            <div class="input-group">
+              <label for="email_l">Email</label>
+              <input type="text" name="email_l" id="email_l" placeholder="Enter Your E-Mail" value="" />
+            </div>
+            <div class="input-group">
+              <label for="password">Password</label>
+              <input type="password" name="password" id="password" value=""/>
+            </div>
+            
+            <div class="btns-group">
+              <!-- <a href="#" class="btn btn-prev">Previous</a> -->
+              <!-- <a href="#" class="btn btn-next" onclick="validatephone_email()">Next</a> -->
+              <button class="btn btn" id="submit" name="submit" type="submit" >Login </button>
+              <a href="#" class="btn " onclick="document.getElementById('newsletter').style.display='none';document.getElementById('signup_form').style.display='block'">Signup</a> 
+            </div>
+            
+       
+       
+      </div>
+ 
+      
+      
+    </form>
+
+          
+
+
+  
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <!-- signup_form -->
+  <div id="signup_form" class="w3-modal">
+    <div class="w3-modal-content w3-animate-zoom" id="signup_box" style="padding:32px">
+      <div class="w3-container w3-white w3-center">
+        <i onclick="document.getElementById('signup_form').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i> 
+         <div id="signup_cont">
+
+          <h1 class="text-centre">Sign-Up</h3>
+            <form name="form"  class="form" type="/submit_register" action="/submit_register" method="POST">
+                
+                <!-- Progress bar -->
+                <div class="progressbar">
+                  <div class="progress" id="progress"></div>
+                  
+                  <div
+                    class="progress-step  progress-step-active"
+                    data-title="Name"
+                  ></div>
+                  <div class="progress-step" data-title="contact"></div>
+                  <div class="progress-step" data-title="password"></div>
+                  
+                </div>
+               
+            
+                <!-- Steps -->
+                <div class="form-step form-step-active">
+                  <div class="input-group">
+                    <label for="firstname">First Name</label>
+                    <input type="text" name="firstname" id="firstname" placeholder="Pleas enter your name " value=""/>
+                  </div>
+                  <div class="input-group">
+                    <label for="lastname">Last Name</label>
+                    <input type="text" name="lastname" id="lastname" placeholder=" please enter your last name" value=""/>
+                  </div>
+                 
+                  <div class="">
+                    <a href="#" class="btn btn-next width-50 ml-auto" onclick="validatename()" >Next</a>
+                  </div>
+                </div>
+                <div class="form-step">
+                  <div class="input-group">
+                    <label for="phone">Phone</label>
+                    <input type="text" name="phone" id="phone" placeholder="Enter your Mobile Number" value="" />
+                  </div>
+                  <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" id="email" placeholder="Enter Your E-Mail" value="" />
+                  </div>
+                 
+                  
+                  <div class="btns-group">
+                    <a href="#" class="btn btn-prev">Previous</a>
+                    <a href="#" class="btn btn-next" onclick="Validate_phone_email()">Next</a>
+                    
+                  </div>
+                </div>
+                <div class="form-step">
+                  <h2>Set Password</h2>
+                  <div class="input-group">
+                    <label for="cr_password"> Create Password</label>
+                    <input type="password" name="cr_password" id="cr_password" value="" />
+                  </div>
+                  <div class="input-group">
+                    <label for="vr_password"> Confirm Password</label>
+                    <input type="password" name="vr_password" id="vr_password" value=""/>
+                  </div>
+        
+                  <div class="btns-group">
+                    <a  class="btn btn-prev">Previous</a>
+                   
+                    <a href="#" class="btn btn-next" onclick="matchpass()">sign up</a>
+                  </div>
+                </div>
+                  <div class="form-step">
+                  <h3>Successfully registered!!</h3>
+                  <button class="btn btn-next" id="submit" name="submit" type="submit"  onclick="document.getElementById('newsletter').style.display='block';document.getElementById('signup_form').style.display='none'">Login now</button>
+                  </div>
+                
+        
+                
+              </form>
+        
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="big_cont" >
+
+
+
+
+    <div class="container">
+
+     
+      <div class="searchbox">
+
+       
+        
+         <input id="searchbar" type="text" name="search" placeholder="Search..." list="options" >
+        <button><i class="fa-solid fa-magnifying-glass fa-beat"></i>
+
+
+          </button>
+         
+        
+        <datalist id="options">
+          <option value="MENS SALOON">MENS SALOON</option>
+          <option value="WOMENS SALOON">WOMENS SALOON</option>
+          <option value="PLumber">PLUMBER</option>
+          <option value="House Paint">HOUSE PAINT</option>
+          <option value="appliance repair">APPLIANCE REPAIR</option>
+          <option value="HOUSE CLEANING">HOUSE CLEANING</option>
+          <option value="HOUSE PAINTING">HOUSE PAINTING</option>
+          <option value="MENS MASSAGE AND SPA">MENS MASSAGE AND SPA</option>
+          <option value="PHP">WOMENS MASSAGE AND SPA</option>
+          <option value="Pascal">BEARED AND HAIR CUT</option>
+          <option value="Perl">WOMENS FACIAL AND EYEBROW</option>
+          <option value="R"></option>
+          <option value="Swift">Swift</option>
+        </datalist>
+
+
+
+
+  
+
+    </div> 
+
+  
+    <div class="container2" id="canvas">
+
+      <div class="services">
+
+        <div class="box" id="service1"><a href="service1" target="_blank"><img src="images/PROJECT/saloon_men.jpeg">
+          <span class="popuptext" id="myPopup">MEN'S SALOON</span>
+        </div>
+
+        <div class="box" id="service2"><a href="service2"><img src="images/PROJECT/women_salon.jpeg">
+
+            <span class="popuptext" id="myPopup">WOMENS SALOON</span>
+
+          </a></div>
+        <div class="box" id="service3"><a href="service3"><img src="images/PROJECT/carpenter2.jpg">
+            <span class="popuptext" id="myPopup">CARPENTER</span>
+
+          </a></div>
+        <div class="box" id="service4"><a href="service4"><img src="images/PROJECT/plumber.jpeg">
+            <span class="popuptext" id="myPopup">PLUMBER</span>
+
+          </a></div>
+
+      </div>
+      <div class="services">
+
+        <div class="box" id="service1"><a href="service5"><img src="images/PROJECT/houseclean.jpeg">
+            <span class="popuptext" id="myPopup">HOUSE CLEAN</span>
+
+          </a></div>
+        <div class="box" id="service2"><a href="./service6"><img src="images/PROJECT/appliance_re.jpeg">
+            <span class="popuptext" id="myPopup">REPAIR</span>
+
+          </a></div>
+      </div>
+
+    <br>
+      <h1>Popular Services Recommended for you</h1>
+      <div class="slideshow-container">
+        <div class="mySlides fade">
+          <img src="images/PROJECT/main_bg.jpg" alt="image1">
+
+        </div>
+
+        <div class="mySlides fade">
+          <img src="images/PROJECT/kitchen-1.jpg" alt="image2">
+        </div>
+
+        <div class="mySlides fade">
+          <img src="images/PROJECT/miniservices-1.jpg" alt="image3">
+        </div>
+
+        <a class="prev" style="color:black"onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" style="color:black"onclick="plusSlides(1)">&#10095;</a>
+      </div>
+    </div>
+
+<br>
+    <div class="w3-container w3-black w3-padding-52">
+      <h1>Subscribe</h1>
+      <p>To get special offers and VIP treatment:</p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Enter e-mail" style="width:100%"></p>
+      <button type="button" class="w3-button w3-red w3-margin-bottom">Subscribe</button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="w3-padding-64 w3-black w3-small w3-center" id="footer">
+      <div class="w3-row-padding">
+        <div class="w3-col s4">
+          <h4 id="vkk">Contact</h4>
+          <p>Questions? Go ahead.</p>
+          <form action="/action_page.php" target="_blank">
+            <p><input class="w3-input w3-border" type="text" placeholder="Name" name="Name" required></p>
+            <p><input class="w3-input w3-border" type="text" placeholder="Email" name="Email" required></p>
+            <p><input class="w3-input w3-border" type="text" placeholder="Subject" name="Subject" required></p>
+            <p><input class="w3-input w3-border" type="text" placeholder="Message" name="Message" required></p>
+            <button type="submit" class="w3-input w3-button w3-block w3-grey">Send</button>
+          </form>
+        </div>
+
+        <div class="w3-col s5">
+          <h4>About</h4>
+          <p><a href="blog2">About us</a></p>
+          <p><a href="#">We're hiring</a></p>
+          <p><a href="#">Support</a></p>
+          <p><a href="#">Find store</a></p>
+          <p><a href="faq">FAQ</a></p>
+          <!--<p><a href="#">Payment</a></p>
+                <p><a href="#">Offers</a></p>-->
+
+          <p><a href="#">Help</a></p>
+        </div>
+
+        <div class="w4-col s4 w3-justify">
+          <p>Store</p>
+          <p><i class="fa fa-fw fa-map-marker"></i> Happy Home.pvt.ltd</p>
+          <p><i class="fa fa-fw fa-phone"></i> 0044123123</p>
+          <p><i class="fa fa-fw fa-envelope"></i> happyhome@gmail.com</p><br>
+          <p>We accept</p>
+          <p><i class="fa fa-fw fa-cc-amex"></i> Amex</p>
+          <p><i class="fa fa-fw fa-credit-card"></i> Credit Card</p>
+          <br>
+          
+        </div>
+        <i class="fa fa-facebook-official w3-hover-opacity w3-large"></i> &nbsp;
+          <i class="fa fa-instagram w3-hover-opacity w3-large"></i>&nbsp;
+          <i class="fa fa-snapchat w3-hover-opacity w3-large"></i>&nbsp;
+          <i class="fa fa-pinterest-p w3-hover-opacity w3-large"></i>&nbsp;
+          <i class="fa fa-twitter w3-hover-opacity w3-large"></i>&nbsp;
+          <i class="fa fa-linkedin w3-hover-opacity w3-large"></i>&nbsp;
+      </div>
+    </footer>
+  
+
+
+
+  </div>
+
+
+<script>
+    // JavaScript code
+
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      if (n > slides.length) { slideIndex = 1 }
+      if (n < 1) { slideIndex = slides.length }
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slides[slideIndex - 1].style.display = "block";
+    }
+
+    var topslideIndex = 1;
+    TopshowSlides(topslideIndex);
+
+    function TopplusSlides(n) {
+      TopshowSlides(topslideIndex += n);
+    }
+
+    function TopshowSlides(n) {
+      var i;
+      var topslides = document.getElementsByClassName("topmySlides");
+      if (n > topslides.length) { topslideIndex = 1 }
+      if (n < 1) { topslideIndex = topslides.length }
+      for (i = 0; i < topslides.length; i++) {
+        topslides[i].style.display = "none";
+      }
+      topslides[topslideIndex - 1].style.display = "block";
+    }
+
+
+    // Automatic slideshow timer
+    var slideTimer = setInterval(function () { plusSlides(1) }, 5000);
+
+    // Pause slideshow when hovering over the container
+    var container = document.getElementsByClassName("slideshow-container")[0];
+    container.onmouseover = function () {
+      clearInterval(slideTimer);
+    }
+
+    // Resume slideshow when mouse leaves the container
+    container.onmouseout = function () {
+      slideTimer = setInterval(function () { plusSlides(1) }, 5000);
+    }
+
+    window.addEventListener("scroll", reveal);
+
+    window.addEventListener('scroll', function () {
+      var element = document.querySelector('.container2');
+      var position = element.getBoundingClientRect();
+      var windowHeight = window.innerHeight;
+
+      if (position.top = 800) {
+        element.classList.add('visible');
+      }
+    });
+
+    container2.onmouseover = function () {
+      var box = document.getElementsByClassName("box");
+      box.style.height = 100;
+
+    }
+</script>
+<script>
+      
+const prevBtns = document.querySelectorAll("#signup_cont .btn-prev");
+const nextBtns = document.querySelectorAll("#signup_cont .btn-next");
+const progress = document.getElementById("#signup_cont progress");
+const formSteps = document.querySelectorAll("#signup_cont .form-step");
+const progressSteps = document.querySelectorAll("#signup_cont .progress-step");
+
+let formStepsNum = 0;
+
+nextBtns.forEach((btn) => {
+btn.addEventListener("click", () => {
+  formStepsNum++;
+  updateFormSteps();
+  updateProgressbar();
+});
+});
+
+prevBtns.forEach((btn) => {
+btn.addEventListener("click", () => {
+  formStepsNum--;
+  updateFormSteps();
+  updateProgressbar();
+});
+});
+
+function updateFormSteps() {
+formSteps.forEach((formStep) => {
+  formStep.classList.contains("form-step-active") &&
+    formStep.classList.remove("form-step-active");
+});
+
+formSteps[formStepsNum].classList.add("form-step-active");
+}
+
+function updateProgressbar() {
+progressSteps.forEach((progressStep, idx) => {
+  if (idx < formStepsNum + 1) {
+    progressStep.classList.add("progress-step-active");
+  } else {
+    progressStep.classList.remove("progress-step-active");
+  }
+});
+
+const progressActive = document.querySelectorAll(".progress-step-active");
+
+progress.style.width =
+  ((progressActive.length - 1) / (progressSteps.length - 1)) * 100 + "%";
+}
+function name(){
+// insert data into a table
+const firstname=document.getElementById('username').value;
+const lastname=document.getElementById('position').value;}
+
+// validation part
+function validatename(){
+  var f_name=document.form[1].firstname.value; 
+  var l_name=document.form[1].lastname.value; 
+     
+
+
+if (f_name==null || f_name==""){  
+alert(" first Name can't be blank"); 
+formStepsNum--;
+updateFormSteps();
+  updateProgressbar();
+return false; 
+  
+} 
+
+ if (l_name==null || l_name==""){  
+alert(" last Name can't be blank");
+formStepsNum--;
+updateFormSteps();
+  updateProgressbar();
+return false;  
+  
+} 
+return true;
+
+}
+
+function phonenumber(inputtxt)
+{
+  var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+  if((inputtxt.value.match(phoneno)))
+      return true;
+      else
+        {
+          alert("please enter your correct mobile number");
+           formStepsNum--;
+            updateFormSteps();
+            updateProgressbar();
+           return false;
+        }
+}
+function Validate_phone_email(){
+
+  var num=document.form[1].phone.value; 
+  var x=document.form[1].email.value;  
+var atposition=x.indexOf("@");  
+var dotposition=x.lastIndexOf("."); 
+if(num.length==0)
+{
+  alert("Please enter mobile number");
+  formStepsNum--; 
+updateFormSteps();
+updateProgressbar();
+return false; 
+}
+else if (!num.match(/^[6-9]\d{9}$/)){  
+    alert('Enter correct mobile number');
+    formStepsNum--; 
+updateFormSteps();
+updateProgressbar();
+return false; 
+}
+
+if (atposition<1 || dotposition<atposition+2 || dotposition+2>=x.length){  
+alert("Please enter a valid e-mail address");
+formStepsNum--; 
+updateFormSteps();
+updateProgressbar();
+return false; 
+  
+} 
+return true; 
+}
+
+function matchpass(){  
+  var firstpassword=document.form[1].cr_password.value;  
+  var secondpassword=document.form[1].vr_password.value;  
+    
+  if(firstpassword===secondpassword){ 
+    return CheckPassword(document.form[1].vr_password)===true;
+  }  
+  else{  
+  alert("password is not same!");  
+  formStepsNum--;
+  updateFormSteps();
+  updateProgressbar();
+  return false;  
+  }  
+}  
+
+function CheckPassword(inputtxt) 
+{ 
+var passw=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+
+if(inputtxt.value.match(passw)) 
+{ 
+return true;
+}
+else
+{ 
+alert('please make a strong password !');
+formStepsNum--;
+  updateFormSteps();
+  updateProgressbar();
+return false;
+}
+}
+function validateall(){
+if(CheckPassword(document.form[1].vr_password)===true){
+  return true;
+}
+else{
+  alert('check once something is not usual');
+  formStepsNum--;
+  updateFormSteps();
+  updateProgressbar();
+  return false;
+}
+}
+
+
+
+  </script>
+<script src="app.js"></script>
+</body>
+
+</html>

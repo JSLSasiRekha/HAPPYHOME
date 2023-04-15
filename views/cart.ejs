@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="#">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart JS</title>
+    <link rel="stylesheet" href="css/style_cart.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+</head>
+<body>
+  
+    
+    
+    <div class="products-list">
+        <div class="products">
+            <!-- render porducts here -->
+        </div>
+        <div class="cart">
+            <div class="cart-header">
+                <div class="column1">Item</div>
+                <div class="column2">Unit price</div>
+                <div class="column3">Units</div>
+            </div>
+            <div class="cart-items">
+                <!-- render cart items here -->
+            </div>
+            <div class="cart-footer">
+                <div class="subtotal">
+                    Subtotal (0 items): $0
+                </div>
+                <div class="checkout" >
+                    <a href="./checkout">Proceed to checkout</a>
+                   
+                </div> 
+            </div>
+        </div>
+    </div>
+
+    <!-- Firing respective products for cart  -->
+    <script type="text/javascript">
+      const elements=['initial'];
+      //var value=parent.document.getElementById('package').title;
+      //var value=parent.document.getElementById('package1').title;
+     parent.document.getElementById('package1').addEventListener("click",pushing(parent.document.getElementById('package1').title));
+    //parent.document.getElementsByClassName('package').addEventListener("click",pushing(parent.document.getElementsByClassName('package')[0].title));
+
+
+      
+     function pushing(value)
+     {
+
+      elements.push(value);}
+      
+
+     
+      
+      let changeExpression = function (type) {
+        let elem = document.createElement("script");
+        
+        if (type === 'cart') {
+          elem.src = "js/cart.js";
+        } else {
+          elem.src = "js/cart2.js";
+        }
+        
+        document.body.appendChild(elem);
+      }
+     // var value=parent.document.getElementById('package').title;
+      
+     
+      changeExpression(elements.pop()); 
+    </script>
+   
+    <!-- <script>
+        const porductsListEl = document.querySelector(".products-list");
+        const seeMoreBtn = document.querySelector(".see-more-btn");
+
+        seeMoreBtn.addEventListener('click', () => {
+            porductsListEl.scrollIntoView({behavior: "smooth"})
+        })
+    </script> -->
+    
+    <script src="js/data.js"></script>
+    <!-- <script src="cart.js"></script> -->
+    <!-- <script src="cart2.js"></script> -->
+  
+</body>
+</html>

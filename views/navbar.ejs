@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAPPY_HOME</title>
+    <link rel="stylesheet" href="https://kit.fontawesome.com/db1599c4e2.css" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/db1599c4e2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    
+</head>
+<body>
+    
+    <header>
+   
+        <div class="navbar">
+         
+    
+          <img src="images/happy-home-high-resolution-logo-white-on-black-background.jpeg.png">
+    
+          <ul>
+            <li class="list"><i class="fa-solid fa-house-user" style="color:white"></i><a href="project">Home</a></li>
+            <li class="list"><i class="fa-solid fa-person" style="color:white"></i><a>Personal</a></li>
+            <li class="list"><i class="fa-solid fa-blog fa-beat" style="color:white"></i><a href="blog">Blog</a></li>
+            <li class="list"><i class="fa-solid fa-phone fa-shake" style="color:white"></i><a href="#vkk">contact</a></li>
+            <li class="list"><i class="fa-solid fa-user" style="color:white"></i><a href="account">
+              <% if(user) { %>
+                <%= user.fname %>
+             <% } else { %>
+                 Account
+             <% } %>
+            </a></li>
+          </ul>
+          <div class="login">
+            
+            <% if(user){ %>
+                <span><button id="login-but" class="button-86" role="button" action="/logout" method="POST">
+                  <i class="fa-solid fa-right-to-bracket" style="color:white
+                  "></i><a href="/logout">Sign out</a>
+                </button></span>
+           <% } else{ %>
+                <span><button id="open-button" class="button-86" role="button"  href="javascript:void(0)" onclick="document.getElementById('newsletter').style.display='block'"><i class="fa-solid fa-right-to-bracket" style="color:white
+                "></i>Login/signup</button></span>
+             <% } %>
+                 
+            
+          </div>
+    
+        </div>
+      </header>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

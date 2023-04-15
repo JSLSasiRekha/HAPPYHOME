@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Carpenters</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/db1599c4e2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://kit.fontawesome.com/db1599c4e2.css" crossorigin="anonymous">
+
+    
+    <!-- <link rel="text/javascript" href="project.js"> -->
+    <script src="project.js"></script>
+    <script>
+     var x= document.querySelectorAll(".service_container .s_1 img");
+     function shopbutton(){
+
+     }
+    </script>
+    <style>
+    .w3-sidebar a {font-family: "Roboto", sans-serif}
+    body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;
+}
+.w3-content{
+    max-width: 1700px !important;
+}
+.service_container{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: 10px;
+ background-image: url("./PROJECT/pexels-mark-mccammon-2724749.jpg") ;
+ background-repeat: no-repeat;
+
+ background-size: cover;
+ backface-visibility: 40%;
+
+}
+
+  .service{
+  height: 290px;
+  width: 290px;
+   padding:10px;
+  border: 2px solid rgb(183, 137, 30);
+  border-radius: 10px;
+  margin: 8px;
+  background-color: #F0EBE3;
+
+}
+.service_container .s_1 img{
+  height: 194px;
+  width: 266px;
+ border-top-left-radius: 10px;
+ border-top-right-radius: 10px;
+} 
+.service_container button{
+  width: 100px;
+  height: 30px;
+  
+  font-size: smaller;
+  background-color: rgb(44, 43, 42);
+  color:aliceblue;
+  border-radius: 8px;
+  z-index: 1;
+  position: relative !important;
+  top: -103px;
+  cursor: pointer;
+ 
+    
+
+}
+.service_container button:hover{
+  background-color: black;
+  color: aliceblue;
+  visibility: visible;
+
+}
+
+
+.service_container .s_2{
+  background-color: black;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: -20px;
+}
+.service_container .s_2 .price{
+  font-size: larger;
+  font-family: cursive;
+  text-shadow: 1px 1px;
+  color: rgb(223, 221, 219);
+
+}
+.service_container .s_2 .discount{
+  font-size: small;
+  font-family: cursive;
+  color: red;
+  margin-top: 50px;
+  
+  
+}
+
+#sevice_cart{
+  left: 250px;
+  width: 1443px;
+
+
+}
+.service_container .big_box{
+  display: flex;
+  height: 370px;
+  background-color: white;
+  justify-content: center;
+  text-align: center;
+  font-size: larger;
+
+
+}
+.service_container .big_box .box{
+  width: 200px;
+  height: 210px;
+  
+  border-radius: 8px;
+  margin: 25px;
+
+}
+.service_container .big_box .in_box{
+  margin: 5px;
+ 
+  height: 186px;
+}
+.service_container .big_box .in_box #top{
+
+ height: 140px;
+ background-image: url("./PROJECT/door-ge0eb092df_1280.jpg ");
+ background-repeat: no-repeat;
+ background-size: cover;
+
+
+}
+.service_container .big_box .in_box #bottom{
+  
+  
+ height: 45px;
+ text-align: left;
+ font-size: smaller;
+ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+ display: flex;
+
+
+}
+.service_container .big_box .in_box #bottom #bottom_right{
+ 
+    align-items: end;
+    color: white;
+    background-color: blueviolet;
+    margin-top: 106px;
+    margin-left: 42px;
+    
+    
+   
+    width: 55px;
+}
+
+#cart_show{
+  position: fixed;
+  bottom: 10px;
+  right: 120px;
+  height: 90px;
+  width: 500px;
+  background-color: hsla(0, 20%, 97%, 0.971);
+  z-index: 8;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+    </style>
+  </head>
+<body class="w3-content" style="max-width:1200px">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
+  <div class="w3-container w3-display-container w3-padding-16">
+    <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
+    <h3 class="w3-wide"><b>CATEGORIES</b></h3>
+  </div>
+  <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+    <a href="#beard" class="w3-bar-item w3-button">Door</a>
+    <a href="#facial" class="w3-bar-item w3-button">Bed</a>
+    <!-- <a onclick="myAccFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn">
+      Hair cut <i class="fa fa-caret-down"></i>
+    </a> -->
+    <a href="#haircut" class="w3-bar-item w3-button">Furniture Assembly</a>
+
+    <!-- <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+      <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>spa</a> -->
+      <!-- <a href="#" class="w3-bar-item w3-button">Relaxed</a>
+      <a href="#" class="w3-bar-item w3-button">Bootcut</a>
+      <a href="#" class="w3-bar-item w3-button">Straight</a>
+    </div> -->
+    <a href="#therapy" class="w3-bar-item w3-button">Furniture Repair</a>
+    <!-- <a href="#" class="w3-bar-item w3-button">Gymwear</a>
+    <a href="#" class="w3-bar-item w3-button">Blazers</a>
+    <a href="#" class="w3-bar-item w3-button">Shoes</a> -->
+  </div>
+  <a href="#footer" class="w3-bar-item w3-button w3-padding">Contact</a> 
+  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding" onclick="document.getElementById('newsletter').style.display='block'">Newsletter</a> 
+  <a href="#footer"  class="w3-bar-item w3-button w3-padding">Subscribe</a>
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
+  <div class="w3-bar-item w3-padding-24 w3-wide">LOGO</div>
+  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:250px">
+
+  <!-- Push down content on small screens -->
+  <div class="w3-hide-large" style="margin-top:83px"></div>
+  
+  <!-- Top header -->
+  <header class="w3-container w3-xlarge">
+    <p class="w3-left">Carpenters</p>
+    <p class="w3-right">
+      <i class="fa fa-shopping-cart w3-margin-right"></i>
+      <i class="fa fa-search"></i>
+    </p>
+  </header>
+
+  <!-- Image header -->
+  <div class="w3-display-container w3-container">
+    <img src="images/PROJECT/pexels-mark-mccammon-2724749.jpg" alt="Haircut" style="width:100%">
+    <div class="w3-display-topleft w3-text-white" style="padding:24px 48px">
+      <h1 class="w3-jumbo w3-hide-small">New services</h1>
+      <h1 class="w3-hide-large w3-hide-medium">New services</h1>
+      <h1 class="w3-hide-small">Collection 2023</h1>
+      <p><a href="#Haircut" class="w3-button w3-black w3-padding-large w3-large">BOOK NOW</a></p>
+    </div>
+  </div>
+
+  <div class="w3-container w3-text-grey" id="Haircut">
+    <p>4 items</p>
+  </div>
+
+  
+
+  <!-- SERVICES SECTION FOR THE NEW SERVICES -->
+
+  <div class="service_container">
+
+    <div class="service" id="service1">
+
+
+      <div class="s_1"><img
+        src="images/PROJECT/Wood-Clad-Doors.jpg" >
+        
+      </div>
+      <button role="button"  href="javascript:void(0)" onclick="document.getElementById('sevice_cart').style.display='block'">BOOK NOW</button>
+      <div class="s_2">
+        <span class="price">Door + Window</span>
+        <span class="discount"></span>
+      </div>
+      <div id="sevice_cart" class="w3-modal">
+        <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+          <div class="w3-container w3-white w3-center">
+            <i onclick="document.getElementById('sevice_cart').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+            <h2 class="w3-wide">PACKAGE</h2>
+            <p>Providing repairing and installing packages select according to your needs</p>
+            <div class="big_box"> <div class="box">
+              <div class="in_box">
+                <div class="contr" id="top"></div>
+                <div class="contr" id="bottom"><p>Package</p>
+                <button onclick="addtocart()" id="bottom_right">Add</button></div>
+              </div>
+
+
+            </div>
+            <div class="box">
+             <div class="in_box">
+                <!--<div class="contr" id="top"></div>
+                <div class="contr" id="bottom"><p>Face wash+cut</p>
+                <button id="bottom_right">Add</button></div>-->
+              </div>
+            </div>
+            <div class="box"><div class="in_box">
+              <div class="contr" id="top">
+              </div>
+              <div class="contr" id="bottom"><p>Package</p>
+              <button id="bottom_right">Add</button></div>
+            </div></div>
+          </div>
+           
+            <!-- <p><input class="w3-input w3-border" type="text" placeholder="Enter e-mail"></p> -->
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="service" id="service2"> <div class="s_1"><img
+      src="images/PROJECT/polish-fur.jpeg" >
+      
+    </div>
+    <!--<button>BOOK NOW</button>-->
+    <button role="button"  href="javascript:void(0)" onclick="document.getElementById('sevice_cart').style.display='block'">BOOK NOW</button>
+    <div class="s_2">
+      <span class="price">Polishing + Painting</span>
+      <span class="discount"></span>
+    </div></div>
+    <div class="service" id="service3"> <div class="s_1"><img
+      src="images/PROJECT/car-r.jpg" >
+      
+    </div>
+    <!--<button>BOOK NOW</button>-->
+    <button role="button"  href="javascript:void(0)" onclick="document.getElementById('sevice_cart').style.display='block'">BOOK NOW</button>
+    <div class="s_2">
+      <span class="price">Door Repairing</span>
+      <span class="discount"></span>
+    </div></div>
+    <div class="service" id="service4"> <div class="s_1"><img
+      src="images/PROJECT/carpenty-ser.jpeg" >
+      
+    </div>
+    <!--<button>BOOK NOW</button>-->
+    <button role="button"  href="javascript:void(0)" onclick="document.getElementById('sevice_cart').style.display='block'">BOOK NOW</button>
+    <div class="s_2">
+      <span class="price">Installing + Repairing</span>
+      <span class="discount"></span>
+    </div></div>
+  </div>
+  <div class="w3-container w3-text-grey" id="beard"></div>
+  <h2>Door</h2>
+   <p>3 items</p>
+   
+   <div class="service_container">
+
+    <div class="service" id="service1">
+
+
+      <div class="s_1"><img
+        src="images/PROJECT/Solid-Wood-Doors.jpg" >
+        
+      </div>
+      <button>BOOK NOW</button>
+      <div class="s_2">
+        <span class="price">Solid Wood Door</span>
+        <span class="discount"></span>
+      </div>
+    </div>
+    <div class="service" id="service2"> <div class="s_1"><img
+      src="images/PROJECT/Mirrored-Bathroom-Pocket-Door.jpg" >
+      
+    </div>
+    <button>BOOK NOW</button>
+    <div class="s_2">
+      <span class="price">Mirrored Bathroom Pocket Door</span>
+      <span class="discount"></span>
+    </div></div>
+    <div class="service" id="service3"> <div class="s_1"><img
+      src="images/PROJECT/PVC-French-Doors.jpg" >
+      
+    </div>
+    <button>BOOK NOW</button>
+    <div class="s_2">
+      <span class="price">PVC French Door</span>
+      <span class="discount"></span>
+    </div></div>
+    
+  </div>
+  <!-- // facial ZONE -->
+  <div class="w3-container w3-text-grey" id="facial"></div>
+  <h2>Bed</h2>
+   <p>3 items</p>
+   
+   <div class="service_container">
+
+    <div class="service" id="service1">
+
+
+      <div class="s_1"><img
+        src="images/PROJECT/Single-Bed.jpg" >
+        
+      </div>
+      <button>BOOK NOW</button>
+      <div class="s_2">
+        <span class="price">Single Bed</span>
+        <span class="discount"></span>
+      </div>
+    </div>
+    <div class="service" id="service2"> <div class="s_1"><img
+      src="images/PROJECT/Bunk-bed.jpg" >
+      
+    </div>
+    <button>BOOK NOW</button>
+    <div class="s_2">
+      <span class="price">Bunk Bed</span>
+      <span class="discount"></span>
+    </div></div>
+    <div class="service" id="service3"> <div class="s_1"><img
+      src="images/PROJECT/canopy-bed.jpg" >
+      
+    </div>
+    <button>BOOK NOW</button>
+    <div class="s_2">
+      <span class="price">Canopy Bed</span>
+      <span class="discount"></span>
+    </div></div>
+    
+  </div>
+  <div class="w3-container w3-text-grey" id="haircut"></div>
+  <h2>Furniture Assembly</h2>
+   <p>3 items</p>
+   
+   <div class="service_container">
+
+    <div class="service" id="service1">
+
+
+      <div class="s_1"><img
+        src="images/PROJECT/dinning-set.jpeg" >
+        
+      </div>
+      <button>BOOK NOW</button>
+      <div class="s_2">
+        <span class="price">Dinning Set</span>
+        <span class="discount"></span>
+      </div>
+    </div>
+    <div class="service" id="service2"> <div class="s_1"><img
+      src="images/PROJECT/disassemble-a-bed-frame.jpg" >
+      
+    </div>
+    <button>BOOK NOW</button>
+    <div class="s_2">
+      <span class="price">Disassembling Bed Frame</span>
+      <span class="discount"></span>
+    </div></div>
+    <div class="service" id="service3"> <div class="s_1"><img
+      src="images/PROJECT/study-table.jpeg" >
+      
+    </div>
+    <button>BOOK NOW</button>
+    <div class="s_2">
+      <span class="price">Study Table</span>
+      <span class="discount"></span>
+    </div></div>
+    
+  </div>
+  <div class="w3-container w3-text-grey" id="therapy"></div>
+  <h2>Furniture Repair</h2>
+   <p>3 items</p>
+   
+   <div class="service_container">
+
+    <div class="service" id="service1">
+
+
+      <div class="s_1"><img
+        src="images/PROJECT/table-re.jpg" >
+        
+      </div>
+      <button>BOOK NOW</button>
+      <div class="s_2">
+        <span class="price">Table Repairing</span>
+        <span class="discount"></span>
+      </div>
+    </div>
+    <div class="service" id="service2"> <div class="s_1"><img
+      src="images/PROJECT/car-r.jpg" >
+      
+    </div>
+    <button>BOOK NOW</button>
+    <div class="s_2">
+      <span class="price">Door Repairing</span>
+      <span class="discount"></span>
+    </div></div>
+    <div class="service" id="service3"> <div class="s_1"><img
+      src="images/PROJECT/Furniture-repair.jpg" >
+      
+    </div>
+    <button>BOOK NOW</button>
+    <div class="s_2">
+      <span class="price">Window Repairing</span>
+      <span class="discount"></span>
+    </div></div>
+    
+  </div>
+
+  <div id="cart_show">
+    <p>Item is added to your cart</p>
+
+    <div id="counter">
+     
+
+
+    </div>
+
+  </div>
+
+  <!-- Subscribe section -->
+  <div class="w3-container w3-black w3-padding-32">
+    <h1>Subscribe</h1>
+    <p>To get special offers and VIP treatment:</p>
+    <p><input class="w3-input w3-border" type="text" placeholder="Enter e-mail" style="width:100%"></p>
+    <button type="button" class="w3-button w3-red w3-margin-bottom">Subscribe</button>
+  </div>
+  
+  <!-- Footer -->
+  <footer class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer">
+    <div class="w3-row-padding">
+      <div class="w3-col s4">
+        <h4>Contact</h4>
+        <p>Questions? Go ahead.</p>
+        <form action="/action_page.php" target="_blank">
+          <p><input class="w3-input w3-border" type="text" placeholder="Name" name="Name" required></p>
+          <p><input class="w3-input w3-border" type="text" placeholder="Email" name="Email" required></p>
+          <p><input class="w3-input w3-border" type="text" placeholder="Subject" name="Subject" required></p>
+          <p><input class="w3-input w3-border" type="text" placeholder="Message" name="Message" required></p>
+          <button type="submit" class="w3-button w3-block w3-black">Send</button>
+        </form>
+      </div>
+
+      <div class="w3-col s4">
+        <h4>About</h4>
+        <p><a href="#">About us</a></p>
+        <p><a href="#">We're hiring</a></p>
+        <p><a href="#">Support</a></p>
+        <p><a href="#">Find store</a></p>
+        <p><a href="#">Shipment</a></p>
+        <p><a href="#">Payment</a></p>
+        <p><a href="#">Gift card</a></p>
+        <p><a href="#">Return</a></p>
+        <p><a href="#">Help</a></p>
+      </div>
+
+      <div class="w3-col s4 w3-justify">
+        <h4>Store</h4>
+        <p><i class="fa fa-fw fa-map-marker"></i> Company Name</p>
+        <p><i class="fa fa-fw fa-phone"></i> 0044123123</p>
+        <p><i class="fa fa-fw fa-envelope"></i> ex@mail.com</p>
+        <h4>We accept</h4>
+        <p><i class="fa fa-fw fa-cc-amex"></i> Amex</p>
+        <p><i class="fa fa-fw fa-credit-card"></i> Credit Card</p>
+        <br>
+        <i class="fa fa-facebook-official w3-hover-opacity w3-large"></i>
+        <i class="fa fa-instagram w3-hover-opacity w3-large"></i>
+        <i class="fa fa-snapchat w3-hover-opacity w3-large"></i>
+        <i class="fa fa-pinterest-p w3-hover-opacity w3-large"></i>
+        <i class="fa fa-twitter w3-hover-opacity w3-large"></i>
+        <i class="fa fa-linkedin w3-hover-opacity w3-large"></i>
+      </div>
+    </div>
+  </footer>
+
+  <div class="w3-black w3-center w3-padding-24">Made with <a href="https://www.w3schools.com/spaces" title="W3.CSS" target="_blank" class="w3-hover-opacity">W3Schools Spaces</a></div>
+
+  <!-- End page content -->
+</div>
+
+<!-- Newsletter Modal -->
+<div id="newsletter" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('newsletter').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide">NEWSLETTER</h2>
+      <p>Join our mailing list to receive updates on new services and special offers.</p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Enter e-mail"></p>
+      <button type="button" class="w3-button w3-padding-large w3-red w3-margin-bottom" onclick="document.getElementById('newsletter').style.display='none'">Subscribe</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Accordion 
+function myAccFunc() {
+  var x = document.getElementById("demoAcc");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+// Click on the "Haircut" link on page load to open the accordion for demo purposes
+document.getElementById("myBtn").click();
+
+
+// Open and close sidebar
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+function addtocart(){
+  var a=0;
+  a= document.getElementById("counter").innerHTML;
+ a++;
+ document.getElementById("counter").innerHTML=a;
+
+
+
+}
+</script>
+<script src="app.js"></script>
+</body>
+</html>
