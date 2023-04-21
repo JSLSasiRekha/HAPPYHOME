@@ -385,14 +385,14 @@ td:last-child {
 }
 #footer{
   
-  color: white;
-   background-color: #000000;
+  color: rgb(10, 10, 10);
+   background-color: #f8f3f3;
     height: 500px;
     z-index: -1;
 
 }
 .footer label{
-    color: white;
+    color: rgb(11, 11, 11);
 
 }
 .footer input{
@@ -442,8 +442,9 @@ input[type="radio"]{
     
     width: 750px;
     height:500px;
-    background-color: #141413;
-    color: #f5f1f1;
+  
+    background-color: #FAF8F1;
+    color: #212020;
     font-size: large;
     font-family: cursive;
     font-weight: bolder;
@@ -547,7 +548,7 @@ input[type="radio"]{
   }
   .mySlides img{
     height: 239px;
-    width: 900px;
+    width: 800px;
     border-radius: 3px;
     opacity: 1;
     cursor: pointer;
@@ -569,13 +570,13 @@ input[type="radio"]{
   }
   
   .next {
-    right: 62px;
+    right: 45px;
     top: 41px;
     border-radius: 3px 0 0 3px;
     
   }
   .prev{
-    left: -27px;
+    left: 35px;
     top: 41px;
   }
   

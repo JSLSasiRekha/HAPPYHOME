@@ -229,7 +229,9 @@ app.get('/worker_Registration', (req, res) => {
   const category = 'plumber'; 
   res.render('worker_Registration.ejs', { category:category,errors:[] }); 
 });
-
+app.get('/servicesFooter.ejs', (req, res) => {
+  res.render('servicesFooter.ejs');
+});
 
 
 
