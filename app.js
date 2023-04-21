@@ -40,34 +40,106 @@ if(client) {
   console.log("Connected to mongodb atlas");
 }
 
-const WomenSaloonSchema = new mongoose.Schema({
+const ServiceSchema = new mongoose.Schema({
   sname:String,
 });
 
-const WomenSaloon = mongoose.model('WomenSaloon', WomenSaloonSchema);
+const UserSchema= new mongoose.Schema({
+  // UserId: {
+  //   type: String,
+  //   unique: true,
+  //   index: true,
+  //   required: true,
+  // },
+  first_name: String,
+  last_name: String,
+  phone: String,
+  email: String,
+  password: String,
+});
+const AdminSchema= new mongoose.Schema({
+   email: String,
+   key: String,
+   name: String,
+ });
 
+
+const Service1 = mongoose.model('Service1', ServiceSchema);
+const Service2 = mongoose.model('Service2', ServiceSchema);
+const Service3 = mongoose.model('Service3', ServiceSchema);
+const Service4 = mongoose.model('Service4', ServiceSchema);
+const Service5 = mongoose.model('Service5', ServiceSchema);
+const Service6 = mongoose.model('Service6', ServiceSchema);
+
+const UserCollection= mongoose.model('User', UserSchema);
+const AdminCollection= mongoose.model('Admin', AdminSchema);
+
+const ServiceTable=[Service1,Service2,Service3,Service4,Service5,Service6]
 // run().catch(console.error);
 // const client = new MongoClient("mongodb://127.0.0.1:27017/");
 
- //const db =  client.db("HappyHome");
+//  const db =  client.db("HappyHome");
 
-// const collection = db.collection("Users");
+//  const collection = db.collection("Users");
 
   // Get a reference to the workers collection
   // const workersCollection =db.collection('workers');
   
   //const Womensaloon=db.collection("WomenSaloon");
+  //const collection=mongoose.model("Users",);
 
   const wsaloon=[
-    {sname:"HairCut"},
+    {sname:"Hair Cut"},
     {sname:"Waxing"},
     {sname:"Facials"},
-    {sname:"MakeUp"}
+    {sname:"Make Up"}
 
   ]
-  //WomenSaloon.insertMany(wsaloon);
+  const msaloon=[
+    {sname:"Beard Trimming"},
+    {sname:"Hair Cut"},
+    {sname:"Facials"},
+    {sname:"Therapy"}
 
- // console.log(reswsaloon);
+  ]
+  const carpenter=[
+    {sname:"Door"},
+    {sname:"Bed"},
+    {sname:"Furniture Assembly"},
+    {sname:"Furniture Repair"}
+
+  ]
+  const plumber=[
+    {sname:" Basin And Sink"},
+    {sname:" Drainage Pipes"},
+    {sname:" Bath Fitting"},
+    {sname:" Toilets"},
+    {sname:" Tap And Mixer"}
+  ]
+  const houseRepair=[
+    {sname:"Furnished Apartment"},
+    {sname:"Furnished Bungalow"},
+    {sname:"Mini Services"},
+    {sname:"Modern Services"}
+  ]
+  const repair=[
+    {sname:"Air Conditioner Repairing"},
+    {sname:"Fan Repairing"},
+    {sname:"Washing Machine Repairing"},
+    {sname:"Other Things Repairing"}
+  ]
+
+//---------------Inserting Data into Database-----------------//
+// Service1.insertMany(msaloon);
+// Service2.insertMany(wsaloon);
+// Service3.insertMany(carpenter);
+// Service4.insertMany(plumber);
+// Service5.insertMany(houseRepair);
+// Service6.insertMany(repair);
+//AdminCollection.insertMany({email:"sasirekha@gmail.com",key:"admin",name:"Sasi"});
+
+
+
   // Define the new worker object
   // const newWorker = {
   //   name: 'John Doe',
@@ -90,18 +162,12 @@ const WomenSaloon = mongoose.model('WomenSaloon', WomenSaloonSchema);
 
   
   // });
-  // Womensaloon.insertMany(wsaloon,(err,result)=>{
-  //      if(err){
-  //       console.log(err);
-  //      }
-  //      console.log("Women saloon inserted");
-  // });
 
 
 app.post('/submit_register', async function (req, res) {
   console.log(req.body);
 
-  const result = await collection.insertOne({first_name:req.body.firstname,last_name:req.body.lastname,phone:req.body.phone,email:req.body.email,password:req.body.cr_password});
+  const result = await UserCollection.insertMany({first_name:req.body.firstname,last_name:req.body.lastname,phone:req.body.phone,email:req.body.email,password:req.body.cr_password});
 
   console.log("DataInserted");
 
@@ -115,7 +181,7 @@ let x=null;
 app.post('/submit_login', async function (req, res) {
   console.log(req.body);
 
-  const result= await collection.findOne({email:req.body.email_l,password:req.body.password})
+  const result= await UserCollection.findOne({email:req.body.email_l,password:req.body.password})
 
   //var sql1 = "select * from users where email='" + req.body.email_l + "' and password2='" + req.body.password + "'";
   // db.all(sql1, function (err, result, fields) {
@@ -133,20 +199,39 @@ app.post('/submit_login', async function (req, res) {
         email:result.email,
         phone:result.phone,
         password:result.password1
+       
       }
      
       console.log(x);
       console.log('login');
      res.render("project",{user:x});
-     
-
     }
-
-
-
 
 });
 
+app.post('/submit_admin', async function (req, res) {
+  console.log(req.body);
+
+  const result= await AdminCollection.findOne({email:req.body.email,key:req.body.cr_password})
+    console.log(result);
+
+    if (result == "" || result == null) {
+      console.log(' not loginned');
+      res.send('<h1>Not logged in</h1>')
+    }
+    else {
+       x={
+        fname:result.name,
+        email:result.email,
+        password:result.key
+      }
+      
+      console.log(x);
+      console.log('login');
+     res.render("admin.ejs");
+    }
+
+});
 
 
 app.get('/logout',function(req,res){
@@ -203,28 +288,19 @@ app.get('/account', (req, res) => {
 app.get('/checkout', (req, res) => {
   res.render("checkout.ejs");
 });
-
-app.get('/service1', (req, res) => {
-  res.render('service1.ejs');
+app.get('/admin', (req, res) => {
+  res.render("admin.ejs");
 });
-app.get('/service2', (req, res) => {
-  WomenSaloon.find({}).then(saloons => {
-    res.render('service2',{Category:saloons})
+
+
+
+app.get('/service'+':serviceNumber',async (req, res) => {
+      await ServiceTable[req.params.serviceNumber-1].find({}).then(saloons => {
+    res.render("service"+req.params.serviceNumber,{Category:saloons})
   })
 
 });
-app.get('/service3', (req, res) => {
-  res.render('service3.ejs');
-});
-app.get('/service4', (req, res) => {
-  res.render('service4.ejs');
-});
-app.get('/service5', (req, res) => {
-  res.render('service5.ejs');
-});
-app.get('/service6', (req, res) => {
-  res.render('service6.ejs');
-});
+
 app.get('/worker_Registration', (req, res) => {
   const category = 'plumber'; 
   res.render('worker_Registration.ejs', { category:category,errors:[] }); 

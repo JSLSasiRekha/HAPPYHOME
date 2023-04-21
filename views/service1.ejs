@@ -243,23 +243,10 @@ iframe{
     <h3 class="w3-wide"><b>CATEGORIES</b></h3>
   </div>
   <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
-    <a href="#beard" class="w3-bar-item w3-button">Beard Trimming</a>
-    <a href="#facial" class="w3-bar-item w3-button">Facial</a>
-    <!-- <a onclick="myAccFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn">
-      Hair cut <i class="fa fa-caret-down"></i>
-    </a> -->
-    <a href="#haircut" class="w3-bar-item w3-button">Hair Cut</a>
-
-    <!-- <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-      <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>spa</a> -->
-      <!-- <a href="#" class="w3-bar-item w3-button">Relaxed</a>
-      <a href="#" class="w3-bar-item w3-button">Bootcut</a>
-      <a href="#" class="w3-bar-item w3-button">Straight</a>
-    </div> -->
-    <a href="#therapy" class="w3-bar-item w3-button">Therapy</a>
-    <!-- <a href="#" class="w3-bar-item w3-button">Gymwear</a>
-    <a href="#" class="w3-bar-item w3-button">Blazers</a>
-    <a href="#" class="w3-bar-item w3-button">Shoes</a> -->
+    <% Category.forEach((category)=>{ %>
+      <a href="#<%= category.sname %>" class="w3-bar-item w3-button"><%= category.sname %></a>
+     <% }) %>
+    
   </div>
   <a href="#footer" class="w3-bar-item w3-button w3-padding">Contact</a> 
   <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding" onclick="document.getElementById('newsletter').style.display='block'">Newsletter</a> 
@@ -400,7 +387,7 @@ iframe{
       <span class="discount">(12% off)</span>
     </div></div>
   </div>
-  <div class="w3-container w3-text-grey" id="beard"></div>
+  <div class="w3-container w3-text-grey" id="Beard Trimming"></div>
   <h2>BEARD TRIMMING ZONE</h2>
    <p>3 items</p>
    
@@ -443,7 +430,7 @@ iframe{
   
 <!-- --------------------------- -->
   <!-- // facial ZONE -->
-  <div class="w3-container w3-text-grey" id="facial"></div>
+  <div class="w3-container w3-text-grey" id="Facials"></div>
   <h2>FACIAL ZONE</h2>
    <p>3 items</p>
    
@@ -482,7 +469,7 @@ iframe{
     </div></div>
     
   </div>
-  <div class="w3-container w3-text-grey" id="haircut"></div>
+  <div class="w3-container w3-text-grey" id="Hair Cut"></div>
   <h2>HAIR-CUT ZONE</h2>
    <p>3 items</p>
    
@@ -521,7 +508,7 @@ iframe{
     </div></div>
     
   </div>
-  <div class="w3-container w3-text-grey" id="therapy"></div>
+  <div class="w3-container w3-text-grey" id="Therapy"></div>
   <h2>THERAPY ZONE</h2>
    <p>3 items</p>
    

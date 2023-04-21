@@ -186,24 +186,12 @@
     <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
     <h3 class="w3-wide"><b>CATEGORIES</b></h3>
   </div>
-  <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
-    <a href="#beard" class="w3-bar-item w3-button">Door</a>
-    <a href="#facial" class="w3-bar-item w3-button">Bed</a>
-    <!-- <a onclick="myAccFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn">
-      Hair cut <i class="fa fa-caret-down"></i>
-    </a> -->
-    <a href="#haircut" class="w3-bar-item w3-button">Furniture Assembly</a>
 
-    <!-- <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-      <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>spa</a> -->
-      <!-- <a href="#" class="w3-bar-item w3-button">Relaxed</a>
-      <a href="#" class="w3-bar-item w3-button">Bootcut</a>
-      <a href="#" class="w3-bar-item w3-button">Straight</a>
-    </div> -->
-    <a href="#therapy" class="w3-bar-item w3-button">Furniture Repair</a>
-    <!-- <a href="#" class="w3-bar-item w3-button">Gymwear</a>
-    <a href="#" class="w3-bar-item w3-button">Blazers</a>
-    <a href="#" class="w3-bar-item w3-button">Shoes</a> -->
+  <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+    <% Category.forEach((category)=>{ %>
+      <a href="#<%= category.sname %>" class="w3-bar-item w3-button"><%= category.sname %></a>
+     <% }) %>
+    
   </div>
   <a href="#footer" class="w3-bar-item w3-button w3-padding">Contact</a> 
   <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding" onclick="document.getElementById('newsletter').style.display='block'">Newsletter</a> 
@@ -334,7 +322,7 @@
       <span class="discount"></span>
     </div></div>
   </div>
-  <div class="w3-container w3-text-grey" id="beard"></div>
+  <div class="w3-container w3-text-grey" id="Door"></div>
   <h2>Door</h2>
    <p>3 items</p>
    
@@ -374,7 +362,7 @@
     
   </div>
   <!-- // facial ZONE -->
-  <div class="w3-container w3-text-grey" id="facial"></div>
+  <div class="w3-container w3-text-grey" id="Bed"></div>
   <h2>Bed</h2>
    <p>3 items</p>
    
@@ -413,7 +401,7 @@
     </div></div>
     
   </div>
-  <div class="w3-container w3-text-grey" id="haircut"></div>
+  <div class="w3-container w3-text-grey" id="Furniture Assembly"></div>
   <h2>Furniture Assembly</h2>
    <p>3 items</p>
    
@@ -452,7 +440,7 @@
     </div></div>
     
   </div>
-  <div class="w3-container w3-text-grey" id="therapy"></div>
+  <div class="w3-container w3-text-grey" id="Furniture Repair"></div>
   <h2>Furniture Repair</h2>
    <p>3 items</p>
    

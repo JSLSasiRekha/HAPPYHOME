@@ -187,13 +187,12 @@ display: flex;
           <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
           <h3 class="w3-wide"><b>CATEGORIES</b></h3>
         </div>
+        <!-- basin and sink,drainage pipes,bath fitting,toilets,tap and mixer -->
         <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
-            <a href="#basin_and_sink" class="w3-bar-item w3-button">basin and sink</a>
-            <a href="#drainage_pipes" class="w3-bar-item w3-button">drainage pipes</a>
-            <a href="#bath_fitting" class="w3-bar-item w3-button">bath fitting</a>
-            <a href="#toilet" class="w3-bar-item w3-button">toilets</a>
-            <a href="#tap_and_mixer" class="w3-bar-item w3-button">tap and mixer</a>
-
+          <% Category.forEach((category)=>{ %>
+            <a href="#<%= category.sname %>" class="w3-bar-item w3-button"><%= category.sname %></a>
+           <% }) %>
+          
         </div>
         <a href="#footer" class="w3-bar-item w3-button w3-padding">Contact</a> 
         <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding" onclick="document.getElementById('newsletter').style.display='block'">Newsletter</a> 
@@ -225,7 +224,7 @@ display: flex;
     <!--1)pipe blockages removal-->
     <!--2)drain cover installation-->
     <!--3)pipe replacement-->
-    <div class="w3-container w3-text-grey" id="basin_and_sink"></div>
+    <div class="w3-container w3-text-grey" id=" Basin And Sink"></div>
     <h4>BASIN AND SINK</h4>
      <p>3 items</p>
      
@@ -266,7 +265,7 @@ display: flex;
      <!--drainage pipes-->
      <!--drainage pipe blockage removal-->
      <!--drainage pipe replacement-->
-     <div class="w3-container w3-text-grey" id="drainage_pipes"></div>
+     <div class="w3-container w3-text-grey" id=" Drainage Pipes"></div>
      <h4>DRAINAGE PIPES</h4>
       <p>2 items</p>
       
@@ -300,7 +299,7 @@ display: flex;
       <!--mirrior fitting installation-->
       <!--shower installation-->
       <!--bathtub fitting-->
-    <div class="w3-container w3-text-grey" id="bath_fitting"></div>
+    <div class="w3-container w3-text-grey" id=" Bath Fitting"></div>
     <h4>BATH FITTING</h4>
      <p>3 items</p>
      
@@ -342,7 +341,7 @@ display: flex;
      <!--flush tank repair-->
      <!--western toilet installation-->
      <!--indian toilet installation-->
-     <div class="w3-container w3-text-grey" id="toilet"></div>
+     <div class="w3-container w3-text-grey" id=" Toilets"></div>
      <h4>TOILETS</h4>
       <p>3 items</p>
       
@@ -383,7 +382,7 @@ display: flex;
     <!--tap and mixer-->
     <!--cold and hot water mixer repair-->
     <!--tap repair-->
-    <div class="w3-container w3-text-grey" id="tap_and_mixer"></div>
+    <div class="w3-container w3-text-grey" id="Tap And Mixer"></div>
     <h4>TAP AND MIXER</h4>
      <p>3 items</p>
      

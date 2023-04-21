@@ -8,7 +8,7 @@ h1,h2,h3,h4,h5,h6 {
 #options option{
     color: #f7f1f1;
     font-size: larger;
-    background-color: #f0f0f0;
+    background-color: #0c0c0c;
 }
 
 
@@ -443,8 +443,8 @@ input[type="radio"]{
     width: 750px;
     height:500px;
   
-    background-color: #FAF8F1;
-    color: #212020;
+    background-color: #060606;
+    color: white;
     font-size: large;
     font-family: cursive;
     font-weight: bolder;
@@ -905,5 +905,162 @@ input {
   box-shadow: 0 0 0 2px #fff, 0 0 0 3px gray;
 }
 
+
+
+
+#admin_form{
+  display: none;
+}
+/* <!-- these are some scrolling based css stuff  -->*/
+#login_box{
+position: absolute;
+top: 50px;
+right: 50px;
+height: fit-content;
+width: 180px;
+
+display: none;
+z-index: 2;
+border-radius: 20px;
+background-image: url('../public/images/PROJECT/login_bg.jpeg');
+background-repeat: no-repeat;
+background-size: cover;
+animation: slide-in-left 1s ease-in-out both;
+
+}
+#login_box .login_cont{
+height: 40px;
+width: 100%;
+color: white;
+background-color: black;
+margin: 4px;
+box-shadow: 3px 3px rgb(141, 132, 132);
+justify-content: center;
+align-items: center;
+cursor: pointer;
+
+}
+.login_cont:hover{
+background-color: black;
+color: aliceblue;
+animation: slide-in-left 1s ease-in-out both;
+
+
+}
+.login_cont span{
+margin: 5px;
+padding: 3px;
+padding-top: 40px;
+}
+.js-scroll {
+ 
+  background-color: #DADADA;
+  transition: background-color 500ms;
+}
+.js-scroll.scrolled {
+  background-color: aquamarine;
+  transition: all;
+}
+.scrolled.fade-in {
+  animation: fade-in 1s ease-in-out both;
+}
+.scrolled.fade-in-bottom {
+  animation: fade-in-bottom 1s ease-in-out both;
+}
+.scrolled.slide-left {
+  animation: slide-in-left 1s ease-in-out both;
+}
+.scrolled.slide-right {
+  animation: slide-in-right 1s ease-in-out both;
+}
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes fade-in-bottom {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.reveal{
+  position: relative;
+  transform: translateY(150px);
+  opacity: 0;
+  transition: 1s all ease !important;
+}
+
+.reveal.active{
+  transform: translateY(0) !important;
+  opacity: 1 !important;
+}
+/* text animation */
+
+@keyframes animated-text{
+from{width: 0px;}
+to{width: 900px;}
+}
+
+/* cursor animations */
+
+@keyframes animated-cursor{
+from{border-right-color: rgba(255, 162, 0, 0.75);}
+to{border-right-color: transparent;}
+}
+
+
+
+/* for loader of page  */
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+position: fixed;
+left: 0px;
+top: 0px;
+width: 100%;
+height: 100%;
+z-index: 9999;
+background: url('../images/SVKl.gif') center no-repeat #0e0d0d;
+}
+/* hover effect of navbar  */
+.hover-3 {
+--c: no-repeat linear-gradient(#95aab0 0 0);
+background: 
+  var(--c)  calc(-101% + var(--p,0%)) 100% / 50.1% var(--p,.08em),
+  var(--c)  calc( 201% - var(--p,0%)) 0    / 50.1% var(--p,.08em);
+transition: .3s var(--t,0s), background-position .3s calc(.3s - var(--t,0s));
+}
+.hover-3:hover {
+--p: 101%;
+--t: 0.3s;
+}
 
 
