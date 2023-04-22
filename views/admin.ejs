@@ -57,11 +57,11 @@
 
 	</header>
 
-	<div class="main-container">
+	<div class="main-container" >
 		<div class="navcontainer">
 			<nav class="nav">
 				<div class="nav-upper-options">
-					<div class="nav-option option1">
+					<div class="nav-option option1" onclick="document.getElementById('main').style.display='block';document.getElementById('UserInfo').style.display='none';document.getElementById('WorkerInfo').style.display='none'">
 						<img src=
 "https://media.geeksforgeeks.org/wp-content/uploads/20221210182148/Untitled-design-(29).png"
 							class="nav-img"
@@ -77,20 +77,20 @@
 						<h3> Articles</h3>
 					</div>
 
-					<div class="nav-option option3">
+					<div class="nav-option option3" onclick="document.getElementById('main').style.display='none';document.getElementById('WorkerInfo').style.display='block';document.getElementById('UserInfo').style.display='none'">
 						<img src=
 "https://media.geeksforgeeks.org/wp-content/uploads/20221210183320/5.png"
 							class="nav-img"
 							alt="report">
-						<h3> Report</h3>
+						<h3>Workers Info</h3>
 					</div>
 
-					<div class="nav-option option4">
+					<div class="nav-option option4" onclick="document.getElementById('main').style.display='none';document.getElementById('UserInfo').style.display='block';document.getElementById('WorkerInfo').style.display='none'">
 						<img src=
 "https://media.geeksforgeeks.org/wp-content/uploads/20221210183321/6.png"
 							class="nav-img"
 							alt="institution">
-						<h3> Institution</h3>
+						<h3> Users Info</h3>
 					</div>
 
 					<div class="nav-option option5">
@@ -120,7 +120,7 @@
 				</div>
 			</nav>
 		</div>
-		<div class="main">
+		<div class="main" id="main">
 
 			<div class="searchbar2">
 				<input type="text"
@@ -139,49 +139,46 @@
 
 				<div class="box box1">
 					<div class="text">
-						<h2 class="topic-heading">60.5k</h2>
-						<h2 class="topic">Daily Visiters</h2>
+						<h2 class="topic-heading"><%= UserCount %></h2>
+						<h2 class="topic">Users</h2>
 					</div>
 
-					<img src=
-"https://media.geeksforgeeks.org/wp-content/uploads/20221210184645/Untitled-design-(31).png"
+					<img src="images/icons8-customer-64.png"
 						alt="Views">
 				</div>
 
 				<div class="box box2">
 					<div class="text">
-						<h2 class="topic-heading">150</h2>
-						<h2 class="topic">Likes</h2>
+						<h2 class="topic-heading"><%= WorkerCount %></h2>
+						<h2 class="topic">Workers</h2>
 					</div>
 
-					<img src=
-"https://media.geeksforgeeks.org/wp-content/uploads/20221210185030/14.png"
+					<img src="images/icons8-customer-64.png"
 						alt="likes">
 				</div>
 
 				<div class="box box3">
 					<div class="text">
-						<h2 class="topic-heading">320</h2>
-						<h2 class="topic">Comments</h2>
+            <h2 class="topic-heading"><%= WorkerApprovedCount %></h2>
+						<h2 class="topic">Workers Approved </h2>
 					</div>
 
-					<img src=
-"https://media.geeksforgeeks.org/wp-content/uploads/20221210184645/Untitled-design-(32).png"
+					<img src="images/icons8-correct-64.png"
 						alt="comments">
 				</div>
 
 				<div class="box box4">
 					<div class="text">
-						<h2 class="topic-heading">7</h2>
-						<h2 class="topic">Active</h2>
+            <h2 class="topic-heading"><%= WorkerRejectedCount %></h2>
+						<h2 class="topic">Rejected Workers</h2>
 					</div>
 
-					<img src=
-"https://media.geeksforgeeks.org/wp-content/uploads/20221210185029/13.png" alt="published">
+					<img src="images/icons8-cancel-48.png" alt="published">
 				</div>
 			</div>
+    
 
-			<div class="report-container">
+			<div class="report-container" id="report-container">
 				<div class="report-header">
 					<h1 class="recent-Articles">Recent Articles</h1>
 					<button class="view">View All</button>
@@ -866,16 +863,72 @@
      <!-- ------------------------  -->
 
      </div>
-   
-     <div class="w3-container w3-light-grey w3-padding">
-      <button class="w3-button w3-right w3-white w3-border" 
-      onclick="document.getElementById('id01').style.display='none'">Close</button>
-     </div>
+     <div id="WorkerInfo" style="display:none">
+      <% Workers.map((worker)=>{ %>
+        <div class="card">
+          <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210180014/profile-removebg-preview.png"
+            class="dpicn"
+            alt="dp">
+      <div class="container">
+        <h4><b>Worker Details</b></h4><br>
+        <p>Name: <%= worker.name %></p>
+        <p>Profession:<%= worker.Profession %></p>
+        <p>Location:<%= worker.location%></p>
+        <p>Email: <%= worker.email %></p>
+        <p>Phone: <%= worker.phone %></p>
+              
+      </div>
+          <div class="btn">
+          <%  if(worker.CheckStatus=='Approved') {%> 
+        <button class="approved" onclick="approved()">Approved</button><br>
+        <%} else {%>
+          <form id="redirectForm" method="POST" type="/workerApproval"action="/workerApproval">
+            <input type="hidden" name="WorkerId" value="<%= worker._id %>">
+            <button class="approve" onclick="approved()" type="submit">Approve</button><br>
+          </form>
+
+        <% }%>
+        <%  if(worker.CheckStatus=='Rejected') {%>
+          <button class="rejected" onclick="reject()">Rejected</button>
+        <%} else {%>
+          <form id="redirectForm" method="POST" type="/workerRejected"action="/workerRejected">
+            <input type="hidden" name="WorkerId" value="<%= worker._id %>">
+            <button class="reject" onclick="reject()" type="submit">&nbsp; Reject</button>
+          </form>
+          <% }%>
+          </div>
+         
+    </div>
+  
+        <% }) %>
+  </div>
+  <div id="UserInfo" style="display:none">
+    <% Users.map((user)=>{ %>
+      <div class="card">
+        <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210180014/profile-removebg-preview.png"
+          class="dpicn"
+          alt="dp">
+    <div class="container">
+      <h4><b> User Details</b></h4>
+      <p>First Name: <%= user.first_name %></p>
+      <p>Last Name: <%= user.last_name %></p>
+      <p>Email: <%= user.email %></p>
+      <p>Phone: <%= user.phone %></p>
+            
+    </div>
+      
+  </div>
+
+      <% }) %>
+</div>
+     
     </div>
    </div>
-
+ 
 
 	</div>
+
+ 
  <script>
    
         let menuicn = document.querySelector(".menuicn");

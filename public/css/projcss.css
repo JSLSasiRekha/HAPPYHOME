@@ -64,7 +64,7 @@ img{
 }
 .container{ 
     display: flex;
-    height: 600px;
+    height: 400px;
     align-items: center;
     justify-content: center;
   
@@ -106,8 +106,10 @@ width: 100%;
 .big_cont{
     height: 640px;
     /* background-color: rgb(202, 209, 207); */
-     
-    background-image: url("../images/PROJECT/pexels-diego-ramirez-8278494.jpg");
+    
+    background-image: url("../images/images.png");
+ 
+    opacity: 0.7;
     background-repeat: no-repeat;
     background-size:cover;
     text-align: center;
@@ -129,11 +131,14 @@ width: 100%;
     
 }
 .searchbox i{
-    height: 100px;
+    height: 200px;
     width: 36px;
     padding: -16px;
     margin-top: 22px;
     padding-bottom: 43px
+}
+.searchbox button{
+
 }
 
 .services{
@@ -329,7 +334,6 @@ padding-left: 300px;
   }
 .searchbox button{
    
-
    margin-top: 30px;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
@@ -337,7 +341,10 @@ padding-left: 300px;
     BORDER: NONE;
     height: 75px;
 }
-
+.searchbox i{
+  height:50px;
+  width:30px;
+}
 
 .searchbox button a img{
     margin-top: 4px;

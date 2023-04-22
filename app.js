@@ -5,7 +5,6 @@ const app = express();
 const https = require("https");
 const fs = require("fs");
 const sqlite3 = require('sqlite3').verbose();
-//const mysql=require('mysql');
 const ejs = require('ejs');
 const { MongoClient } = require("mongodb");
 const mongoose = require("mongoose");
@@ -21,19 +20,6 @@ app.set('views', __dirname + '/views');
 
 
 const url="mongodb+srv://jslsasirekha:Test123@cluster0.gzxnd6y.mongodb.net/HappyHome?retryWrites=true&w=majority"
-// const client = new MongoClient(url);
-// async function run() {
-//     try {
-//         await client.connect();
-//         console.log("Connected to server");
-//     } catch (err) {
-//         console.log(err.stack);
-//     }
-//     // finally {
-//     //     await client.close();
-//     // }
-// }
-
 const client = mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true});
 
 if(client) {
@@ -62,7 +48,14 @@ const AdminSchema= new mongoose.Schema({
    key: String,
    name: String,
  });
-
+const WorkerSchema= new mongoose.Schema({
+  name: String,
+  email: String,
+  phone: String,
+  location: String,
+  Profession: String,
+  CheckStatus: String,
+});
 
 const Service1 = mongoose.model('Service1', ServiceSchema);
 const Service2 = mongoose.model('Service2', ServiceSchema);
@@ -73,6 +66,8 @@ const Service6 = mongoose.model('Service6', ServiceSchema);
 
 const UserCollection= mongoose.model('User', UserSchema);
 const AdminCollection= mongoose.model('Admin', AdminSchema);
+const WorkerCollection= mongoose.model('Worker', WorkerSchema);
+
 
 const ServiceTable=[Service1,Service2,Service3,Service4,Service5,Service6]
 // run().catch(console.error);
@@ -129,6 +124,9 @@ const ServiceTable=[Service1,Service2,Service3,Service4,Service5,Service6]
     {sname:"Other Things Repairing"}
   ]
 
+  WorkerDetails=[];
+  UserDetails=[];
+
 //---------------Inserting Data into Database-----------------//
 // Service1.insertMany(msaloon);
 // Service2.insertMany(wsaloon);
@@ -137,31 +135,21 @@ const ServiceTable=[Service1,Service2,Service3,Service4,Service5,Service6]
 // Service5.insertMany(houseRepair);
 // Service6.insertMany(repair);
 //AdminCollection.insertMany({email:"sasirekha@gmail.com",key:"admin",name:"Sasi"});
+//WorkerCollection.insertMany({name:"Williams",email:"willy@gmail.com",phone:"7891234561",location:"Hyderabad",Profession:"Men Saloon",CheckStatus:"Approved"});
 
 
 
-  // Define the new worker object
-  // const newWorker = {
-  //   name: 'John Doe',
-  //   email: 'johndoe@example.com',
-  //   phone: '555-555-5555',
-  //   location: 'New York, NY',
-  //   category: 'Electrician',
-  //   description: 'Experienced electrician for residential and commercial projects.',
-  //   password: 'mysecurepassword'
-  // };
-  
-  // // Insert the new worker into the workers collection
-  // workersCollection.insertOne(newWorker, (err, result) => {
-  //   if (err) {
-  //     console.log(err);
-  //     process.exit(1);
-  //   }
-    
-  //   console.log('Worker registered successfully...');
 
-  
-  // });
+async function FindWorkers(){
+   const WorkerCount=await WorkerCollection.countDocuments();
+  // const UsersCount=await UserCollection.countDocuments();
+  // const WorkerApprovedCount= await WorkerCollection.countDocuments({CheckStatus:"Approved"});
+  // const WorkerRejectedCount= await WorkerCollection.countDocuments({CheckStatus:"Rejected"});
+
+ return {WorkerCount};
+}
+
+ 
 
 
 app.post('/submit_register', async function (req, res) {
@@ -228,10 +216,61 @@ app.post('/submit_admin', async function (req, res) {
       
       console.log(x);
       console.log('login');
-     res.render("admin.ejs");
+      const WorkerCount=await WorkerCollection.countDocuments();
+      const UserCount= await UserCollection.countDocuments();
+      const WorkerApprovedCount= await WorkerCollection.countDocuments({CheckStatus:"Approved"});
+      const WorkerRejectedCount= await WorkerCollection.countDocuments({CheckStatus:"Rejected"});
+     console.log(WorkerCount);
+        await WorkerCollection.find({}).then(workers => {
+          WorkerDetails=workers;
+        });
+        await UserCollection.find({}).then(users => {
+          UserDetails=users;
+        });
+        res.render("admin.ejs",{Workers:WorkerDetails,Users:UserDetails,WorkerCount:WorkerCount,UserCount:UserCount,WorkerApprovedCount:WorkerApprovedCount,WorkerRejectedCount:WorkerRejectedCount});
+  
     }
 
 });
+app.post('/workerApproval', async function (req, res) {
+   console.log('Approved');
+   console.log(req.body.WorkerId);
+   await WorkerCollection.findByIdAndUpdate({_id:req.body.WorkerId},{CheckStatus:"Approved"})
+   const WorkerCount=await WorkerCollection.countDocuments();
+   const UserCount= await UserCollection.countDocuments();
+   const WorkerApprovedCount= await WorkerCollection.countDocuments({CheckStatus:"Approved"});
+   const WorkerRejectedCount= await WorkerCollection.countDocuments({CheckStatus:"Rejected"});
+   
+  console.log(WorkerCount);
+     await WorkerCollection.find({}).then(workers => {
+       WorkerDetails=workers;
+     });
+     await UserCollection.find({}).then(users => {
+       UserDetails=users;
+     });
+     res.render("admin.ejs",{Workers:WorkerDetails,Users:UserDetails,WorkerCount:WorkerCount,UserCount:UserCount,WorkerApprovedCount:WorkerApprovedCount,WorkerRejectedCount:WorkerRejectedCount});
+   
+});
+
+app.post('/workerRejected', async function (req, res) {
+  console.log('Rejected');
+  console.log(req.body.WorkerId);
+  await WorkerCollection.findByIdAndUpdate({_id:req.body.WorkerId},{CheckStatus:"Rejected"});
+  const WorkerCount=await WorkerCollection.countDocuments();
+  const UserCount= await UserCollection.countDocuments();
+  const WorkerApprovedCount= await WorkerCollection.countDocuments({CheckStatus:"Approved"});
+  const WorkerRejectedCount= await WorkerCollection.countDocuments({CheckStatus:"Rejected"});
+ console.log(WorkerCount);
+    await WorkerCollection.find({}).then(workers => {
+      WorkerDetails=workers;
+    });
+    await UserCollection.find({}).then(users => {
+      UserDetails=users;
+    });
+    res.render("admin.ejs",{Workers:WorkerDetails,Users:UserDetails,WorkerCount:WorkerCount,UserCount:UserCount,WorkerApprovedCount:WorkerApprovedCount,WorkerRejectedCount:WorkerRejectedCount});
+  
+});
+
 
 
 app.get('/logout',function(req,res){
@@ -247,7 +286,9 @@ app.get("/", function (req, res) {
 app.get('/navbar', (req, res) => {
   res.render('navbar.ejs',{user:x});
 });
-
+app.get('/card', (req, res) => {
+  res.render('card.ejs');
+});
 
 app.get("/signup", function (req, res) {
   res.sendFile(__dirname + "/signup.html");
@@ -288,8 +329,20 @@ app.get('/account', (req, res) => {
 app.get('/checkout', (req, res) => {
   res.render("checkout.ejs");
 });
-app.get('/admin', (req, res) => {
-  res.render("admin.ejs");
+app.get('/admin', async (req, res) => {
+
+  const WorkerCount=await WorkerCollection.countDocuments();
+  const UserCount= await UserCollection.countDocuments();
+  const WorkerApprovedCount= await WorkerCollection.countDocuments({CheckStatus:"Approved"});
+  const WorkerRejectedCount= await WorkerCollection.countDocuments({CheckStatus:"Rejected"});
+ console.log(WorkerCount);
+    await WorkerCollection.find({}).then(workers => {
+      WorkerDetails=workers;
+    });
+    await UserCollection.find({}).then(users => {
+      UserDetails=users;
+    });
+    res.render("admin.ejs",{Workers:WorkerDetails,Users:UserDetails,WorkerCount:WorkerCount,UserCount:UserCount,WorkerApprovedCount:WorkerApprovedCount,WorkerRejectedCount:WorkerRejectedCount});
 });
 
 
