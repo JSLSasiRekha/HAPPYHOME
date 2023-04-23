@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('views', __dirname + '/views');
 
 
-const url="mongodb+srv://jslsasirekha:Test123@cluster0.gzxnd6y.mongodb.net/HappyHome?retryWrites=true&w=majority"
+const url="mongodb://localhost:27017/admin"
 // const client = new MongoClient(url);
 // async function run() {
 //     try {
