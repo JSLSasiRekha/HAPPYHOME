@@ -14,44 +14,29 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+  <script src="../public/js/project.js"></script>
 <style>
-  
+ 
 
 </style>
-<script>
-  function reveal() {
-    var reveals = document.querySelectorAll(".reveal");
-  
-    for (var i = 0; i < reveals.length; i++) {
-      var windowHeight = window.innerHeight;
-      var elementTop = reveals[i].getBoundingClientRect().top;
-      var elementVisible = 150;
-  
-      if (elementTop < windowHeight - elementVisible) {
-        reveals[i].classList.add("active");
-      } else {
-        reveals[i].classList.remove("active");
-      }
-    }
-  }
-  
-  window.addEventListener("scroll", reveal);
-</script>
+
 </head>
+
 <script>
-  
   // Wait for window load
   $(window).load(function() {
     // Animate loader off screen
-    $(".se-pre-con").fadeOut("slow");;
+    $(".se-pre-con").fadeOut("fast");
   });
 </script>
-<body onload="checkcookies()">
   
+ 
+<body onload="checkcookies()">
+ <!-- //<div class="se-pre-con"></div> -->
 
 
   <%- include('navbar.ejs') %>
-
+ 
   <div id="login_box">
     <div class="login_cont" onclick="document.getElementById('admin_form').style.display='block'" ><span><i class="fa-solid fa-person"></i></span> <span>Admin</span></div>
     <div class="login_cont" onclick="document.getElementById('newsletter').style.display='block'"><span><i class="fa-solid fa-user"></i></span> <span>User</span></div>
@@ -241,9 +226,18 @@
   <div class="big_cont">
     <div class="container">
       <div class="searchbox">
-        <div class="slideshow-container">
-           <!-- <%- include('slideshow.ejs') %>  -->
         
+           <!-- <%- include('slideshow.ejs') %>  -->
+           <input id="searchbar" type="text" name="search" placeholder="Search..." list="options" >
+           <button><i class="fa-solid fa-magnifying-glass fa-beat"></i>
+   
+   
+             </button>
+            
+           <!-- suggestions options -->
+         
+   
+   
            
           <!-- suggestions options -->
           <datalist id="options">
@@ -265,7 +259,7 @@
   
   
   
-        </div>
+        
   
       </div>
 
@@ -388,7 +382,25 @@
 
   </div>
 
-
+  <script>
+    function reveal() {
+      var reveals = document.querySelectorAll(".reveal");
+    
+      for (var i = 0; i < reveals.length; i++) {
+        var windowHeight = window.innerHeight;
+        var elementTop = reveals[i].getBoundingClientRect().top;
+        var elementVisible = 150;
+    
+        if (elementTop < windowHeight - elementVisible) {
+          reveals[i].classList.add("active");
+        } else {
+          reveals[i].classList.remove("active");
+        }
+      }
+    }
+    
+    window.addEventListener("scroll", reveal);
+  </script>
 <script>
     // JavaScript code
 
