@@ -64,7 +64,7 @@ img{
 }
 .container{ 
     display: flex;
-    height: 600px;
+    height: 400px;
     align-items: center;
     justify-content: center;
   
@@ -106,8 +106,10 @@ width: 100%;
 .big_cont{
     height: 640px;
     /* background-color: rgb(202, 209, 207); */
-     
-    background-image: url("../images/PROJECT/pexels-diego-ramirez-8278494.jpg");
+    
+    background-image: url("../images/images.png");
+ 
+    opacity: 0.7;
     background-repeat: no-repeat;
     background-size:cover;
     text-align: center;
@@ -129,12 +131,13 @@ width: 100%;
     
 }
 .searchbox i{
-    height: 100px;
+    height: 200px;
     width: 36px;
     padding: -16px;
-    margin-top: 22px;
+    margin-top: 12px;
     padding-bottom: 43px
 }
+
 
 .services{
     display: flex;
@@ -314,6 +317,7 @@ padding-left: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: -300px;
 
 }
 .container button{
@@ -329,7 +333,6 @@ padding-left: 300px;
   }
 .searchbox button{
    
-
    margin-top: 30px;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
@@ -337,7 +340,10 @@ padding-left: 300px;
     BORDER: NONE;
     height: 75px;
 }
-
+.searchbox i,input{
+  height:50px;
+  width:30px;
+}
 
 .searchbox button a img{
     margin-top: 4px;
@@ -594,12 +600,6 @@ input[type="radio"]{
     to {opacity: 1}
   }
 
-
-
-
-
-
-  
   .width-50 {
     width: 50%;
   }
@@ -672,9 +672,6 @@ input[type="radio"]{
   /* Form <!-- width: clamp(320px, 30%, 430px); -->*/
    
   .form {
-   
-
-
     width: clamp(697px, 50%, 800px) !important;
     margin: -88px auto;
     border-radius: 0.35rem;
@@ -774,63 +771,7 @@ input {
   text-align: center;
 }
 
-/* Progressbar */
-.progressbar {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  counter-reset: step;
-  margin: 2rem 0 4rem;
-}
 
-.progressbar::before,
-.progress {
-  content: "";
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 4px;
-  width: 100%;
-  background-color: #dcdcdc;
-  z-index: -1;
-}
-
-.progress {
-  background-color: greenyellow;
-  width: 0%;
-  transition: 0.3s;
-}
-
-.progress-step {
-  width: 2.1875rem;
-  height: 2.1875rem;
-  background-color: #dcdcdc;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.progress-step::before {
-  counter-increment: step;
-  content: counter(step);
-}
-
-.progress-step::after {
-  content: attr(data-title);
-  position: absolute;
-  top: calc(100% + 0.5rem);
-  font-size: 0.85rem;
-  color: #615e5e;
-  font-weight: bolder;
-  font-size: large;
-}
-
-.progress-step-active {
-  
-  background-color: greenyellow;
-  color: #131313;
-}
 
  
 .form {

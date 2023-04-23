@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin Page</title>
+	<style>
+	.card {
+	  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	  width: 800px;
+	  margin: 20px;
+	  text-align: center;
+      display:flex;
+      flex-direction:row;
+      background-color:white;
+	}
+  .card img{
+    margin:40px;
+  }
+	.container .btn {
+        margin:50px;
+	  padding: 10px 16px;
+	}
+     .btn{
+        margin:60px;
+     }
+	button {
+	  background-color: #1bd941; /* Green */
+	  border: none;
+	  color: white;
+	  padding: 10px 20px;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  font-size: 16px;
+	  margin: 4px 2px;
+	  cursor: pointer;
+	}
+
+	button.approve {
+	  background-color: #4CAF50;
+	}
+
+	button.reject {
+	  background-color: #f44336;
+	}
+	</style>
+</head>
+<body>
+	<div class="card">
+        <img src=
+"https://media.geeksforgeeks.org/wp-content/uploads/20221210180014/profile-removebg-preview.png"
+					class="dpicn"
+					alt="dp">
+		<div class="container">
+			<h4><b>User Details</b></h4>
+			<p>Name:</p>
+			<p>Profession:</p>
+            <p>Location:</p>
+			<p>Email:</p>
+			<p>Phone:</p>
+            
+		</div>
+        <div class="btn">
+			<button class="approve" onclick="approve()" type="submit" action="/workerApproval" method="POST">Accept</button><br>
+			<button class="reject" onclick="reject()"> Reject</button>
+        </div>
+	</div>
+
+	<script>
+		function approve() {
+			alert("Worker approved!");
+		}
+
+		function reject() {
+			alert("Worker rejected!");
+		}
+	</script>
+</body>
+</html>

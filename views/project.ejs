@@ -26,7 +26,7 @@
   <div id="login_box">
     <div class="login_cont" onclick="document.getElementById('admin_form').style.display='block'" ><span><i class="fa-solid fa-person"></i></span> <span>Admin</span></div>
     <div class="login_cont" onclick="document.getElementById('newsletter').style.display='block'"><span><i class="fa-solid fa-user"></i></span> <span>User</span></div>
-    <div class="login_cont" onclick="document.getElementById('newsletter').style.display='block'"><span><i class="fa-solid fa-person"></i></span> <span>professional</span></div>
+    <div class="login_cont" onclick="document.getElementById('worker_form').style.display='block'"><span><i class="fa-solid fa-person"></i></span> <span>professional</span></div>
   </div>
   
   <div id="newsletter" class="w3-modal">
@@ -167,6 +167,9 @@
     </div>
   </div>
 
+<%- include('WorkerRegistrations.ejs') %>
+
+
 
   <div id="admin_form" class="w3-modal">
     <div class="w3-modal-content w3-animate-zoom" id="admin_box" style="padding:32px">
@@ -199,21 +202,6 @@
                     <!-- <a href="#" class="btn btn" onclick="">LOGIN</a> -->
                   </div>
                 
-                
-        
-        
-                <!-- <div class="form-step">
-                  <h2></h2>
-                  
-                  <div class="btns-group">
-                    <a  class="btn btn-prev">Previous</a>
-                   
-                   
-                  </div>
-                </div> -->
-        
-                
-                
               </form>
          
         </div>
@@ -221,47 +209,36 @@
       </div>
     </div>
   </div>
-  <div class="big_cont" >
-
-
-
-
+  <div class="big_cont">
     <div class="container">
-
-     
       <div class="searchbox">
-
-       
-          <!-- <%- include('slideshow.ejs') %>   -->
-         <input id="searchbar" type="text" name="search" placeholder="Search..." list="options" >
-        <button><i class="fa-solid fa-magnifying-glass fa-beat"></i>
-
-
-          </button>
-         
+        <div class="slideshow-container">
+           <!-- <%- include('slideshow.ejs') %>  -->
         
-        <datalist id="options">
-          <option value="MENS SALOON">MENS SALOON</option>
-          <option value="WOMENS SALOON">WOMENS SALOON</option>
-          <option value="PLumber">PLUMBER</option>
-          <option value="House Paint">HOUSE PAINT</option>
-          <option value="appliance repair">APPLIANCE REPAIR</option>
-          <option value="HOUSE CLEANING">HOUSE CLEANING</option>
-          <option value="HOUSE PAINTING">HOUSE PAINTING</option>
-          <option value="MENS MASSAGE AND SPA">MENS MASSAGE AND SPA</option>
-          <option value="PHP">WOMENS MASSAGE AND SPA</option>
-          <option value="Pascal">BEARED AND HAIR CUT</option>
-          <option value="Perl">WOMENS FACIAL AND EYEBROW</option>
-          <option value="R"></option>
-          <option value="Swift">Swift</option>
-        </datalist>
-
-
-
-
+           
+          <!-- suggestions options -->
+          <datalist id="options">
+            <option value="MENS SALOON">MENS SALOON</option>
+            <option value="WOMENS SALOON">WOMENS SALOON</option>
+            <option value="PLumber">PLUMBER</option>
+            <option value="House Paint">HOUSE PAINT</option>
+            <option value="appliance repair">APPLIANCE REPAIR</option>
+            <option value="HOUSE CLEANING">HOUSE CLEANING</option>
+            <option value="HOUSE PAINTING">HOUSE PAINTING</option>
+            <option value="MENS MASSAGE AND SPA">MENS MASSAGE AND SPA</option>
+            <option value="WOMENS MASSAGE AND SPA">WOMENS MASSAGE AND SPA</option>
+            <option value="BEARED AND HAIR CUT">BEARED AND HAIR CUT</option>
+            <option value="WOMENS FACIAL AND EYEBROW">WOMENS FACIAL AND EYEBROW</option>
+            <option value="R"></option>
+            <option value="Swift">Swift</option>
+          </datalist>
   
-
-    </div> 
+  
+  
+  
+        </div>
+  
+      </div>
 
   
     <div class="container2" id="canvas">

@@ -232,6 +232,7 @@ iframe{
 
 }
 
+
     </style>
   </head>
 <body class="w3-content" style="max-width:1200px">
@@ -274,13 +275,18 @@ iframe{
     <p class="w3-right">
       <!-- <h2><i class="fa fa-shopping-cart w3-margin-right"></i></h2> -->
       <button onclick="gotocart()"><i class="fa fa-shopping-cart w3-margin-right"></i></button>
-      <i class="fa fa-search"></i>
+       
+            <input id="searchbar" type="text" name="search" placeholder="Search..." list="options" >
+            <button onclick=SearchImplementation()><i class="fa-solid fa-magnifying-glass fa-beat"></i>
+            </button>
+         
     </p>
   </header>
   
 
   <!-- Image header -->
-  <div class="w3-display-container w3-container">
+  
+  <div class="w3-display-container w3-container" id="topdiv">
     <img src="images/PROJECT/saloon_men.jpeg" alt="Haircut" style="width:100%">
     <div class="w3-display-topleft w3-text-white" style="padding:24px 48px">
       <h1 class="w3-jumbo w3-hide-small">New services</h1>
@@ -290,15 +296,14 @@ iframe{
     </div>
   </div>
 
-  <div class="w3-container w3-text-grey" id="Haircut">
-    <p>4 items</p>
-  </div>
+
+ 
 
   
 
   <!-- SERVICES SECTION FOR THE NEW SERVICES -->
 
-  <div class="service_container">
+  <div class="service_container" id="topdiv1">
 
     <div class="service" id="service1">
 
@@ -386,17 +391,29 @@ iframe{
       <span class="price">₹445</span>
       <span class="discount">(12% off)</span>
     </div></div>
-  </div>
-  <div class="w3-container w3-text-grey" id="Beard Trimming"></div>
-  <h2>BEARD TRIMMING ZONE</h2>
-   <p>3 items</p>
-   
-   <div class="service_container">
-
-    <div class="service" id="service1">
-
-
-      <div class="s_1"><img
+  
+</div>
+  <div class="card" id="beardtrimming">
+    <div class="w3-container w3-text-grey" id="Beard Trimming"></div>
+    <h2 class="category">BEARD TRIMMING ZONE</h2>
+     <p>3 items</p>
+     
+     <div class="service_container">
+  
+      <div class="service" id="service1">
+  
+  
+        <div class="s_1"><img
+          src="images/PROJECT/houseclean.jpeg" >
+          
+        </div>
+        <button>BOOK NOW</button>
+        <div class="s_2">
+          <span class="price">₹445</span>
+          <span class="discount">(12% off)</span>
+        </div>
+      </div>
+      <div class="service" id="service2"> <div class="s_1"><img
         src="images/PROJECT/houseclean.jpeg" >
         
       </div>
@@ -404,42 +421,45 @@ iframe{
       <div class="s_2">
         <span class="price">₹445</span>
         <span class="discount">(12% off)</span>
+      </div></div>
+      <div class="service" id="service3"> <div class="s_1"><img
+        src="images/PROJECT/houseclean.jpeg" >
+        
       </div>
-    </div>
-    <div class="service" id="service2"> <div class="s_1"><img
-      src="images/PROJECT/houseclean.jpeg" >
+      <button>BOOK NOW</button>
+      <div class="s_2">
+        <span class="price">₹445</span>
+        <span class="discount">(12% off)</span>
+      </div></div>
       
     </div>
-    <button>BOOK NOW</button>
-    <div class="s_2">
-      <span class="price">₹445</span>
-      <span class="discount">(12% off)</span>
-    </div></div>
-    <div class="service" id="service3"> <div class="s_1"><img
-      src="images/PROJECT/houseclean.jpeg" >
-      
-    </div>
-    <button>BOOK NOW</button>
-    <div class="s_2">
-      <span class="price">₹445</span>
-      <span class="discount">(12% off)</span>
-    </div></div>
-    
   </div>
+  
   <!-- ---------------------- -->
   
 <!-- --------------------------- -->
   <!-- // facial ZONE -->
-  <div class="w3-container w3-text-grey" id="Facials"></div>
-  <h2>FACIAL ZONE</h2>
-   <p>3 items</p>
-   
-   <div class="service_container">
-
-    <div class="service" id="service1">
-
-
-      <div class="s_1"><img
+  <div class="card" id="facials">
+    <div class="w3-container w3-text-grey" id="Facials"></div>
+    <h2 class="category">FACIAL ZONE</h2>
+     <p>3 items</p>
+     
+     <div class="service_container">
+  
+      <div class="service" id="service1">
+  
+  
+        <div class="s_1"><img
+          src="images/PROJECT/houseclean.jpeg" >
+          
+        </div>
+        <button>BOOK NOW</button>
+        <div class="s_2">
+          <span class="price">₹445</span>
+          <span class="discount">(12% off)</span>
+        </div>
+      </div>
+      <div class="service" id="service2"> <div class="s_1"><img
         src="images/PROJECT/houseclean.jpeg" >
         
       </div>
@@ -447,30 +467,23 @@ iframe{
       <div class="s_2">
         <span class="price">₹445</span>
         <span class="discount">(12% off)</span>
+      </div></div>
+      <div class="service" id="service3"> <div class="s_1"><img
+        src="images/PROJECT/houseclean.jpeg" >
+        
       </div>
-    </div>
-    <div class="service" id="service2"> <div class="s_1"><img
-      src="images/PROJECT/houseclean.jpeg" >
+      <button>BOOK NOW</button>
+      <div class="s_2">
+        <span class="price">₹445</span>
+        <span class="discount">(12% off)</span>
+      </div></div>
       
     </div>
-    <button>BOOK NOW</button>
-    <div class="s_2">
-      <span class="price">₹445</span>
-      <span class="discount">(12% off)</span>
-    </div></div>
-    <div class="service" id="service3"> <div class="s_1"><img
-      src="images/PROJECT/houseclean.jpeg" >
-      
-    </div>
-    <button>BOOK NOW</button>
-    <div class="s_2">
-      <span class="price">₹445</span>
-      <span class="discount">(12% off)</span>
-    </div></div>
-    
   </div>
+ 
+<div class="card" id="haircut">
   <div class="w3-container w3-text-grey" id="Hair Cut"></div>
-  <h2>HAIR-CUT ZONE</h2>
+  <h2 class="category">HAIR-CUT ZONE</h2>
    <p>3 items</p>
    
    <div class="service_container">
@@ -508,8 +521,10 @@ iframe{
     </div></div>
     
   </div>
+</div>
+ <div class="card" id="therapy">
   <div class="w3-container w3-text-grey" id="Therapy"></div>
-  <h2>THERAPY ZONE</h2>
+  <h2 class="category">THERAPY ZONE</h2>
    <p>3 items</p>
    
    <div class="service_container">
@@ -547,6 +562,8 @@ iframe{
     </div></div>
     
   </div>
+ </div>
+
 
   <div id="cart_show">
     <p>Item is added to your cart</p>
@@ -595,6 +612,33 @@ function addtocart(){
 
 
 }
+</script>
+<script>
+ 
+const searchInput = document.getElementById("searchbar");
+
+searchInput.addEventListener("input", function () {
+
+  const keyword = this.value.trim().toLowerCase();
+  const cards = document.querySelectorAll(".card");
+  cards.forEach((card) => {
+    const name = card.querySelector("h2").textContent.trim().toLowerCase();
+
+    if (name.includes(keyword)) {
+      card.style.display = "block";
+      document.getElementById("topdiv1").style.display="flex";
+     document.getElementById("topdiv").style.display="block";
+    } else {
+      card.style.display = "none";
+     document.getElementById("topdiv1").style.display="none";
+     document.getElementById("topdiv").style.display="none";
+    }
+  });
+});
+
+
+
+  
 </script>
 
 <script src="app.js"></script>
