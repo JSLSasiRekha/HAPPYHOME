@@ -352,8 +352,9 @@ app.get('/logout',function(req,res){
 })
 
 //-----------------------------------Routing---------------------------------------------------------------------
-app.get("/", function (req, res) {
+app.get("/", async function (req, res) {
   res.render('project.ejs',{user:x});
+ // const result= await AdminCollection.insertMany({email:'neeleshnama2002@gmail.com',key:'abc@123',name:'neelesh'})
 });
 
 app.get('/navbar', (req, res) => {

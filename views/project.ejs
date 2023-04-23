@@ -14,9 +14,38 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+<style>
+  
 
+</style>
+<script>
+  function reveal() {
+    var reveals = document.querySelectorAll(".reveal");
+  
+    for (var i = 0; i < reveals.length; i++) {
+      var windowHeight = window.innerHeight;
+      var elementTop = reveals[i].getBoundingClientRect().top;
+      var elementVisible = 150;
+  
+      if (elementTop < windowHeight - elementVisible) {
+        reveals[i].classList.add("active");
+      } else {
+        reveals[i].classList.remove("active");
+      }
+    }
+  }
+  
+  window.addEventListener("scroll", reveal);
+</script>
 </head>
-
+<script>
+  
+  // Wait for window load
+  $(window).load(function() {
+    // Animate loader off screen
+    $(".se-pre-con").fadeOut("slow");;
+  });
+</script>
 <body onload="checkcookies()">
   
 
@@ -243,7 +272,7 @@
   
     <div class="container2" id="canvas">
 
-      <div class="services">
+      <div class="services reveal">
 
         <div class="box" id="service1"><a href="service1" target="_blank"><img src="images/PROJECT/saloon_men.jpeg">
           <span class="popuptext" id="myPopup">MEN'S SALOON</span>
@@ -264,7 +293,7 @@
           </a></div>
 
       </div>
-      <div class="services">
+      <div class="services reveal">
 
         <div class="box" id="service1"><a href="service5"><img src="images/PROJECT/houseclean.jpeg">
             <span class="popuptext" id="myPopup">HOUSE CLEAN</span>
@@ -278,7 +307,7 @@
 
     <br>
       <h1>Popular Services Recommended for you</h1>
-      <div class="slideshow-container">
+      <div class="slideshow-container reveal">
         <div class="mySlides fade">
           <img src="images/PROJECT/main_bg.jpg" alt="image1">
 
@@ -307,7 +336,7 @@
 
     <!-- Footer -->
    
-    <footer class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer">
+    <footer class="w3-padding-64 w3-light-grey w3-small w3-center reveal" id="footer">
       <div class="w3-row-padding">
         <div class="w3-col s4">
           <h4 id="vkk">Contact</h4>
