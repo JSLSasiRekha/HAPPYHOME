@@ -180,7 +180,7 @@
     <title>PAYMENT WINDOW</title>
   </head>
   <body>
-    <form action="#" class="form">
+    <form class="form" method="POST" type="/userBooked"action="/userBooked">
       <h1 class="text-center">CHECK-OUT WINDOW</h1>
       <!-- Progress bar -->
       <div class="progressbar">
@@ -278,7 +278,11 @@
         
         <div class="btns-group">
           <a href="#" class="btn btn-prev">Previous</a>
-          <input type="submit" value="Pay" class="btn" />
+        
+            <input type="hidden" name="UserId" value="<%= user.id %>">
+             <button type="submit" class="btn">Pay </button>
+          
+         
         </div>
       </div>
     </form>

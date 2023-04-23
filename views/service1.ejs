@@ -236,6 +236,7 @@ iframe{
     </style>
   </head>
 <body class="w3-content" style="max-width:1200px">
+ 
 
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
@@ -312,8 +313,10 @@ iframe{
         src="images/PROJECT/houseclean.jpeg" >
         
       </div>
-      <!-- <button role="button"  href="javascript:void(0)" onclick="document.getElementById('sevice_cart').style.display='block'">BOOK NOW</button> -->
-      <button id="package1"  onclick="document.getElementsByTagName('iframe')[0].style.display='block';" title="cart2">BOOK NOW</button>
+     
+        <button id="package1"  type="submit" onclick="document.getElementsByTagName('iframe')[0].style.display='block';" title="cart2">BOOK NOW</button>
+      
+      
      <iframe src="./cart"  onload="push('package1')"   height="600" width="1000" title="Iframe Example" ></iframe>
       <div class="s_2">
         <span class="price">₹445</span>
@@ -350,9 +353,6 @@ iframe{
               </div>
           </div>
             
-         
-           
-            <!-- <p><input class="w3-input w3-border" type="text" placeholder="Enter e-mail"></p> -->
             
           </div>
         </div>
@@ -390,7 +390,8 @@ iframe{
     <div class="s_2">
       <span class="price">₹445</span>
       <span class="discount">(12% off)</span>
-    </div></div>
+    </div>
+  </div>
   
 </div>
   <div class="card" id="beardtrimming">
