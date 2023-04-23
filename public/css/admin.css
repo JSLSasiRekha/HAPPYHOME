@@ -552,13 +552,16 @@ width: 167px;
   #UserInfo .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     width: 600px;
-    height:200px;
+    height:300px;
     margin: 20px;
     text-align: center;
     display:flex;
     flex-direction:row;
     background-color:white;
     margin-left: 600px;
+  }
+  #UserInfo button{
+    margin-top: 20px;
   }
 .card img{
   margin:60px;

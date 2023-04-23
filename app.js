@@ -54,7 +54,9 @@ const WorkerSchema= new mongoose.Schema({
   phone: String,
   location: String,
   Profession: String,
+  Password: String,
   CheckStatus: String,
+  password: String,
 });
 
 const Service1 = mongoose.model('Service1', ServiceSchema);
@@ -161,6 +163,14 @@ app.post('/submit_register', async function (req, res) {
 
 });
 
+app.post('/submit_register_worker', async function (req, res) {
+  console.log(req.body);
+
+  const result = await WorkerCollection.insertMany({name:req.body.name,email:req.body.email,phone:req.body.phone,location:req.body.location,Profession:req.body.profession,CheckStatus:"NotApproved",password:req.body.cr_password});
+
+  console.log("DataInserted");
+
+});
 
 let x=null;
 
@@ -187,6 +197,36 @@ app.post('/submit_login', async function (req, res) {
         email:result.email,
         phone:result.phone,
         password:result.password1
+       
+      }
+     
+      console.log(x);
+      console.log('login');
+     res.render("project",{user:x});
+    }
+
+});
+
+app.post('/submit_login_worker', async function (req, res) {
+  console.log(req.body);
+
+  const result= await WorkerCollection.findOne({email:req.body.email_l,password:req.body.password})
+
+  //var sql1 = "select * from users where email='" + req.body.email_l + "' and password2='" + req.body.password + "'";
+  // db.all(sql1, function (err, result, fields) {
+  //   if (err) throw err
+    console.log(result);
+
+    if (result == "" || result == null) {
+      console.log(' not loginned');
+      res.send('<h1>Not logged in</h1>')
+    }
+    else {
+       x={
+        fname:result.name,
+        email:result.email,
+        phone:result.phone,
+        password:result.password
        
       }
      
@@ -271,6 +311,26 @@ app.post('/workerRejected', async function (req, res) {
   
 });
 
+app.post('/userRejected', async function (req, res) {
+  console.log('Rejected');
+  console.log(req.body.UserId);
+  await UserCollection.deleteOne({ _id:req.body.UserId });
+  const WorkerCount=await WorkerCollection.countDocuments();
+  const UserCount= await UserCollection.countDocuments();
+  const WorkerApprovedCount= await WorkerCollection.countDocuments({CheckStatus:"Approved"});
+  const WorkerRejectedCount= await WorkerCollection.countDocuments({CheckStatus:"Rejected"});
+ console.log(WorkerCount);
+    await WorkerCollection.find({}).then(workers => {
+      WorkerDetails=workers;
+    });
+    await UserCollection.find({}).then(users => {
+      UserDetails=users;
+    });
+    res.render("admin.ejs",{Workers:WorkerDetails,Users:UserDetails,WorkerCount:WorkerCount,UserCount:UserCount,WorkerApprovedCount:WorkerApprovedCount,WorkerRejectedCount:WorkerRejectedCount});
+  
+});
+
+
 
 
 app.get('/logout',function(req,res){
@@ -328,6 +388,9 @@ app.get('/account', (req, res) => {
 });
 app.get('/checkout', (req, res) => {
   res.render("checkout.ejs");
+});
+app.get('/worker', (req, res) => {
+  res.render("worker.ejs");
 });
 app.get('/admin', async (req, res) => {
 

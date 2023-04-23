@@ -1,86 +1,217 @@
-/* Style for form labels */
+h1,h2,h3,h4,h5,h6 {
+  font-family: sofia !important;
+  font-weight: 400;
+  margin: 10px 0
+}
+#wsignup_cont h1{
+  margin-bottom: 70px;
+}
+#wlogin_cont h1{
+  margin-bottom: 90px;
+}
+h2{
+  margin-top:-10px;
+}
+
+#wlogin_cont{
+  background-image: url('../images/PROJECT/login_bg.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 502px;
+  padding-top: 30px
+}
+#wlogin_cont iframe{
+height: 490px !important;
+width: 100%;
+}
+#wsignup_cont{
+  background-image: url('../images/PROJECT/login_bg.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#wsignup_cont input{
+  width: 100%;
+}
+
+#worker_signup_form{
+  display: none;
+}
+#worker_signup_form iframe{
+ 
+  height: 821px;
+  width: 100%;
+}
+#wsignup_box{
+  height: 603px;
+}
+
+
+
+/* Progressbar */
+.wprogressbar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  counter-reset: step;
+  margin: 2rem 0 4rem;
+}
+
+.wprogressbar::before,
+.wprogress {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 4px;
+  width: 100%;
+  background-color: #dcdcdc;
+  z-index: -1;
+}
+
+.wprogress {
+  background-color: greenyellow;
+  width: 0%;
+  transition: 0.3s;
+}
+
+.wprogress-step {
+  width: 2.1875rem;
+  height: 2.1875rem;
+  background-color: #949292;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wprogress-step::before {
+  counter-increment: step;
+  content: counter(step);
+}
+
+.wprogress-step::after {
+  content: attr(data-title);
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  font-size: 0.85rem;
+  color: #d8d1d1;
+  font-weight: bolder;
+}
+
+.wprogress-step-active {
+  
+  background-color: greenyellow;
+  color: #131313;
+}
+
+
+ /* Form <!-- width: clamp(320px, 30%, 430px); -->*/
+   
+ .wform {
+  width: clamp(697px, 50%, 800px) !important;
+  margin: -88px auto;
+  border-radius: 0.35rem;
+  padding: 1.5rem;
+  height: 80px;
+
+
+ 
+}
+
+.wform-step {
+  display: none;
+  transform-origin: top;
+  animation: animate 0.5s;
+}
+
+.wform-step-active {
+  display: block;
+}
+
+.winput-group {
+  margin: 2rem 0;
+}
+
+@keyframes animate {
+  from {
+    transform: scale(1, 0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+}
+
+
+.wbtns-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.wbtn {
+  padding: 0.75rem;
+  display: block;
+  text-decoration: none;
+  background-color: gray;
+  color: #080808;
+  text-align: center;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.wbtn:hover {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 3px gray;
+}
+
+.w3-modal-content {
+  width: 900px;
+  height: 579px;
+
+  background-image: url('../images/PROJECT/login_bg.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+ 
+  
+}
+.wtext-center {
+  text-align: center;
+}
+
 label {
-    font-weight: bold;
-  }
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #101010;
+  font-weight: 900;
   
-  /* Style for form input fields */
-  input[type="text"], input[type="email"], input[type="tel"], input[type="password"], select, textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-bottom: 16px;
-  }
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+}
+
+input[type="text"] {    
+  width: 650px;    
+}
   
-  /* Style for small form text */
-  small.form-text {
-    display: block;
-    margin-top: -16px;
-    margin-bottom: 16px;
-    font-size: 12px;
-    color: #666;
-  }
+input[type="submit"], input[type="reset"] {    
+  width: 77px;    
+  height: 27px;    
+  position: relative;left: 180px;    
+} 
+
+form{     
+  text-align: center;
+  font-family: cursive;
+  font-size: 20px;
+  border-radius: 18px;
+  width: 724px;
+  margin: 20px auto;
+  height: 295px;
   
-  /* Style for form submit button */
-  button[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  button[type="submit"]:hover {
-    background-color: #45a049;
-  }
-  
-  /* Style for form error messages */
-  .alert-danger {
-    color: #e8283b;
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
-    padding: 12px;
-    margin-bottom: 16px;
-    border-radius: 4px;
-  }
-  
-  .alert-danger p {
-    margin-bottom: 0;
-  }
-  
-  .alert-danger ul {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-  
-  .alert-danger li {
-    list-style: none;
-    margin-bottom: 4px;
-  }
-  
-  /* Style for form success messages */
-  .alert-success {
-    color: #2ee659;
-    background-color: #d4edda;
-    border-color: #c3e6cb;
-    padding: 12px;
-    margin-bottom: 16px;
-    border-radius: 4px;
-  }
-  
-  .alert-success p {
-    margin-bottom: 0;
-  }
-  
-  .alert-success ul {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-  
-  .alert-success li {
-    list-style: none;
-    margin-bottom: 4px;
-  }
-  
+} 

@@ -30,9 +30,9 @@
 				alt="menu-icon">
 		</div>
 
-		<div class="searchbar">
+		<div class="searchbar" >
 			<input type="text"
-				placeholder="Search">
+				placeholder="Search" id="search">
 			<div class="searchbtn">
 			<img src=
 "https://media.geeksforgeeks.org/wp-content/uploads/20221210180758/Untitled-design-(28).png"
@@ -872,7 +872,7 @@
       <div class="container">
         <h4><b>Worker Details</b></h4><br>
         <p>Name: <%= worker.name %></p>
-        <p>Profession:<%= worker.Profession %></p>
+        <p class="profession">Profession:<%= worker.Profession %></p>
         <p>Location:<%= worker.location%></p>
         <p>Email: <%= worker.email %></p>
         <p>Phone: <%= worker.phone %></p>
@@ -914,7 +914,10 @@
       <p>Last Name: <%= user.last_name %></p>
       <p>Email: <%= user.email %></p>
       <p>Phone: <%= user.phone %></p>
-            
+      <form id="redirectForm" method="POST" type="/userRejected"action="/userRejected">
+        <input type="hidden" name="UserId" value="<%= user._id %>">
+        <button class="reject" onclick="reject()" type="submit">&nbsp; Remove</button>
+      </form>
     </div>
       
   </div>
@@ -981,6 +984,24 @@ function openity(evt, cityName) {
   evt.currentTarget.classList.add("w3-light-grey");
 }
         
+const searchInput = document.getElementById("search");
+const cards = document.querySelectorAll(".card");
+
+searchInput.addEventListener("input", function () {
+  const keyword = this.value.toLowerCase().trim();
+
+  cards.forEach((card) => {
+    const name = card
+      .querySelector(".profession")
+      .textContent.toLowerCase();
+
+    if (name.includes(keyword)) {
+      card.style.display = "flex";
+    } else {
+      card.style.display = "none";
+    }
+  });
+});
  </script>
 	<script src="./index.js"></script>
 </body>
