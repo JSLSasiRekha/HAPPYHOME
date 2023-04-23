@@ -10,8 +10,98 @@ h1,h2,h3,h4,h5,h6 {
     font-size: larger;
     background-color: #0c0c0c;
 }
+.js-scroll {
+     
+  background-color: #DADADA;
+  transition: background-color 500ms;
+}
+.js-scroll.scrolled {
+  background-color: aquamarine;
+  transition: all;
+}
+.scrolled.fade-in {
+  animation: fade-in 1s ease-in-out both;
+}
+.scrolled.fade-in-bottom {
+  animation: fade-in-bottom 1s ease-in-out both;
+}
+.scrolled.slide-left {
+  animation: slide-in-left 1s ease-in-out both;
+}
+.scrolled.slide-right {
+  animation: slide-in-right 1s ease-in-out both;
+}
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes fade-in-bottom {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.reveal{
+  position: absolute;
+  transform: translateY(150px);
+  opacity: 0;
+  transition: 1s all ease !important;
+}
 
-
+.reveal.active{
+  transform: translateY(0) !important;
+  opacity: 1 !important;
+}
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+position: fixed;
+left: 0px;
+top: 0px;
+width: 100%;
+height: 100%;
+z-index: 9999;
+background: url('../images/SVKl.gif') center no-repeat #0e0d0d;
+}
+.hover-3 {
+  --c: no-repeat linear-gradient(#95aab0 0 0);
+  background: 
+    var(--c)  calc(-101% + var(--p,0%)) 100% / 50.1% var(--p,.08em),
+    var(--c)  calc( 201% - var(--p,0%)) 0    / 50.1% var(--p,.08em);
+  transition: .3s var(--t,0s), background-position .3s calc(.3s - var(--t,0s));
+  }
+  .hover-3:hover {
+  --p: 101%;
+  --t: 0.3s;
+  }
 .popup {
     display: none;
     position: fixed;
@@ -109,7 +199,7 @@ width: 100%;
     
     background-image: url("../images/images.png");
  
-    opacity: 0.7;
+    opacity: 0.9;
     background-repeat: no-repeat;
     background-size:cover;
     text-align: center;
@@ -263,6 +353,7 @@ p{
   /* margin-top: 8px;
   margin-right: 16px; */
   font-size: 30px;
+  width: 280px;
   /* box-shadow: 4px 4px gray; */
 }
 
@@ -275,7 +366,7 @@ p{
 }
 /* suggestions for search box  */
 #searchbar{
-    margin-top: 30px;
+    margin-top: 41px;
     margin-left: 15%;
     padding:15px;
    border-bottom-left-radius: 8px;
@@ -284,7 +375,7 @@ p{
 }
 
 .searchbox input[type=text] {
-    width: 300px;
+    width: 300px !important;
     -webkit-transition: width 0.15s ease-in-out;
     transition: width 0.15s ease-in-out;
 }
@@ -324,7 +415,15 @@ padding-left: 300px;
     font-family: cursive;
     
     padding: 2px;
-   
+    font-family: cursive;
+    padding: 11px;
+    position: relative;
+    top: 20px;
+    background-color: #FFFF;
+    border: none;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+
 
 }
 #canvas{

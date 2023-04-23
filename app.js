@@ -16,7 +16,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('views', __dirname + '/views');
 
 
-const url="mongodb+srv://jslsasirekha:Test123@cluster0.gzxnd6y.mongodb.net/HappyHome?retryWrites=true&w=majority"
+const url="mongodb://localhost:27017/admin"
+// const client = new MongoClient(url);
+// async function run() {
+//     try {
+//         await client.connect();
+//         console.log("Connected to server");
+//     } catch (err) {
+//         console.log(err.stack);
+//     }
+//     // finally {
+//     //     await client.close();
+//     // }
+// }
+
 const client = mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true});
 
 if(client) {
@@ -395,8 +408,9 @@ app.get('/logout',function(req,res){
 })
 
 //-----------------------------------Routing---------------------------------------------------------------------
-app.get("/", function (req, res) {
+app.get("/", async function (req, res) {
   res.render('project.ejs',{user:x});
+ // const result= await AdminCollection.insertMany({email:'neeleshnama2002@gmail.com',key:'abc@123',name:'neelesh'})
 });
 
 app.get('/navbar', (req, res) => {
