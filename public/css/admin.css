@@ -560,6 +560,17 @@ width: 167px;
     background-color:white;
     margin-left: 600px;
   }
+  #feedback .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 600px;
+    height:300px;
+    margin: 20px;
+    text-align: center;
+    display:flex;
+    flex-direction:row;
+    background-color:white;
+    margin-left: 600px;
+  }
   #UserInfo button{
     margin-top: 20px;
   }
@@ -597,4 +608,9 @@ width: 167px;
   }
   button.reject {
     background-color: #f44336;
+  }
+
+  #WorkerInfo select{
+    margin-left:1300px;
+    margin-top:40px;
   }

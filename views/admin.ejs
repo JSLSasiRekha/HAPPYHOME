@@ -61,7 +61,7 @@
 		<div class="navcontainer">
 			<nav class="nav">
 				<div class="nav-upper-options">
-					<div class="nav-option option1" onclick="document.getElementById('main').style.display='block';document.getElementById('UserInfo').style.display='none';document.getElementById('WorkerInfo').style.display='none'">
+					<div class="nav-option option1" onclick="document.getElementById('main').style.display='block';document.getElementById('UserInfo').style.display='none';document.getElementById('WorkerInfo').style.display='none',document.getElementById('feedback').style.display='none'">
 						<img src=
 "https://media.geeksforgeeks.org/wp-content/uploads/20221210182148/Untitled-design-(29).png"
 							class="nav-img"
@@ -69,7 +69,7 @@
 						<h3> Dashboard</h3>
 					</div>
 
-					<div class="option2 nav-option">
+					<div class="option2 nav-option" onclick="document.getElementById('feedback').style.display='block';document.getElementById('UserInfo').style.display='none';document.getElementById('WorkerInfo').style.display='none',document.getElementById('main').style.display='none'">
 						<img src=
 "https://media.geeksforgeeks.org/wp-content/uploads/20221210183322/9.png"
 							class="nav-img"
@@ -77,7 +77,7 @@
 						<h3> Articles</h3>
 					</div>
 
-					<div class="nav-option option3" onclick="document.getElementById('main').style.display='none';document.getElementById('WorkerInfo').style.display='block';document.getElementById('UserInfo').style.display='none'">
+					<div class="nav-option option3" onclick="document.getElementById('main').style.display='none';document.getElementById('WorkerInfo').style.display='block';document.getElementById('UserInfo').style.display='none',document.getElementById('feedback').style.display='none'">
 						<img src=
 "https://media.geeksforgeeks.org/wp-content/uploads/20221210183320/5.png"
 							class="nav-img"
@@ -85,7 +85,7 @@
 						<h3>Workers Info</h3>
 					</div>
 
-					<div class="nav-option option4" onclick="document.getElementById('main').style.display='none';document.getElementById('UserInfo').style.display='block';document.getElementById('WorkerInfo').style.display='none'">
+					<div class="nav-option option4" onclick="document.getElementById('main').style.display='none';document.getElementById('UserInfo').style.display='block';document.getElementById('WorkerInfo').style.display='none',document.getElementById('feedback').style.display='none'">
 						<img src=
 "https://media.geeksforgeeks.org/wp-content/uploads/20221210183321/6.png"
 							class="nav-img"
@@ -864,6 +864,12 @@
 
      </div>
      <div id="WorkerInfo" style="display:none">
+      <select id="workerselect" onchange="WorkerFilter()">
+        <option value="All">All</option>
+        <option value="Approved">Approved</option>
+        <option value="Pending">Pending</option>
+        <option value="Rejected">Rejected</option>
+      </select>
       <% Workers.map((worker)=>{ %>
         <div class="card">
           <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210180014/profile-removebg-preview.png"
@@ -878,22 +884,22 @@
         <p>Phone: <%= worker.phone %></p>
               
       </div>
-          <div class="btn">
+          <div class="btn ">
           <%  if(worker.CheckStatus=='Approved') {%> 
-        <button class="approved" onclick="approved()">Approved</button><br>
+        <button class="wcheck approved" onclick="approved()">Approved</button><br>
         <%} else {%>
           <form id="redirectForm" method="POST" type="/workerApproval"action="/workerApproval">
             <input type="hidden" name="WorkerId" value="<%= worker._id %>">
-            <button class="approve" onclick="approved()" type="submit">Approve</button><br>
+            <button class="wcheck approve" onclick="approved()" type="submit">Approve</button><br>
           </form>
 
         <% }%>
         <%  if(worker.CheckStatus=='Rejected') {%>
-          <button class="rejected" onclick="reject()">Rejected</button>
+          <button class="wcheck rejected" onclick="reject()">Rejected</button>
         <%} else {%>
           <form id="redirectForm" method="POST" type="/workerRejected"action="/workerRejected">
             <input type="hidden" name="WorkerId" value="<%= worker._id %>">
-            <button class="reject" onclick="reject()" type="submit">&nbsp; Reject</button>
+            <button class="wcheck reject" onclick="reject()" type="submit">Reject</button>
           </form>
           <% }%>
           </div>
@@ -924,15 +930,86 @@
 
       <% }) %>
 </div>
+<div id="feedback" style="display:none">
+  
+  <% feedbacks.map((feedback)=>{ %>
+    <div class="card">
+      <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210180014/profile-removebg-preview.png"
+        class="dpicn"
+        alt="dp">
+  <div class="container">
+    <h4><b>Feedbacks from users</b></h4>
+    <p>User Id: <%= feedback.userId %></p>
+    <p>Message: <%= feedback.message %></p>
+          
+  </div>
+  
+</div>
+<% }) %>
      
-    </div>
+</div>
    </div>
  
 
-	</div>
+
 
  
  <script>
+  var keyword;
+ function WorkerFilter () {
+
+  
+  const tocheck= document.getElementById("workerselect").value;
+  const cards = document.querySelectorAll(".card");
+
+ if(tocheck==="Rejected"){
+  keyword="rejected"
+  cards.forEach((card) => {
+    const names = card
+      .querySelectorAll("button");
+      
+        if (names[1].textContent.toLowerCase().includes(keyword)) {
+          card.style.display = "flex";
+        } else {
+          card.style.display = "none";
+        }
+     
+
+  });
+}
+else if(tocheck==="Approved"){
+  keyword="approved"
+  cards.forEach((card) => {
+    const name = card
+      .querySelectorAll("button");
+
+    if (name[0].textContent.toLowerCase().includes(keyword)) {
+      card.style.display = "flex";
+    } else {
+      card.style.display = "none";
+    }
+  });
+} else if(tocheck==="Pending"){
+  keyword1="rejected";
+  keyword2="approved";
+  cards.forEach((card) => {
+    const name = card.querySelectorAll("button");
+    if (!(name[1].textContent.toLowerCase().match(keyword1)) && !(name[0].textContent.toLowerCase().match(keyword2))) {
+      card.style.display = "flex";
+    } else {
+      card.style.display = "none";
+    }
+  });
+}
+else{
+  cards.forEach((card) => {
+  
+   
+      card.style.display = "flex";
+   
+  });
+}
+};
    
         let menuicn = document.querySelector(".menuicn");
         let nav = document.querySelector(".navcontainer");
@@ -1002,6 +1079,7 @@ searchInput.addEventListener("input", function () {
     }
   });
 });
+
  </script>
 	<script src="./index.js"></script>
 </body>

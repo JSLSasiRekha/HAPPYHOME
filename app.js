@@ -8,6 +8,7 @@ const sqlite3 = require('sqlite3').verbose();
 const ejs = require('ejs');
 const { MongoClient } = require("mongodb");
 const mongoose = require("mongoose");
+const { Console } = require("console");
 
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
@@ -60,7 +61,11 @@ const ServiceBookedSchema= new mongoose.Schema({
    workStatus: String,
     workerId: String,
     
-})
+});
+const FeedbackSchema= new mongoose.Schema({
+  userId: String,
+  message: String,
+});
 const Service1 = mongoose.model('Service1', ServiceSchema);
 const Service2 = mongoose.model('Service2', ServiceSchema);
 const Service3 = mongoose.model('Service3', ServiceSchema);
@@ -69,6 +74,7 @@ const Service5 = mongoose.model('Service5', ServiceSchema);
 const Service6 = mongoose.model('Service6', ServiceSchema);
 
 const Service1Booked=mongoose.model('Bookedservice1',ServiceBookedSchema);
+const Feedbacks=mongoose.model('Feedbacks',FeedbackSchema);
 
 
 const UserCollection= mongoose.model('User', UserSchema);
@@ -151,6 +157,12 @@ const ServiceTable=[Service1,Service2,Service3,Service4,Service5,Service6]
  
 
 
+app.post('/SendFeedback', async function (req, res) {
+  console.log(req.body);
+  await Feedbacks.insertMany({userId:req.body.userid,message:req.body.message});
+  console.log('Feedback Sent');
+  res.redirect('/account');
+});
 app.post('/submit_register', async function (req, res) {
   console.log(req.body);
 
@@ -159,11 +171,20 @@ app.post('/submit_register', async function (req, res) {
   console.log("DataInserted");
 
 });
+app.post('/UpdateProfile', async function (req, res) {
+  console.log(req.body);
+  await UserCollection.updateMany({_id:req.body.id},{$set:{first_name:req.body.fname,last_name:req.body.lname,phone:req.body.phone,email:req.body.email,password:req.body.c_pass}});
+  const result= await UserCollection.findById(req.body.id);
+  console.log("Data Inserted");
+  console.log(result);
+  res.render("project",{user:x});
+
+});
 
 app.post('/submit_register_worker', async function (req, res) {
   console.log(req.body);
 
-  const result = await WorkerCollection.insertMany({name:req.body.name,email:req.body.email,phone:req.body.phone,location:req.body.location,Profession:req.body.profession,CheckStatus:"NotApproved",password:req.body.cr_password});
+  const result= await WorkerCollection.insertMany({name:req.body.name,email:req.body.email,phone:req.body.phone,location:req.body.location,Profession:req.body.profession,CheckStatus:"NotApproved",password:req.body.cr_password});
 
   console.log("DataInserted");
 
@@ -193,7 +214,7 @@ app.post('/submit_login', async function (req, res) {
         lname:result.last_name,
         email:result.email,
         phone:result.phone,
-        password:result.password1,
+        password:result.password,
         id:result._id,
        
       }
@@ -263,7 +284,10 @@ app.post('/submit_admin', async function (req, res) {
         await UserCollection.find({}).then(users => {
           UserDetails=users;
         });
-        res.render("admin.ejs",{Workers:WorkerDetails,Users:UserDetails,WorkerCount:WorkerCount,UserCount:UserCount,WorkerApprovedCount:WorkerApprovedCount,WorkerRejectedCount:WorkerRejectedCount});
+        await Feedbacks.find({}).then(feedbacks => {
+          FeedbackDetails=feedbacks;
+        });
+        res.render("admin.ejs",{Workers:WorkerDetails,Users:UserDetails,WorkerCount:WorkerCount,UserCount:UserCount,WorkerApprovedCount:WorkerApprovedCount,WorkerRejectedCount:WorkerRejectedCount,feedbacks:FeedbackDetails});
   
     }
 
@@ -284,7 +308,10 @@ app.post('/workerApproval', async function (req, res) {
      await UserCollection.find({}).then(users => {
        UserDetails=users;
      });
-     res.render("admin.ejs",{Workers:WorkerDetails,Users:UserDetails,WorkerCount:WorkerCount,UserCount:UserCount,WorkerApprovedCount:WorkerApprovedCount,WorkerRejectedCount:WorkerRejectedCount});
+     await Feedbacks.find({}).then(feedbacks => {
+      FeedbackDetails=feedbacks;
+    });
+     res.render("admin.ejs",{Workers:WorkerDetails,Users:UserDetails,WorkerCount:WorkerCount,UserCount:UserCount,WorkerApprovedCount:WorkerApprovedCount,WorkerRejectedCount:WorkerRejectedCount,feedbacks:FeedbackDetails});
    
 });
 
@@ -303,7 +330,10 @@ app.post('/workerRejected', async function (req, res) {
     await UserCollection.find({}).then(users => {
       UserDetails=users;
     });
-    res.render("admin.ejs",{Workers:WorkerDetails,Users:UserDetails,WorkerCount:WorkerCount,UserCount:UserCount,WorkerApprovedCount:WorkerApprovedCount,WorkerRejectedCount:WorkerRejectedCount});
+    await Feedbacks.find({}).then(feedbacks => {
+      FeedbackDetails=feedbacks;
+    });
+    res.render("admin.ejs",{Workers:WorkerDetails,Users:UserDetails,WorkerCount:WorkerCount,UserCount:UserCount,WorkerApprovedCount:WorkerApprovedCount,WorkerRejectedCount:WorkerRejectedCount,feedbacks:FeedbackDetails});
   
 });
 
@@ -322,7 +352,10 @@ app.post('/userRejected', async function (req, res) {
     await UserCollection.find({}).then(users => {
       UserDetails=users;
     });
-    res.render("admin.ejs",{Workers:WorkerDetails,Users:UserDetails,WorkerCount:WorkerCount,UserCount:UserCount,WorkerApprovedCount:WorkerApprovedCount,WorkerRejectedCount:WorkerRejectedCount});
+    await Feedbacks.find({}).then(feedbacks => {
+      FeedbackDetails=feedbacks;
+    });
+    res.render("admin.ejs",{Workers:WorkerDetails,Users:UserDetails,WorkerCount:WorkerCount,UserCount:UserCount,WorkerApprovedCount:WorkerApprovedCount,WorkerRejectedCount:WorkerRejectedCount,feedbacks:FeedbackDetails});
   
 });
 app.post('/userBooked', async function (req, res) {
@@ -426,7 +459,10 @@ app.get('/admin', async (req, res) => {
     await UserCollection.find({}).then(users => {
       UserDetails=users;
     });
-    res.render("admin.ejs",{Workers:WorkerDetails,Users:UserDetails,WorkerCount:WorkerCount,UserCount:UserCount,WorkerApprovedCount:WorkerApprovedCount,WorkerRejectedCount:WorkerRejectedCount});
+    await Feedbacks.find({}).then(feedbacks => {
+      FeedbackDetails=feedbacks;
+    });
+    res.render("admin.ejs",{Workers:WorkerDetails,Users:UserDetails,WorkerCount:WorkerCount,UserCount:UserCount,WorkerApprovedCount:WorkerApprovedCount,WorkerRejectedCount:WorkerRejectedCount,feedbacks:FeedbackDetails});
 });
 
 
