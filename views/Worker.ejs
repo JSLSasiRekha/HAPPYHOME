@@ -1,31 +1,251 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Worker Page</title>
+    <title>WorkerPage</title>
+    <link rel="stylesheet" href="css/worker.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/worker.css">
+    
+    <style>
+       body {
+        font-family: 'Montserrat', sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+      }
+
+      header {
+        background-color: #4CAF50;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      h1 {
+        font-size: 36px;
+        margin: 0;
+      }
+     .signout{
+      margin-left: 500px;
+     }
+     
+
+      .logo {
+        width: 60px;
+        height: 60px;
+      }
+
+      .card {
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        margin: 20px;
+        padding: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .card:hover {
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        transform: scale(1.05);
+      }
+
+      .card h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      .card p {
+        font-size: 18px;
+        margin: 0;
+      }
+
+      .button {
+        background-color: #008CBA;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+        font-size: 18px;
+        margin-top: 20px;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+
+      .button:hover {
+        background-color: #006c7e;
+      }
+
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin:-10px;
+        max-width: 1200px;
+        margin-bottom:-80px;
+        padding: 50px;
+      }
+
+      @media only screen and (max-width: 768px) {
+        .container {
+          padding: 20px;
+        }
+        .card {
+          width: 80%;
+        }
+      }
+  
+      .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        width: 800px;
+        height:300px;
+        margin: 20px;
+        text-align: center;
+        display:flex;
+        flex-direction:row;
+        background-color:white;
+    
+      }
+
+      button{
+        margin-top: 20px;
+      }
+      .card img{
+        margin:50px;
+      }
+      .btn{
+        margin:20px;
+        display:flex;
+     }
+    button {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    button.reject {
+      background-color: #f44336;
+    }
+    button.approve {
+      background-color: #129917;
+    }
+    button.approved {
+      background-color: #2522d0;
+    }
+
+    </style>
   </head>
+
   <body>
     <header>
         <h1>Worker Dashboard</h1>
+       
+          <button class="button" onclick="ShowAccepted()">ShowAccepted</button>
+          <button class="button" onclick="ShowPending()">ShowPending</button>
+          <button class="button" onclick="ShowAll()">ShowAll</button>
+       
         <div class="signout">
-            <i class="fas fa-sign-out-alt"></i>
+          <i class="fas fa-sign-out-alt"></i>
           <a href="project" class="button">Sign Out</a>
          
         </div>
+    
+        
       </header>
-    <div class="container">
+    <div class="container" id="ShowPending">
+      <% Users.map((user)=>{ %>
+        <div class="card">
+          <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210180014/profile-removebg-preview.png"
+            class="dpicn"
+            alt="dp">
+      <div class="content">
+        <h4><b> User Details</b></h4>
+        <p>First Name: <%= user.first_name %></p>
+        <p>Last Name: <%= user.last_name %></p>
+        <p>Email: <%= user.email %></p>
+        <p>Phone: <%= user.phone %></p>
+        <form id="redirectForm" method="POST" type="/workerAccepted/<%= workerId%>"action="/workerAccepted/<%= workerId%>">
+          <input type="hidden" name="UserId" value="<%= user._id %>">
+          <div class="btn">
+            
+            <button class="accept" id="accept" type="submit" onclick="Approve()"> Accept</button>
+              </div>
+        </form>
+        
+      </div>
+        
+    </div>
+        <% }) %>
+      
+	</div>
+  <div class="container" id="ShowAccepted">
+    <% AcceptedDetails.map((user)=>{ %>
       <div class="card">
-        <%- include('card.ejs') %>
-      </div>
-      <div class="card">
-        <%- include('card.ejs') %>
-      </div>
-      <div class="card">
-        <%- include('card.ejs') %>
-      </div>
-      </div>
+        <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210180014/profile-removebg-preview.png"
+          class="dpicn"
+          alt="dp">
+    <div class="content">
+      <h4><b> User Details</b></h4>
+      <p>First Name: <%= user.first_name %></p>
+      <p>Last Name: <%= user.last_name %></p>
+      <p>Email: <%= user.email %></p>
+      <p>Phone: <%= user.phone %></p>
+
+      <form id="redirectForm" method="POST" type="/workerRejected/<%= workerId%>"action="/workerRejected/<%= workerId%>">
+        <input type="hidden" name="UserId" value="<%= user._id %>">
+        <div class="btn">
+          
+          <button class="reject" id="reject" > Reject </button>
+            </div>
+      </form>
+      
+    </div>
+      
+  </div>
+      <% }) %>
+    
+</div>
+
+      
+      <script>
+        function Approve() {
+          document.getElementById('accept').style.display = 'none';
+          document.getElementById('accepted').style.display='block';
+          document.getElementById('reject').style.display='block';
+        }
+        function reject() {
+          alert("Worker rejected!");
+        }
+        function ShowAccepted() {
+         
+          document.getElementById('ShowPending').style.display='none'; 
+          document.getElementById('ShowAccepted').style.display='block';
+          
+        }
+        function ShowAll() {
+         
+          document.getElementById('ShowPending').style.display='block';
+         document.getElementById('ShowAccepted').style.display='block';
+         
+          
+        }
+        function ShowPending() {
+         
+          document.getElementById('ShowPending').style.display='block';
+          document.getElementById('ShowAccepted').style.display='none';
+          
+        }
+      </script>
       </body>
         </html>
 

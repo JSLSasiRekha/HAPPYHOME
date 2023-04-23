@@ -87,3 +87,46 @@
         }
       }
   
+      .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        width: 800px;
+        height:300px;
+        margin: 20px;
+        text-align: center;
+        display:flex;
+        flex-direction:row;
+        background-color:white;
+    
+      }
+
+      button{
+        margin-top: 20px;
+      }
+      .card img{
+        margin:50px;
+      }
+      .btn{
+        margin:20px;
+        display:flex;
+     }
+    button {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    button.reject {
+      background-color: #f44336;
+    }
+    button.approve {
+      background-color: #129917;
+    }
+    button.approved {
+      background-color: #2522d0;
+    }

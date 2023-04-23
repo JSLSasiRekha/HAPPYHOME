@@ -9,11 +9,7 @@ const ejs = require('ejs');
 const { MongoClient } = require("mongodb");
 const mongoose = require("mongoose");
 
-
-
 app.set('view engine', 'ejs');
-
-
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('views', __dirname + '/views');
@@ -71,13 +67,22 @@ const WorkerSchema= new mongoose.Schema({
   CheckStatus: String,
   password: String,
 });
-
+const ServiceBookedSchema= new mongoose.Schema({
+   userId: String,
+   requiredService: String,
+   workStatus: String,
+    workerId: String,
+    
+})
 const Service1 = mongoose.model('Service1', ServiceSchema);
 const Service2 = mongoose.model('Service2', ServiceSchema);
 const Service3 = mongoose.model('Service3', ServiceSchema);
 const Service4 = mongoose.model('Service4', ServiceSchema);
 const Service5 = mongoose.model('Service5', ServiceSchema);
 const Service6 = mongoose.model('Service6', ServiceSchema);
+
+const Service1Booked=mongoose.model('Bookedservice1',ServiceBookedSchema);
+
 
 const UserCollection= mongoose.model('User', UserSchema);
 const AdminCollection= mongoose.model('Admin', AdminSchema);
@@ -141,6 +146,7 @@ const ServiceTable=[Service1,Service2,Service3,Service4,Service5,Service6]
 
   WorkerDetails=[];
   UserDetails=[];
+  UserBookedDetails=[];
 
 //---------------Inserting Data into Database-----------------//
 // Service1.insertMany(msaloon);
@@ -154,15 +160,6 @@ const ServiceTable=[Service1,Service2,Service3,Service4,Service5,Service6]
 
 
 
-
-async function FindWorkers(){
-   const WorkerCount=await WorkerCollection.countDocuments();
-  // const UsersCount=await UserCollection.countDocuments();
-  // const WorkerApprovedCount= await WorkerCollection.countDocuments({CheckStatus:"Approved"});
-  // const WorkerRejectedCount= await WorkerCollection.countDocuments({CheckStatus:"Rejected"});
-
- return {WorkerCount};
-}
 
  
 
@@ -209,7 +206,8 @@ app.post('/submit_login', async function (req, res) {
         lname:result.last_name,
         email:result.email,
         phone:result.phone,
-        password:result.password1
+        password:result.password1,
+        id:result._id,
        
       }
      
@@ -224,10 +222,6 @@ app.post('/submit_login_worker', async function (req, res) {
   console.log(req.body);
 
   const result= await WorkerCollection.findOne({email:req.body.email_l,password:req.body.password})
-
-  //var sql1 = "select * from users where email='" + req.body.email_l + "' and password2='" + req.body.password + "'";
-  // db.all(sql1, function (err, result, fields) {
-  //   if (err) throw err
     console.log(result);
 
     if (result == "" || result == null) {
@@ -239,13 +233,14 @@ app.post('/submit_login_worker', async function (req, res) {
         fname:result.name,
         email:result.email,
         phone:result.phone,
-        password:result.password
+        password:result.password,
+        id:result._id,
        
       }
      
       console.log(x);
       console.log('login');
-     res.render("project",{user:x});
+     res.redirect("/worker/"+x.id);
     }
 
 });
@@ -264,7 +259,8 @@ app.post('/submit_admin', async function (req, res) {
        x={
         fname:result.name,
         email:result.email,
-        password:result.key
+        password:result.key,
+        id:result._id,
       }
       
       console.log(x);
@@ -342,6 +338,33 @@ app.post('/userRejected', async function (req, res) {
     res.render("admin.ejs",{Workers:WorkerDetails,Users:UserDetails,WorkerCount:WorkerCount,UserCount:UserCount,WorkerApprovedCount:WorkerApprovedCount,WorkerRejectedCount:WorkerRejectedCount});
   
 });
+app.post('/userBooked', async function (req, res) {
+  console.log('Booked');
+     const WorkerId=req.body.WorkerId;
+   console.log(req.body.UserId);
+   const name=req.body.fname+req.body.lname;
+   await Service1Booked.insertMany({userId:req.body.UserId,required_service:"Service1",workStatus:"Not Started"});
+});
+app.post('/workerAccepted/:workerId',async function(req,res){
+  await Service1Booked.updateOne({userId:req.body.UserId },{$set:{workStatus:"Accepted",workerId:req.params.workerId}});
+  res.redirect("/worker/"+req.params.workerId);
+});
+app.post('/workerRejected/:workerId',async function(req,res){
+  await Service1Booked.updateOne({userId:req.body.UserId},{$set:{workStatus:"Not Started",workerId:"null"}});
+  res.redirect("/worker/"+req.params.workerId);
+});
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -401,11 +424,9 @@ app.get('/account', (req, res) => {
   res.render("account.ejs",{user:x});
 });
 app.get('/checkout', (req, res) => {
-  res.render("checkout.ejs");
+  res.render("checkout.ejs",{user:x});
 });
-app.get('/worker', (req, res) => {
-  res.render("worker.ejs");
-});
+
 app.get('/admin', async (req, res) => {
 
   const WorkerCount=await WorkerCollection.countDocuments();
@@ -426,7 +447,7 @@ app.get('/admin', async (req, res) => {
 
 app.get('/service'+':serviceNumber',async (req, res) => {
       await ServiceTable[req.params.serviceNumber-1].find({}).then(saloons => {
-    res.render("service"+req.params.serviceNumber,{Category:saloons})
+    res.render("service"+req.params.serviceNumber,{Category:saloons,user:x});
   })
 
 });
@@ -439,6 +460,32 @@ app.get('/servicesFooter.ejs', (req, res) => {
   res.render('servicesFooter.ejs');
 });
 
+
+app.get('/worker/:workerId', async (req, res) => {
+  let UserBookedDetails=[];
+  await Service1Booked.find({workStatus:"Not Started"}).then(async userbooked => {
+    ServiceDetails=userbooked;
+    for(var i=0;i<userbooked.length;i++){
+     await UserCollection.findById(userbooked[i].userId).then(user => {
+     
+      UserBookedDetails.push(user);
+     });
+    }
+  });
+  let AcceptedDetails=[];
+  await Service1Booked.find({workStatus:"Accepted",workerId:req.params.workerId}).then(async userbooked => {
+    for(var i=0;i<userbooked.length;i++){
+     await UserCollection.findById(userbooked[i].userId).then(user => {
+     
+      AcceptedDetails.push(user);
+     });
+    }
+  });
+ 
+  res.render("Worker",{Users:UserBookedDetails,workerId:req.params.workerId,AcceptedDetails:AcceptedDetails});
+
+      
+});
 
 
 
