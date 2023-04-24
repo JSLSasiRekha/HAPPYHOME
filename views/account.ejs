@@ -1188,6 +1188,16 @@ textarea {
   textarea {
     border: 2px solid black;
   }
+  .card {
+	  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	  width: 800px;
+	  margin: 20px;
+	  text-align: center;
+      display:flex;
+      flex-direction:row;
+      background-color:white;
+      padding:20px;
+	}
 
   </style>
 
@@ -1258,9 +1268,9 @@ textarea {
 
    <nav class="navbar">
       <!-- <a href="views/project.ejs"><i class="fas fa-home"></i><span>Home</span></a> -->/
-      <a  onclick="document.getElementById('about').style.display='none',document.getElementById('feedback').style.display='none',document.getElementById('user').style.display='block'"><i class="fas fa-home"></i><span>Home</span></a>
-      <a onclick="document.getElementById('about').style.display='block',document.getElementById('feedback').style.display='none',document.getElementById('user').style.display='none'"><i class="fa-solid fa-user"></i><span>About</span></a>
-      <a href=""><i class="fa-sharp fa-solid fa-clock-rotate-left"></i><span>History</span></a>
+      <a  onclick="document.getElementById('announcements').style.display='none',document.getElementById('about').style.display='none',document.getElementById('feedback').style.display='none',document.getElementById('user').style.display='block'"><i class="fas fa-home"></i><span>Home</span></a>
+      <a onclick="document.getElementById('announcements').style.display='none',document.getElementById('about').style.display='block',document.getElementById('feedback').style.display='none',document.getElementById('user').style.display='none'"><i class="fa-solid fa-user"></i><span>About</span></a>
+      <a onclick="document.getElementById('announcements').style.display='block',document.getElementById('about').style.display='none',document.getElementById('feedback').style.display='none',document.getElementById('user').style.display='none'"><i class="fa-sharp fa-solid fa-clock-rotate-left"></i><span>Announcements</span></a>
       <a href="cart"><i class="fa-solid fa-cart-shopping"></i><span>Cart</span></a>
       <a onclick="document.getElementById('feedback').style.display='block',document.getElementById('about').style.display='none',document.getElementById('user').style.display='none'" ><i class='fas fa-comment-alt' style='font-size:22px;color:purple'></i><span>Feedback</span></a>
       <!--<a href="views/project.ejs/#vkk"><i class="fas fa-headset"></i><span>Contact Us</span></a>-->
@@ -1353,6 +1363,16 @@ textarea {
 
     </form>
     
+   </div>
+   <div id="announcements" style="display:none">
+      <h2>Announcements</h2>
+    <div class="card">
+     <% announcements.forEach((announcement) => { %>
+        <div class="card">
+          <p><%= announcement.message %></p>
+        </div>
+     <% }) %>
+    </div>
    </div>
       <div class="box-container">
    

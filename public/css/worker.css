@@ -130,3 +130,13 @@
     button.approved {
       background-color: #2522d0;
     }
+    .dp {
+      height: 40px;
+      width: 40px;
+      background-color: #626262;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      }

@@ -9,7 +9,7 @@
 		content="width=device-width,
 				initial-scale=1.0">
 	<title>admin</title>
- 
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet"
         href="css/admin.css">
@@ -61,7 +61,7 @@
 		<div class="navcontainer">
 			<nav class="nav">
 				<div class="nav-upper-options">
-					<div class="nav-option option1" onclick="document.getElementById('main').style.display='block';document.getElementById('UserInfo').style.display='none';document.getElementById('WorkerInfo').style.display='none',document.getElementById('feedback').style.display='none'">
+					<div class="nav-option option1" onclick="document.getElementById('mail').style.display='none',document.getElementById('main').style.display='block';document.getElementById('UserInfo').style.display='none';document.getElementById('WorkerInfo').style.display='none',document.getElementById('feedback').style.display='none'">
 						<img src=
 "https://media.geeksforgeeks.org/wp-content/uploads/20221210182148/Untitled-design-(29).png"
 							class="nav-img"
@@ -69,7 +69,7 @@
 						<h3> Dashboard</h3>
 					</div>
 
-					<div class="option2 nav-option" onclick="document.getElementById('feedback').style.display='block';document.getElementById('UserInfo').style.display='none';document.getElementById('WorkerInfo').style.display='none',document.getElementById('main').style.display='none'">
+					<div class="option2 nav-option" onclick="document.getElementById('mail').style.display='none',document.getElementById('feedback').style.display='block';document.getElementById('UserInfo').style.display='none';document.getElementById('WorkerInfo').style.display='none',document.getElementById('main').style.display='none'">
 						<img src=
 "https://media.geeksforgeeks.org/wp-content/uploads/20221210183322/9.png"
 							class="nav-img"
@@ -77,7 +77,7 @@
 						<h3> Articles</h3>
 					</div>
 
-					<div class="nav-option option3" onclick="document.getElementById('main').style.display='none';document.getElementById('WorkerInfo').style.display='block';document.getElementById('UserInfo').style.display='none',document.getElementById('feedback').style.display='none'">
+					<div class="nav-option option3" onclick="document.getElementById('mail').style.display='none',document.getElementById('main').style.display='none';document.getElementById('WorkerInfo').style.display='block';document.getElementById('UserInfo').style.display='none',document.getElementById('feedback').style.display='none'">
 						<img src=
 "https://media.geeksforgeeks.org/wp-content/uploads/20221210183320/5.png"
 							class="nav-img"
@@ -85,7 +85,7 @@
 						<h3>Workers Info</h3>
 					</div>
 
-					<div class="nav-option option4" onclick="document.getElementById('main').style.display='none';document.getElementById('UserInfo').style.display='block';document.getElementById('WorkerInfo').style.display='none',document.getElementById('feedback').style.display='none'">
+					<div class="nav-option option4" onclick="document.getElementById('mail').style.display='none',document.getElementById('main').style.display='none';document.getElementById('UserInfo').style.display='block';document.getElementById('WorkerInfo').style.display='none',document.getElementById('feedback').style.display='none'">
 						<img src=
 "https://media.geeksforgeeks.org/wp-content/uploads/20221210183321/6.png"
 							class="nav-img"
@@ -93,12 +93,12 @@
 						<h3> Users Info</h3>
 					</div>
 
-					<div class="nav-option option5">
+					<div class="nav-option option5" onclick="document.getElementById('mail').style.display='block',document.getElementById('main').style.display='none';document.getElementById('UserInfo').style.display='none';document.getElementById('WorkerInfo').style.display='none',document.getElementById('feedback').style.display='none'">
 						<img src=
 "https://media.geeksforgeeks.org/wp-content/uploads/20221210183323/10.png"
 							class="nav-img"
 							alt="blog">
-						<h3> Profile</h3>
+						<h3>Announcement</h3>
 					</div>
 
 					<div class="nav-option option6" id="setting">
@@ -931,22 +931,43 @@
       <% }) %>
 </div>
 <div id="feedback" style="display:none">
-  
-  <% feedbacks.map((feedback)=>{ %>
-    <div class="card">
-      <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210180014/profile-removebg-preview.png"
-        class="dpicn"
-        alt="dp">
-  <div class="container">
-    <h4><b>Feedbacks from users</b></h4>
-    <p>User Id: <%= feedback.userId %></p>
-    <p>Message: <%= feedback.message %></p>
-          
+
+   <div class="feedbackMessages" id="message">
+    <% feedbacks.map((feedback)=>{ %>
+      <div class="card">
+        <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210180014/profile-removebg-preview.png"
+          class="dpicn"
+          alt="dp">
+    <div class="container">
+      <h4><b>Feedbacks from users</b></h4>
+      <p>User Id: <%= feedback.userId %></p>
+      <p>Message: <%= feedback.message %></p>
+            
+    </div>
+    
   </div>
-  
-</div>
-<% }) %>
-     
+  <% }) %>
+       
+  </div>
+
+
+
+
+
+
+
+  </div>
+<div id="mail" style="display:none">
+    <label for="message"><h2>Write Mail Content Here</h2></label>
+    <form type="/SendMail" method="POST" action="/SendMail">
+        <textarea id="message" name="mail" required></textarea><br><br>
+       
+        <button class="mailSubmit" type="submit">Submit</button>
+    
+
+    </form>
+    
+   </div>
 </div>
    </div>
  
@@ -955,6 +976,20 @@
 
  
  <script>
+
+  function CheckMail(){
+    alert("hello");
+    alert(flag);
+    if(flag==0){
+      flag=1;
+      document.getElementById("mail").style.display="block";
+      document.getElementById("feedbackMessages").style.display="none";
+    }else{
+      document.getElementById("mail").style.display="none";
+      document.getElementById("feedbackMessages").style.display="block";
+    }
+    
+  }
   var keyword;
  function WorkerFilter () {
 
@@ -1003,10 +1038,7 @@ else if(tocheck==="Approved"){
 }
 else{
   cards.forEach((card) => {
-  
-   
-      card.style.display = "flex";
-   
+   card.style.display = "flex";
   });
 }
 };

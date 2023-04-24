@@ -537,6 +537,24 @@ width: 167px;
     margin-left:100px;
    
 }
+#mail{
+    
+  margin-left:500px;
+ 
+}
+textarea {
+  width: 920px;
+  height:320px;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+textarea {
+  border: 2px solid black;
+}
 
 #WorkerInfo .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -609,7 +627,9 @@ width: 167px;
   button.reject {
     background-color: #f44336;
   }
-
+  button .mailSubmit{
+    background-color: #4e033b;
+  }
   #WorkerInfo select{
     margin-left:1300px;
     margin-top:40px;

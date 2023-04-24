@@ -9,6 +9,7 @@ const ejs = require('ejs');
 const { MongoClient } = require("mongodb");
 const mongoose = require("mongoose");
 const { Console } = require("console");
+const nodemailer = require('nodemailer');
 
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
@@ -16,20 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('views', __dirname + '/views');
 
 
-const url="mongodb://localhost:27017/admin"
-// const client = new MongoClient(url);
-// async function run() {
-//     try {
-//         await client.connect();
-//         console.log("Connected to server");
-//     } catch (err) {
-//         console.log(err.stack);
-//     }
-//     // finally {
-//     //     await client.close();
-//     // }
-// }
-
+const url="mongodb+srv://jslsasirekha:Test123@cluster0.gzxnd6y.mongodb.net/HappyHome?retryWrites=true&w=majority"
 const client = mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true});
 
 if(client) {
@@ -79,6 +67,9 @@ const FeedbackSchema= new mongoose.Schema({
   userId: String,
   message: String,
 });
+const AnnouncementSchema= new mongoose.Schema({
+  message: String,
+});
 const Service1 = mongoose.model('Service1', ServiceSchema);
 const Service2 = mongoose.model('Service2', ServiceSchema);
 const Service3 = mongoose.model('Service3', ServiceSchema);
@@ -88,6 +79,7 @@ const Service6 = mongoose.model('Service6', ServiceSchema);
 
 const Service1Booked=mongoose.model('Bookedservice1',ServiceBookedSchema);
 const Feedbacks=mongoose.model('Feedbacks',FeedbackSchema);
+const Announcements=mongoose.model('Announcements',AnnouncementSchema);
 
 
 const UserCollection= mongoose.model('User', UserSchema);
@@ -167,7 +159,10 @@ const ServiceTable=[Service1,Service2,Service3,Service4,Service5,Service6]
 
 
 
- 
+
+
+
+
 
 
 app.post('/SendFeedback', async function (req, res) {
@@ -386,6 +381,11 @@ app.post('/workerRejected/:workerId',async function(req,res){
   await Service1Booked.updateOne({userId:req.body.UserId},{$set:{workStatus:"Not Started",workerId:"null"}});
   res.redirect("/worker/"+req.params.workerId);
 });
+app.post('/SendMail',async function(req,res){
+  console.log(req.body.mail);
+  await Announcements.insertMany({message:req.body.mail});
+  res.redirect("/admin");
+});
 
 
 
@@ -408,9 +408,8 @@ app.get('/logout',function(req,res){
 })
 
 //-----------------------------------Routing---------------------------------------------------------------------
-app.get("/", async function (req, res) {
+app.get("/", function (req, res) {
   res.render('project.ejs',{user:x});
- // const result= await AdminCollection.insertMany({email:'neeleshnama2002@gmail.com',key:'abc@123',name:'neelesh'})
 });
 
 app.get('/navbar', (req, res) => {
@@ -452,9 +451,13 @@ app.get('/step1', (req, res) => {
 app.get('/slideshow', (req, res) => {
   res.render("slideshow.ejs");
 });
-app.get('/account', (req, res) => {
+app.get('/account', async (req, res) => {
   console.log(x);
-  res.render("account.ejs",{user:x});
+  var AnnouncementsDetails=[];
+  await Announcements.find({}).then(announcement => {
+    AnnouncementsDetails=announcement;
+  });
+  res.render("account.ejs",{user:x,announcements:AnnouncementsDetails});
 });
 app.get('/checkout', (req, res) => {
   res.render("checkout.ejs",{user:x});

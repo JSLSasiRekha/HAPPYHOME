@@ -29,7 +29,7 @@
         margin: 0;
       }
      .signout{
-      margin-left: 500px;
+      margin-left: 300px;
      }
       .logo {
         width: 60px;
@@ -140,24 +140,51 @@
     button.approved {
       background-color: #2522d0;
     }
+    .dp {
+height: 40px;
+width: 40px;
+margin-right:20px;
+background-color: #626262;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+}
+.dpicn {
+height: 42px;
+}
+header h1{
+  margin-right:2px;
+}
+
 
     </style>
   </head>
 
   <body>
     <header>
+      
+        <a href="/account" class="dp">
+        <img  src=
+"https://media.geeksforgeeks.org/wp-content/uploads/20221210180014/profile-removebg-preview.png"
+          class="dpicn"
+          alt="dp">
+        </a>
+      
         <h1>Worker Dashboard</h1>
-       
+     
           <button class="button" onclick="ShowAccepted()">ShowAccepted</button>
           <button class="button" onclick="ShowPending()">ShowPending</button>
           <button class="button" onclick="ShowAll()">ShowAll</button>
-       
+     
+           
         <div class="signout">
-          <i class="fas fa-sign-out-alt"></i>
-          <a href="project" class="button">Sign Out</a>
+          <i href="/project" class="fas fa-sign-out-alt"></i>
+          <a href="/project" class="button">Sign Out</a>
          
         </div>
-    
+  
         
       </header>
     <div class="container" id="ShowPending">
