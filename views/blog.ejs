@@ -1,74 +1,391 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>blog</title>
-    <link rel="stylesheet" href="css/blog2.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial;
+  padding: 20px;
+  background: black;
+}
+.header {
+  padding: 50px;
+  font-size: 40px;
+  text-align: center;
+  background-color:aqua;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius:8px;
+  margin-bottom: 40px;
+
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
+.column {   
+  flex: 100%;
+  max-width: 100%;
+  padding: 0 10px;
+  border-radius: 8px;
+
+}
+
+.img1 {
+  display: flex;
+  flex-direction: row;
+  background-color:brown;
+  height: 330px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: aqua;
+}
+
+
+/*image1*/
+.img-left1 {
+  flex: 25%;
+  max-width: 25%;
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out;
+  padding: 10px;
+  border: 5px solid black;
+  border-right: 2.5px solid black;
+  border-left: 2.5px solid black;
+  background-color: red;
+  background-image: url("../images/men_saloon.jpg");
+}
+.img-left1:hover {
+  transform: translateY(-10px);
+}
+
+/*image-2*/
+.img-left2 {
+  flex: 25%;
+  max-width: 25%;
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out;
+  border: 5px solid black;
+  border-right: 2.5px solid black;
+  border-left: 2.5px solid black;
+  background-color: red;
+  height: 100%;
+  background-image: url("../images/women-saloon.jpg");
+}
+.img-left2:hover {
+  transform: translateY(-10px);
+}
+/*image-3*/
+.img-left3{
+  flex: 25%;
+  max-width: 25%;
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out;
+  padding: 10px;
+  border: 5px solid black;
+  border-right: 2.5px solid black;
+  border-left: 2.5px solid black;
+  background-color: red;
+  background-image: url("../images/carpenter.jpg");
+}
+.img-left3:hover {
+  transform: translateY(-10px);
+}
+/*image-4*/
+.img-left4 {
+  flex: 25%;
+  max-width: 25%;
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out;
+  padding: 10px;
+  border: 5px solid black;
+  border-right: 2.5px solid black;
+  border-left: 2.5px solid black;
+  background-color: red;
+  background-image: url("../images/plumber.jpg");
+}
+.img-left4:hover {
+  transform: translateY(-10px);
+}
+/*image-5*/
+.img-left5 {
+  flex: 25%;
+  max-width: 25%;
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out;
+  padding: 10px;
+  border: 5px solid black;
+  border-right: 2.5px solid black;
+  border-left: 2.5px solid black;
+  background-color: red;
+  background-image: url("../images/house_cleaning.jpg");
+}
+.img-left5:hover {
+  transform: translateY(-10px);
+}
+/*image-6*/
+.img-left6 {
+  flex: 25%;
+  max-width: 25%;
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out;
+  padding: 10px;
+  border: 5px solid black;
+  border-right: 2.5px solid black;
+  border-left: 2.5px solid black;
+  background-color: red;
+  background-image: url("../images/repairs.jpg");
+}
+.img-left6:hover {
+  transform: translateY(-10px);
+}
+.img-right1 {
+  flex: 75%;
+  max-width: 75%;
+  background-color:white;
+  border-radius: 8px;
+  background-image: url("../images/backgroung.jpg");
+  transition: transform 0.3s ease-in-out;
+  border: 5px solid black;
+  border-left: 2.5px solid black;
+  border-right:2.5px solid black
+}
+
+.img-right1:hover {
+  transform: translateY(-10px);
+}
+.card {
+   background-color: white;
+   padding: 20px;
+   margin-top: 20px;
+   border-radius: 8px;
+}
+
+@media screen and (max-width: 800px) {
+  .column {   
+    width: 100%;
+    padding: 0;
+  }
+}
+/*.taskbar {
+  background-color:aqua;
+  color: #fff;
+  padding: 10px;
+  border-top-right-radius:8px;
+  border-top-left-radius: 8px;
+}
+
+.taskbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.taskbar li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.taskbar li:last-child {
+  margin-right: 0;
+}
+
+.taskbar a {
+  color:black;
+  text-decoration: none;
+  padding: 5px;
+}
+
+.taskbar a:hover {
+  background-color:#555;
+}*/
+/*                    kkysssssssssssssss*/
+.box {
+    margin: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    background-color: aquamarine;
+    border-radius: 8px;
+    width:100%;
+    height: 100%;
+	}
+
+  .box img{
+    width:80%;
+    height: 70%;
+  }
+  /**/
+  .box {
+  transition: transform 0.3s ease-in-out;
+  transform: translateY(-10px);
+}
+
+.box:hover {
+  transform: translateX(0);
+}
+
+  .column_ex{   
+  float: left;
+  width: 100%;
+  border-radius: 8px;
+
+}
+
+.card_ex{
+   background-color:white;
+   padding: 20px;
+   margin-top: 20px;
+   border-radius:8px;
+}
+
+.containerdiv
+{
+  height:15rem;
+  border-radius: 8px;
+}
+.row_ex {
+	display: flex;
+	justify-content: center;
+  height: 90%;
+	}
+.box {
+    margin: 15px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    background-color: aquamarine;
+    border-radius: 8px;
+    width:100%;
+	}
+
+.box img {
+	max-width: 100%;
+	height: auto;
+	}
+.box h2 {
+	margin-top: 0;
+  border-radius: 1px;
+	}
+.box p {
+	margin: 10px 0;
+	}
+.box button {
+	padding: 10px;
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+  max-width: 100%;
+	}
+</style>
 </head>
 <body>
+   <!--<nav class="taskbar" >
+    <ul style="color:black">
+      <li><a href="#" style="border-radius:8px">Home</a></li>
+      <li><a href="#" style="border-radius:8px">About</a></li>
+      <li><a href="#" style="border-radius:8px">Contact</a></li>
+    </ul>
+    </nav>-->
     <div class="header">
-        <h2>HAPPY HOME</h2>
-        <h3>Blog</h3>
-      </div>
-      
-      <div class="row">
-        <div class="leftcolumn">
-          <div class="card">
-            <h2>SALOON</h2>
-            <div class="img1" style="height:330px;"></div>
-            <p>"Hey, go back to the salon! What doesn't kill you only makes you blonder. My heels and my hotel, they just got taller."</p>
-          </div>
-          <div class="card">
-            <h2>PLUMBER</h2>
-            <div class="img2" style="height:330px;"></div>
-            <p>Anybody who has any doubt about the ingenuity or the resourcefulness of a plumber never got a bill from one.</p>
-          </div>
-          <div class="card">
-            <h2>CARPENTER</h2>
-            <div class="img3" style="height:330px;"></div>
-            <p>When you're a carpenter making a beautiful chest of drawers, you're not going to use a piece of plywood on the back, even though it faces the wall and nobody will ever see it.</p>
-          </div>
-          <div class="card">
-            <h2>REPAIRS</h2>
-            <div class="img4" style="height:330px;"></div>
-            <p>It is easier to build strong children than to repair broken men. Frederick Douglass. The time to repair the roof is when the sun is shining</p>
-          </div>
-          <div class="card">
-            <h2>HOUSECLEANING</h2>
-            <div class="img5" style="height:330px;"></div>
-            <p>"“The objective of cleaning is not just to clean, but to feel happiness living within that environment.””</p>
-          </div>
+      <h1 style="color: black;">HAPPY HOME</h1>
+    </div>
+    
+    <div class="row">
+      <div class="column">
+        <div class="card">
+          <h2>MEN SALOON</h2>
+          <div class="img1">
+            <div class="img-left1">
+            </div>
+           <div class="img-right1">
+            <p style="font-size: 25px; padding: 20px;">A men's salon is a place where men can go to get a range of grooming services, from haircuts and shaves to facials and massages. These salons are designed with men in mind, featuring masculine decor and a relaxed, welcoming atmosphere.One of the biggest draws of men's salons is the quality of service. The staff are typically highly trained and skilled, and they specialize in men's grooming needs. Whether you want a classic haircut or a modern, edgy style, they can deliver.</p>
+           </div>
         </div>
-        <div class="rightcolumn">
-          <div class="card">
-
-            <h3>POPULAR SERVICES</h3>
-            <div class="fakeimg">saloon</div><br>
-            <div class="fakeimg">plumber</div><br>
-            <div class="fakeimg">carpenter</div><br>
-            <div class="fakeimg">repairs</div><br>
-            <div class="fakeimg">housecleaning</div><br>
-
-          </div>
-
-          <div class="card">
-            <h2>About us</h2>
-            <p>Our bussinesss is currently running around 4o cities with our realiable employees .customer satisfaction is our first priority .Our objective is to provide efficient service to our customer</p>
-          </div>
-
-          <div class="card">
-            <h3>Follow us</h3>
-            <p>facebook</p>
-            <a href="">click</a>
-            <p>instagram</p>
-            <a href="">click</a>
-            <p>twitter</p>
-            <a href="">click</a>
-            <a></a>
-          </div>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+      <div class="column">
+        <div class="card">
+          <h2>WOMWN'S SALOON</h2>
+          <div class="img1">
+           <div class="img-right1">
+            <p style="font-size: 25px; padding: 20px;">A women's salon is a place where women can come and indulge in self-care and grooming activities. It is a one-stop-shop for all their beauty needs, from haircuts and styling to makeup and skincare.Walking into a women's salon is like entering a haven of beauty and relaxation. The atmosphere is calm and serene, with soft music playing in the background and the scent of essential oils and fragrances filling the air. You can leave your worries at the door and let the professionals take care of your beauty needs.</p>
+           </div>
+           <div class="img-left2">
         </div>
       </div>
-</body>
+    </div>
+    </div>
+    </div>
+   
+    <div class="row">
+      <div class="column">
+        <div class="card">
+          <h2>CARPENTER</h2>
+          <div class="img1">
+            <div class="img-left3">
+            </div>
+           <div class="img-right1">
+            <p style="font-size: 25px; padding: 20px;">Carpenters work on a wide variety of projects, from building houses and commercial buildings to crafting custom furniture and cabinetry. They use a range of tools and techniques to shape and manipulate wood, including saws, drills, chisels, and planes. In addition to working with wood, carpenters may also work with materials like metal, concrete, and plastic. if you're up for the challenge, there's no doubt that carpentry can be a deeply satisfying and fulfilling profession.</p>
+           </div>
+        </div>
+     
+    </div>
+    </div>
+    </div>
+  
+    <div class="row">
+      <div class="column">
+        <div class="card">
+          <h2>PLUMBER</h2>
+          <div class="img1">
+           <div class="img-right1">
+            <p style="font-size: 25px; padding: 20px;">Plumbing is a highly specialized trade that requires years of training and experience. Plumbers must be skilled in a variety of tasks, including reading blueprints, measuring and cutting pipes, and installing fixtures such as toilets, sinks, and showers. They also need to be familiar with building codes and safety regulations to ensure that their work meets the necessary standards. Their skills and expertise help to ensure that our homes and businesses are safe, comfortable, and functional.</p>
+           </div>
+           <div class="img-left4">
+          </div>
+        </div>
+    
+    </div>
+    </div>
+    </div>
+  
+    <div class="row">
+      <div class="column">
+        <div class="card">
+          <h2>HOUSE CLEANING</h2>
+          <div class="img1">
+            <div class="img-left5">
+            </div>
+           <div class="img-right1">
+            <p style="font-size: 25px; padding: 20px;">Housecleaning can be done in different ways, depending on your preferences and needs. Some people prefer to clean their homes on their own, while others hire professional housecleaning services. If you decide to clean your home on your own, there are some basic tools and supplies you will need, such as a vacuum cleaner, dustpan, mop, broom, cleaning solution, and microfiber cloths.it can be a rewarding experience that keeps your home clean, healthy, and comfortable for everyone to enjoy.</p>
+           </div>
+        </div>
+    
+    </div>
+    </div>
+    </div>
+ 
+    <div class="row">
+      <div class="column">
+        <div class="card">
+          <h2>REPAIRS</h2>
+          <div class="img1">
+           <div class="img-right1">
+            <p style="font-size: 25px; padding: 20px;">Repairs are a necessary part of maintaining our homes and belongings. Whether it's fixing a leaky faucet, patching a hole in the wall, or replacing a broken appliance, repairs can be time-consuming and frustrating, but ultimately important for keeping our lives running smoothly.They can be frustrating and time-consuming, but with the right knowledge and resources, they can be tackled with confidence,you can keep your home and belongings in top shape for years to come.</p>
+           </div>
+           <div class="img-left6">
+          </div>
+      </div>
+    </div>
+    </div>
+    </div>
 </html>

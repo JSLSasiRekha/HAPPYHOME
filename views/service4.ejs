@@ -210,13 +210,18 @@ display: flex;
    
     <header class="w3-container w3-xlarge">
     
-        <p class="w3-right">
-          <i class="fa fa-shopping-cart w3-margin-right"></i>
-          <i class="fa fa-search"></i>
-        </p>
+      <p class="w3-right">
+        <!-- <h2><i class="fa fa-shopping-cart w3-margin-right"></i></h2> -->
+        <button onclick="gotocart()"><i class="fa fa-shopping-cart w3-margin-right"></i></button>
+         
+              <input id="searchbar" type="text" name="search" placeholder="Search..." list="options" >
+              <button onclick=SearchImplementation()><i class="fa-solid fa-magnifying-glass fa-beat"></i>
+              </button>
+           
+      </p>
     </header>
     <!--image header-->
-    <div class="w3-display-container w3-container">
+    <div class="w3-display-container w3-container" id="topdiv1">
         <img src="images/PROJECT/plumber.jpg" alt="plumber" style="width:100%">
     </div>
     
@@ -461,6 +466,29 @@ function addtocart(){
 
 }
 </script>
+<script>
+  const searchInput = document.getElementById("searchbar");
+
+searchInput.addEventListener("input", function () {
+
+const keyword = this.value.trim().toLowerCase();
+const cards = document.querySelectorAll(".card");
+cards.forEach((card) => {
+  const name = card.querySelector("h2").textContent.trim().toLowerCase();
+
+  if (name.includes(keyword)) {
+    card.style.display = "block";
+    document.getElementById("topdiv1").style.display="flex";
+   document.getElementById("topdiv").style.display="block";
+  } else {
+    card.style.display = "none";
+   document.getElementById("topdiv1").style.display="none";
+   document.getElementById("topdiv").style.display="none";
+  }
+});
+});
+
+ </script>
 <script src="app.js"></script>
     </body>
     </html>

@@ -8,8 +8,8 @@ const sqlite3 = require('sqlite3').verbose();
 const ejs = require('ejs');
 const { MongoClient } = require("mongodb");
 const mongoose = require("mongoose");
-const { Console } = require("console");
-const nodemailer = require('nodemailer');
+
+
 
 app.set('view engine', 'ejs');
 app.use(express.static("public"));

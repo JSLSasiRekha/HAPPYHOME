@@ -217,13 +217,18 @@
   <header class="w3-container w3-xlarge">
     <p class="w3-left">Carpenters</p>
     <p class="w3-right">
-      <i class="fa fa-shopping-cart w3-margin-right"></i>
-      <i class="fa fa-search"></i>
+      <!-- <h2><i class="fa fa-shopping-cart w3-margin-right"></i></h2> -->
+      <button onclick="gotocart()"><i class="fa fa-shopping-cart w3-margin-right"></i></button>
+       
+            <input id="searchbar" type="text" name="search" placeholder="Search..." list="options" >
+            <button onclick=SearchImplementation()><i class="fa-solid fa-magnifying-glass fa-beat"></i>
+            </button>
+         
     </p>
   </header>
 
   <!-- Image header -->
-  <div class="w3-display-container w3-container">
+  <div class="w3-display-container w3-container" id="topdiv">
     <img src="images/PROJECT/pexels-mark-mccammon-2724749.jpg" alt="Haircut" style="width:100%">
     <div class="w3-display-topleft w3-text-white" style="padding:24px 48px">
       <h1 class="w3-jumbo w3-hide-small">New services</h1>
@@ -241,7 +246,7 @@
 
   <!-- SERVICES SECTION FOR THE NEW SERVICES -->
 
-  <div class="service_container">
+  <div class="service_container" id="topdiv1">
 
     <div class="service" id="service1">
 
@@ -529,6 +534,29 @@ function addtocart(){
 
 }
 </script>
+<script>
+  const searchInput = document.getElementById("searchbar");
+
+searchInput.addEventListener("input", function () {
+
+const keyword = this.value.trim().toLowerCase();
+const cards = document.querySelectorAll(".card");
+cards.forEach((card) => {
+  const name = card.querySelector("h2").textContent.trim().toLowerCase();
+
+  if (name.includes(keyword)) {
+    card.style.display = "block";
+    document.getElementById("topdiv1").style.display="flex";
+   document.getElementById("topdiv").style.display="block";
+  } else {
+    card.style.display = "none";
+   document.getElementById("topdiv1").style.display="none";
+   document.getElementById("topdiv").style.display="none";
+  }
+});
+});
+
+ </script>
 <script src="app.js"></script>
 </body>
 </html>
