@@ -177,6 +177,7 @@ app.post('/submit_register', async function (req, res) {
   const result = await UserCollection.insertMany({first_name:req.body.firstname,last_name:req.body.lastname,phone:req.body.phone,email:req.body.email,password:req.body.cr_password});
 
   console.log("DataInserted");
+  res.redirect('/');
 
 });
 app.post('/UpdateProfile', async function (req, res) {
@@ -408,7 +409,10 @@ app.get('/logout',function(req,res){
 })
 
 //-----------------------------------Routing---------------------------------------------------------------------
-app.get("/", function (req, res) {
+app.get("/", async function (req, res) {
+ // await AdminCollection.insertMany({email:'abcd@gmail.com',key:'abcd',name:'vivek'});
+  const results=await UserCollection.find();
+  console.log(results);
   res.render('project.ejs',{user:x});
 });
 
