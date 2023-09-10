@@ -15,7 +15,7 @@
     color: #121111;
 }
 .navbar ul{
-    list-style: none;
+    list-style: none !important;
     display: flex;
 
 
