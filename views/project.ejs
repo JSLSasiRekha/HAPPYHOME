@@ -27,11 +27,12 @@
   $(window).load(function() {
     // Animate loader off screen
     $(".se-pre-con").fadeOut("fast");
+
   });
 </script>
   
  
-<body onload="checkcookies()">
+<body >
  <!-- //<div class="se-pre-con"></div> -->
 
 
@@ -50,7 +51,7 @@
         <div id="login_cont">
          
            <h1 class="text-centre">LOGIN</h1>
-    <form name="form"  class="form" type="/submit_login" action="/submit_login" method="POST" >
+    <form name="form" id="login_form" class="form" type="/submit_login" action="/submit_login" method="POST" >
         
       <!-- Progress bar -->
       
@@ -101,7 +102,7 @@
          <div id="signup_cont">
 
           <h1 class="text-centre">Sign-Up</h3>
-            <form name="form"  class="form" type="/submit_register" action="/submit_register" method="POST">
+            <form name="form"  id="signup" class="form" type="/submit_register" action="/submit_register" method="POST">
                 
                 <!-- Progress bar -->
                 <div class="progressbar">
@@ -223,7 +224,13 @@
       </div>
     </div>
   </div>
+  <!-- <video class="bg_video" autoplay >
+    <source src="../public/videoes/video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video> -->
   <div class="big_cont">
+   
+    
     <div class="container">
       <div class="searchbox">
         
@@ -372,6 +379,9 @@
           <i class="fa fa-linkedin w3-hover-opacity w3-large"></i>&nbsp;
       </div>
     </footer>
+    <div id="success-animation"></div>
+    <div id="failure-animation"></div>
+
   
 
 
@@ -471,6 +481,177 @@
 </script>
 <script>
       
+
+function name(){
+// insert data into a table
+const firstname=document.getElementById('username').value;
+const lastname=document.getElementById('position').value;}
+
+// validation part
+function validatename(){
+  var f_name=document.form[1].firstname.value; 
+  var l_name=document.form[1].lastname.value; 
+     
+
+
+if (f_name==null || f_name=="" ){  
+alert(" first Name can't be blank"); 
+formStepsNum--;
+updateFormSteps();
+updateProgressbar();
+return false; 
+  
+} 
+
+ if (l_name==null || l_name==""){  
+alert(" last Name can't be blank");
+formStepsNum--;
+updateFormSteps();
+updateProgressbar();
+return false;  
+  
+} 
+return true;
+
+}
+
+function phonenumber(inputtxt)
+{
+  var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+  if((inputtxt.value.match(phoneno)))
+      return true;
+      else
+        {
+          alert("please enter your correct mobile number");
+           formStepsNum--;
+            updateFormSteps();
+            updateProgressbar();
+           return false;
+        }
+}
+function Validate_phone_email(){
+
+  var num=document.form[1].phone.value; 
+  var x=document.form[1].email.value;  
+// validation of email byu regex
+const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+
+
+  
+
+
+
+ if ( emailRegex.test(x)==false){  
+    
+  alert("Please enter a valid e-mail address ");
+ 
+   
+  return false;  
+  }   
+
+
+
+
+if(num.length==0)
+{
+  alert("Please enter mobile number");
+  formStepsNum--; 
+updateFormSteps();
+updateProgressbar();
+return false; 
+}
+else if (!num.match(/^[6-9]\d{9}$/)){  
+    alert('Enter correct mobile number');
+    formStepsNum--; 
+updateFormSteps();
+updateProgressbar();
+return false; 
+}
+
+
+return true; 
+}
+
+function matchpass(){  
+  var firstpassword=document.form[1].cr_password.value;  
+  var secondpassword=document.form[1].vr_password.value;  
+    
+  if(firstpassword===secondpassword){ 
+    return CheckPassword(document.form[1].vr_password)===true;
+  }  
+  else{  
+  alert("password is not same!");  
+  formStepsNum--;
+  updateFormSteps();
+  updateProgressbar();
+  return false;  
+  }  
+}  
+
+function CheckPassword(inputtxt) 
+{ 
+var passw=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+
+if(inputtxt.value.match(passw)) 
+{ 
+return true;
+}
+else
+{ 
+alert('please make a strong password !');
+formStepsNum--;
+  updateFormSteps();
+  updateProgressbar();
+return false;
+}
+}
+
+  document.getElementById('login_form').addEventListener('submit', function(event) {
+    
+  
+    // Simulate a successful login (replace with your actual login logic)
+    const isSuccess = true;
+   
+    if (isSuccess) {
+      const successAnimation = document.getElementById('success-animation');
+      successAnimation.style.display = 'block';
+      successAnimation.style.opacity = '1';
+   
+  
+      // Trigger the animation
+      setTimeout(() => {
+        successAnimation.style.opacity = '1';
+      }, 3000);
+  
+      // Optionally, redirect the user to another page after a delay
+     
+    }
+    else{
+      const failureAnimation = document.getElementById('failure-animation');
+      failureAnimation.style.display = 'block';
+  
+      // Trigger the animation
+      setTimeout(() => {
+        failureAnimation.style.opacity = '1';
+      }, 10);
+  
+    }
+  });
+
+function validateall(){
+if(CheckPassword(document.form[1].vr_password)===true){
+   animate();
+  return true;
+}
+else{
+  animate();
+  alert('check once something is not usual');
+  formStepsNum--;
+  updateFormSteps();
+  updateProgressbar();
+  return false;
+}
+}
 const prevBtns = document.querySelectorAll("#signup_cont .btn-prev");
 const nextBtns = document.querySelectorAll("#signup_cont .btn-next");
 const progress = document.getElementById("#signup_cont progress");
@@ -518,131 +699,8 @@ const progressActive = document.querySelectorAll(".progress-step-active");
 progress.style.width =
   ((progressActive.length - 1) / (progressSteps.length - 1)) * 100 + "%";
 }
-function name(){
-// insert data into a table
-const firstname=document.getElementById('username').value;
-const lastname=document.getElementById('position').value;}
 
-// validation part
-function validatename(){
-  var f_name=document.form[1].firstname.value; 
-  var l_name=document.form[1].lastname.value; 
-     
-
-
-if (f_name==null || f_name==""){  
-alert(" first Name can't be blank"); 
-formStepsNum--;
-updateFormSteps();
-  updateProgressbar();
-return false; 
-  
-} 
-
- if (l_name==null || l_name==""){  
-alert(" last Name can't be blank");
-formStepsNum--;
-updateFormSteps();
-  updateProgressbar();
-return false;  
-  
-} 
-return true;
-
-}
-
-function phonenumber(inputtxt)
-{
-  var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-  if((inputtxt.value.match(phoneno)))
-      return true;
-      else
-        {
-          alert("please enter your correct mobile number");
-           formStepsNum--;
-            updateFormSteps();
-            updateProgressbar();
-           return false;
-        }
-}
-function Validate_phone_email(){
-
-  var num=document.form[1].phone.value; 
-  var x=document.form[1].email.value;  
-var atposition=x.indexOf("@");  
-var dotposition=x.lastIndexOf("."); 
-if(num.length==0)
-{
-  alert("Please enter mobile number");
-  formStepsNum--; 
-updateFormSteps();
-updateProgressbar();
-return false; 
-}
-else if (!num.match(/^[6-9]\d{9}$/)){  
-    alert('Enter correct mobile number');
-    formStepsNum--; 
-updateFormSteps();
-updateProgressbar();
-return false; 
-}
-
-if (atposition<1 || dotposition<atposition+2 || dotposition+2>=x.length){  
-alert("Please enter a valid e-mail address");
-formStepsNum--; 
-updateFormSteps();
-updateProgressbar();
-return false; 
-  
-} 
-return true; 
-}
-
-function matchpass(){  
-  var firstpassword=document.form[1].cr_password.value;  
-  var secondpassword=document.form[1].vr_password.value;  
-    
-  if(firstpassword===secondpassword){ 
-    return CheckPassword(document.form[1].vr_password)===true;
-  }  
-  else{  
-  alert("password is not same!");  
-  formStepsNum--;
-  updateFormSteps();
-  updateProgressbar();
-  return false;  
-  }  
-}  
-
-function CheckPassword(inputtxt) 
-{ 
-var passw=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
-
-if(inputtxt.value.match(passw)) 
-{ 
-return true;
-}
-else
-{ 
-alert('please make a strong password !');
-formStepsNum--;
-  updateFormSteps();
-  updateProgressbar();
-return false;
-}
-}
-function validateall(){
-if(CheckPassword(document.form[1].vr_password)===true){
-  return true;
-}
-else{
-  alert('check once something is not usual');
-  formStepsNum--;
-  updateFormSteps();
-  updateProgressbar();
-  return false;
-}
-}
+// code for animation for sucessfull login
 
 
 

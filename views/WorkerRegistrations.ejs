@@ -219,8 +219,24 @@ function WValidate_phone_email(){
   
   var num=document.getElementById("wphone").value; 
   var x=document.getElementById("wemail").value;  
-var atposition=x.indexOf("@");  
-var dotposition=x.lastIndexOf("."); 
+// validation by using regex
+const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+
+
+  
+
+
+
+ if ( emailRegex.test(x)==false){  
+  
+  alert("Please enter a valid e-mail address ");
+ 
+   
+  return false;  
+  }   
+
+
+
 if(num.length==0)
 {
 alert("Please enter mobile number");
@@ -237,14 +253,7 @@ wupdateProgressbar();
 return false; 
 }
 
-if (atposition<1 || dotposition<atposition+2 || dotposition+2>=x.length){  
-alert("Please enter a valid e-mail address");
-wformStepsNum--; 
-wupdateFormSteps();
-wupdateProgressbar();
-return false; 
-  
-} 
+
 return true; 
 }
 function name(){
@@ -300,7 +309,7 @@ function phonenumber(inputtxt)
 
 
 function validateall(){
-if(CheckPassword(document.form[1].vr_password)===true){
+if(wCheckPassword(document.form[1].vr_password)===true){
   return true;
 }
 else{
