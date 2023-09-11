@@ -481,53 +481,7 @@
 </script>
 <script>
       
-const prevBtns = document.querySelectorAll("#signup_cont .btn-prev");
-const nextBtns = document.querySelectorAll("#signup_cont .btn-next");
-const progress = document.getElementById("#signup_cont progress");
-const formSteps = document.querySelectorAll("#signup_cont .form-step");
-const progressSteps = document.querySelectorAll("#signup_cont .progress-step");
 
-let formStepsNum = 0;
-
-nextBtns.forEach((btn) => {
-btn.addEventListener("click", () => {
-  formStepsNum++;
-  updateFormSteps();
-  updateProgressbar();
-});
-});
-
-prevBtns.forEach((btn) => {
-btn.addEventListener("click", () => {
-  formStepsNum--;
-  updateFormSteps();
-  updateProgressbar();
-});
-});
-
-function updateFormSteps() {
-formSteps.forEach((formStep) => {
-  formStep.classList.contains("form-step-active") &&
-    formStep.classList.remove("form-step-active");
-});
-
-formSteps[formStepsNum].classList.add("form-step-active");
-}
-
-function updateProgressbar() {
-progressSteps.forEach((progressStep, idx) => {
-  if (idx < formStepsNum + 1) {
-    progressStep.classList.add("progress-step-active");
-  } else {
-    progressStep.classList.remove("progress-step-active");
-  }
-});
-
-const progressActive = document.querySelectorAll(".progress-step-active");
-
-progress.style.width =
-  ((progressActive.length - 1) / (progressSteps.length - 1)) * 100 + "%";
-}
 function name(){
 // insert data into a table
 const firstname=document.getElementById('username').value;
@@ -583,7 +537,7 @@ function Validate_phone_email(){
   var num=document.form[1].phone.value; 
   var x=document.form[1].email.value;  
 // validation of email byu regex
-const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+//const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
 
 
   
@@ -617,14 +571,7 @@ updateProgressbar();
 return false; 
 }
 
-if (atposition<1 || dotposition<atposition+2 || dotposition+2>=x.length){  
-alert("Please enter a valid e-mail address");
-formStepsNum--; 
-updateFormSteps();
-updateProgressbar();
-return false; 
-  
-} 
+
 return true; 
 }
 
