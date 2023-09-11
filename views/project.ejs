@@ -102,7 +102,7 @@
          <div id="signup_cont">
 
           <h1 class="text-centre">Sign-Up</h3>
-            <form name="form"  id="signup" class="form" type="/submit_register" action="/submit_register" method="POST">
+            <form name="form"  class="form" type="/submit_register" action="/submit_register" method="POST">
                 
                 <!-- Progress bar -->
                 <div class="progressbar">
@@ -164,12 +164,12 @@
                   <div class="btns-group">
                     <a  class="btn btn-prev">Previous</a>
                    
-                    <a href="#" class="btn btn-next" onclick="matchpass()">sign up</a>
+                    <button  class="btn btn-next" type="submit"  onclick="matchpass()">sign up</button>
                   </div>
                 </div>
                   <div class="form-step">
                   <h3>Successfully registered!!</h3>
-                  <button class="btn btn-next" id="submit" name="submit" type="submit"  onclick="document.getElementById('newsletter').style.display='block';document.getElementById('signup_form').style.display='none'">Login now</button>
+                  <button class="btn btn-next" id="submit" name="submit"  onclick="document.getElementById('newsletter').style.display='block';document.getElementById('signup_form').style.display='none'">Login now</button>
                   </div>
                 
         
@@ -481,7 +481,53 @@
 </script>
 <script>
       
+const prevBtns = document.querySelectorAll("#signup_cont .btn-prev");
+const nextBtns = document.querySelectorAll("#signup_cont .btn-next");
+const progress = document.getElementById("#signup_cont progress");
+const formSteps = document.querySelectorAll("#signup_cont .form-step");
+const progressSteps = document.querySelectorAll("#signup_cont .progress-step");
 
+let formStepsNum = 0;
+
+nextBtns.forEach((btn) => {
+btn.addEventListener("click", () => {
+  formStepsNum++;
+  updateFormSteps();
+  updateProgressbar();
+});
+});
+
+prevBtns.forEach((btn) => {
+btn.addEventListener("click", () => {
+  formStepsNum--;
+  updateFormSteps();
+  updateProgressbar();
+});
+});
+
+function updateFormSteps() {
+formSteps.forEach((formStep) => {
+  formStep.classList.contains("form-step-active") &&
+    formStep.classList.remove("form-step-active");
+});
+
+formSteps[formStepsNum].classList.add("form-step-active");
+}
+
+function updateProgressbar() {
+progressSteps.forEach((progressStep, idx) => {
+  if (idx < formStepsNum + 1) {
+    progressStep.classList.add("progress-step-active");
+  } else {
+    progressStep.classList.remove("progress-step-active");
+  }
+});
+
+const progressActive = document.querySelectorAll(".progress-step-active");
+
+progress.style.width =
+  ((progressActive.length - 1) / (progressSteps.length - 1)) * 100 + "%";
+}
 function name(){
 // insert data into a table
 const firstname=document.getElementById('username').value;
@@ -491,10 +537,12 @@ const lastname=document.getElementById('position').value;}
 function validatename(){
   var f_name=document.form[1].firstname.value; 
   var l_name=document.form[1].lastname.value; 
-     
+  const fnameRegex = /^[a-zA-Z]+$/;  
+  const lnameRegex = /^[a-zA-Z]+$/;
 
 
-if (f_name==null || f_name=="" ){  
+
+if (f_name==null || f_name==""){  
 alert(" first Name can't be blank"); 
 formStepsNum--;
 updateFormSteps();
@@ -503,8 +551,8 @@ return false;
   
 } 
 
- if (l_name==null || l_name==""){  
-alert(" last Name can't be blank");
+ if (!lnameRegex.test(l_name)){   
+alert("Enter proper last name..");
 formStepsNum--;
 updateFormSteps();
 updateProgressbar();
@@ -530,7 +578,8 @@ function phonenumber(inputtxt)
         }
 }
 function Validate_phone_email(){
-
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  const phoneRegex = /^[6-9]\d{9}$/;
   var num=document.form[1].phone.value; 
   var x=document.form[1].email.value;  
 // validation of email byu regex
@@ -568,7 +617,14 @@ updateProgressbar();
 return false; 
 }
 
-
+if (atposition<1 || dotposition<atposition+2 || dotposition+2>=x.length){  
+alert("Please enter a valid e-mail address");
+formStepsNum--; 
+updateFormSteps();
+updateProgressbar();
+return false; 
+  
+} 
 return true; 
 }
 

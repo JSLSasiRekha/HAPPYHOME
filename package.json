@@ -5,11 +5,12 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node app.js"
   },
-  "author": "neelesh",
+  "author": "sasirekha",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.20.2",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "formidable": "^2.1.1",
@@ -19,6 +20,7 @@
     "nodemailer": "^6.9.1",
     "pug": "^3.0.2",
     "slugify": "^1.6.5",
-    "sqlite3": "^5.1.6"
+    "sqlite3": "^5.1.6",
+    "xhr2": "^0.2.1"
   }
 }
