@@ -230,6 +230,7 @@
   </video> -->
   <div class="big_cont">
    
+   
     
     <div class="container">
       <div class="searchbox">
@@ -268,6 +269,11 @@
 
   
     <div class="container2" id="canvas">
+      <div class="bgAnimation" id="bgAnimation">
+        <div class="backgroundAmim">
+            
+        </div>
+    </div>
 
       <div class="services reveal">
 
@@ -409,6 +415,16 @@
   </script>
 <script>
     // JavaScript code
+    //animation of bg
+    const bgAnimation = document.getElementById('bgAnimation');
+
+const numberOfColorBoxes = 400;
+
+for (let i = 0; i < numberOfColorBoxes; i++) {
+    const colorBox = document.createElement('div');
+    colorBox.classList.add('colorBox');
+    bgAnimation.append(colorBox)
+}
 
     var slideIndex = 1;
     showSlides(slideIndex);

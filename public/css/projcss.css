@@ -4,6 +4,52 @@ h1,h2,h3,h4,h5,h6 {
     font-weight: 400;
     margin: 10px 0
 }
+.bgAnimation{
+  position: absolute;
+  
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(20,1fr);
+  grid-template-rows: repeat(20,1fr);
+  background: #1d1d1d;
+  filter: saturate(2);
+  overflow: hidden;
+}
+.backgroundAmim{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: #e5eaea;
+  filter: blur(60px);
+  animation: animBack 6s linear infinite;
+}
+.colorBox{
+  z-index: 2;
+  filter: brightness(1.1);
+  transition: 2s ease;
+  position: relative;
+  margin: 2px;
+  background: #181414;
+}
+
+.colorBox:hover{
+  background: #434444;
+  transition-duration: 0s;
+}
+
+
+@keyframes animBack {
+  0%{
+      top: -60px;
+  }
+  100%{
+      top: 120%;
+  }
+}
 
 #options option{
     color: #f7f1f1;
