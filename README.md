@@ -1,5 +1,6 @@
 # HAPPYHOME
-Then run 'nodemon app.js'. It will run on localhost port number 8000
+First clone this repository and run the command "npm i" to install all dependencies.
+Then run 'npm start'. It will run on localhost with port number 8000
  
 By visiting that localhost with port 8000, you can see our happy home website.
 
